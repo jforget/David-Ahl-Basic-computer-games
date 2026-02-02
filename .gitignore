@@ -1,0 +1,7 @@
+*~
+*.html
+.lwpcookies
+.last_cover_stats
+pod2htm*.tmp
+pm_to_blib
+resultat-*
