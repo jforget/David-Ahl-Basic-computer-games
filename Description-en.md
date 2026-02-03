@@ -113,7 +113,8 @@ The `test1.bas` program  fails, because it contains  `print` and `end`
 in  lowercase chars.  On the  other hand,  several other  programs run
 successfully, such as `sinewave.bas`, `amazing.bas` and `love.bas`. Or
 there are a few errors, such as  `bunny.bas` in which the array `B` is
-not declared.
+not declared, or `eliza.bas` (the one extracted from `mbcg.zip`) which
+uses a `P$` variable in line 255 without defining it.
 
 The most serious  problem is that the window  cannot change dimensions
 and you cannot scroll back to the previous lines (no scrollbars).
@@ -132,6 +133,68 @@ QUIT
 Note that  the commands must  be typed  with upper-case chars.  On the
 other hand,  filenames must be typed  as they appear when  listing the
 file directory.
+
+bwbasic
+-------
+
+The [website](https://sourceforge.net/projects/bwbasic/)
+mentions version 3.40, the APT package has version 2.20pl2.
+
+To invoke  the interpreter, the  command is `bwbasic`. It  accepts the
+pathname for a  BASIC source file as a CLI  parameter. The interpreter
+uses the  current xterm window to  interact with the user,  so you can
+browse the previous lines by using the scroll bars.
+
+Lower-case  letters are  allowed.  On the  other  hand, some  problems
+arise. For  example, in `sinewave.bas`,  a comment is prefixed  by the
+pseudo-keyword   `REMARKABLE`  (with   a  `REM`   prefix),  but   this
+interpreter does not understand the trick. Also, in many programs, the
+interpreter does  not recognise  the `NEXT` end-of-loop  statements if
+they are not the first statement in the line.
+
+More surprising:  when I run  `calendar.bas`, after fixing  the `NEXT`
+statements not  at the beginning  of a  line, I have  errors seemingly
+attributed to  `sh`. These  are not  blocking errors.  But there  is a
+blocking error, with an array `M`,  declared with `DIM M(12)`, and for
+which the program uses indices 0 to 12:
+
+```
+bwBASIC: load "calendar.bas"
+bwBASIC: run
+                               CALENDAR
+              CREATIVE COMPUTING  MORRISTOWN, NEW JERSEY
+sh: 1: PRINT:PRINT:PRINT: not found
+sh: 1: REM: not found
+sh: 1: Syntax error: "(" unexpected
+sh: 1: 10: not found
+sh: 1: FOR: not found
+sh: 1: NEXT: not found
+
+ERROR in line 160: in dim_check(): array subscript var <M> pos <0> val <2> out
+of range <0>-<1>.
+```
+
+About  `eliza.bas` (from  `mbcg.zip`),  the "shell"  errors are  still
+there. The blocking problem in this program is that there is some loss
+of  synchronisation  between  the  `DATA` statements  and  the  `READ`
+statements. The  program reads  several strings  and then  switches to
+reading  numeric  data. The  problem  is  that  for some  reason,  the
+internal  `DATA` pointer  still designates  a `DATA`  string when  the
+numeric `READ` is executed.
+
+```
+bwBASIC: load "eliza.bas"
+bwBASIC: run
+                         ELIZA
+                   CREATIVE COMPUTING
+                 MORRISTOWN, NEW JERSEY
+sh: 1: PRINT:PRINT:PRINT: not found
+sh: 1: REM: not found
+sh: 1: Syntax error: "(" unexpected
+
+ERROR in line 140: expression <WHEN?> is not a numerical constant.
+bwBASIC:
+```
 
 
 COPYRIGHT AND LICENSE

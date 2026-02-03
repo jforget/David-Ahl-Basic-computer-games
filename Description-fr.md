@@ -124,8 +124,10 @@ l'interpréteur ouvre une fenêtre de saisie où l'on peut taper du BASIC
 d'erreur).  Ainsi, le  programme  `test1.bas` ne  fonctionne pas,  car
 `print` et `end`  doivent être en majuscules. En  revanche, les autres
 programmes   comme   `sinewave.bas`,   `amazing.bas`   ou   `love.bas`
-fonctionnent.  D'autres, comme  `bunny.bas`  génèrent  une erreur  (le
-tableau `B` n'est pas dimensionné dans le cas de `bunny.bas`).
+fonctionnent. D'autres,  comme `bunny.bas` et `eliza.bas`  (la version
+de `mbcg.zip`)  génèrent une erreur  : dans  le cas de  `bunny.bas` le
+tableau `B`  n'est pas  dimensionné, le programme  `eliza.bas` utilise
+une variable `P$` en ligne 255 sans l'avoir définie.
 
 Le problème le  plus important, c'est qu'il est  impossible de changer
 les  dimensions de  la  fenêtre  et qu'il  n'y  a  pas possibilité  de
@@ -143,8 +145,71 @@ QUIT
 ```
 
 Notez que les commandes doivent être  en majuscules, mais que les noms
-de fichier doivent  correspondre à leur nom dans le  répertoire sur le
-disque.
+de fichier doivent  correspondre à la façon dont ils  sont écrits dans
+le répertoire sur le disque.
+
+bwbasic
+-------
+
+La [page web](https://sourceforge.net/projects/bwbasic/)
+indique la version 3.40, le paquet APT en est à la version 2.20pl2.
+
+La  commande  est  `bwbasic`.  Elle  admet  un  nom  de  programme  en
+paramètre. L'interpréteur  utilise la fenêtre  xterm pour sa  ligne de
+commande,  donc  il  est  possible  de  paginer  avec  les  barres  de
+défilement.
+
+Il  est  possible d'utiliser  les  minuscules.  En revanche,  certains
+problèmes se présentent. Par  exemple, dans `sinewave`, un commentaire
+est  introduit par  `REMARKABLE` au  lieu de  simplement `REM`.  Cette
+version  de BASIC  ne reconnaît  pas l'instruction  `REM` dans  ce mot
+`REMARKABLE`. Ou alors, dans de nombreux programmes, l'interpréteur ne
+reconnaît pas les fins de boucle `NEXT`  si elles ne sont pas au début
+de la ligne de code.
+
+Plus curieux  : lorsque je  lance "calendar.bas", après  avoir corrigé
+les `NEXT`  qui ne sont pas  en début de ligne,  j'obtiens des erreurs
+étiquetées comme venant  de `sh`. Ces erreurs ne  sont pas bloquantes.
+En fait, l'erreur bloquante concerne  le tableau `M`, déclaré par `DIM
+M(12)`, et  pour lequel les  indices utilisés sont  0 à 12.  Voici les
+erreurs :
+
+```
+bwBASIC: load "calendar.bas"
+bwBASIC: run
+                               CALENDAR
+              CREATIVE COMPUTING  MORRISTOWN, NEW JERSEY
+sh: 1: PRINT:PRINT:PRINT: not found
+sh: 1: REM: not found
+sh: 1: Syntax error: "(" unexpected
+sh: 1: 10: not found
+sh: 1: FOR: not found
+sh: 1: NEXT: not found
+
+ERROR in line 160: in dim_check(): array subscript var <M> pos <0> val <2> out
+of range <0>-<1>.
+```
+
+Quant à `eliza.bas` (version de `mbcg.zip`), il y a un problème que je
+ne comprends pas pour l'association entre les `READ` et les `DATA`. Le
+programme  commence par  lire des  données alphabétiques.  Ensuite, au
+moment  de lire  des  données  numériques, un  déphasage  fait que  le
+pointeur interne des `DATA` pointe vers une donnée alphabétique. Et on
+a encore les erreurs attribuées à `sh`.
+
+```
+bwBASIC: load "eliza.bas"
+bwBASIC: run
+                         ELIZA
+                   CREATIVE COMPUTING
+                 MORRISTOWN, NEW JERSEY
+sh: 1: PRINT:PRINT:PRINT: not found
+sh: 1: REM: not found
+sh: 1: Syntax error: "(" unexpected
+
+ERROR in line 140: expression <WHEN?> is not a numerical constant.
+bwBASIC:
+```
 
 
 COPYRIGHT ET LICENCE
