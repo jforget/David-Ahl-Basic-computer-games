@@ -196,6 +196,124 @@ ERROR in line 140: expression <WHEN?> is not a numerical constant.
 bwBASIC:
 ```
 
+gambas
+------
+
+The [website](https://gambaswiki.org/website/en/main.html)
+mentions version 3.21.2, the APT package has version 3.20.2.
+
+The `gambas3`  command launches a full  development environment, which
+allows you  to create a  full graphic  application, instead of  just a
+CLI-oriented program. It  is too much complicated for  my needs, which
+are just running (and possibly updating) BASIC programs created in the
+1970's.
+
+yabasic
+------
+
+The [website](https://2484.de/yabasic/)
+mentions version 2.91.4, the APT package has version 2.91.1.
+
+The  `yabasic`  command accepts  a  filename  as  a parameter.  If  no
+filename is  provided, it enters  a CLI  interface where you  can type
+your  program  on  the  fly  and  run it.  Once  the  program  is  run
+(on-the-fly program or source file), `yabasic` ends and yields control
+to shell. If the program does not  take input from the user, or if the
+user can prepare  the input data before running the  program, the call
+to `yabasic`  can be  part of a  shell pipeline or  its output  can be
+redirected with `>`.
+
+Example with `love.bas`, which takes a single input from the user:
+
+```
+echo kisses | yabasic love.bas | less
+```
+
+Some syntactic features of the 1970-era BASIC interpreters are missing
+from `yabasic`. All examples are taken from `sinewave.bas`.
+
+* print several arguments separated with semicolons
+
+  ```
+  ---Error: syntax error
+     10 PRINT TAB(30); "SINE WAVE"
+                       ^~~~~~~~~~~
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+  But you can print several arguments if they are separated with commas.
+
+* find a keyword hidden inside a supposedly normal identifier
+
+  ```
+  ---Error in sinewave.bas, line 4:
+  ---Error: syntax error
+     40 REMARKABLE PROGRAM BY DAVID AHL
+                   ^~~~~~~
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+* implicit `GOTO` in a `IF ... THEN` construct
+
+  ```
+  ---Error in sinewave.bas, line 10:
+  ---Error: syntax error
+     140 IF B=1 THEN 180
+                     ^~~
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+* a `IF ... THEN` construct must be closed with a `ENDIF`
+
+  ```
+  ---Error in sinewave.bas, line 16:
+  ---Error: a closing endif is expected before next
+     200 NEXT T
+         ^~~~
+  ---Error: if-statement starting at line 10 has seen no 'endif' yet
+     200 NEXT T
+         ^~~~
+  ---Error: syntax error
+     200 NEXT T
+              ^
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+  You may use [`FI`](https://2484.de/yabasic/yabasic.htm#ref_fi)
+  instead of `ENDIF`.
+
+* the `TAB` function which should generate a string with _n_ space chars is not known
+
+  ```
+  ---Error in sinewave.bas, line 1:
+  ---Error: 'TAB()' is neither array nor subroutine
+     10 PRINT TAB(30), "SINE WAVE"
+                    ^
+  ---Error: Program stopped due to an error
+  ```
+
+  Actually, we must use
+  [function `string$()`](https://2484.de/yabasic/yabasic.htm#ref_string).
+
+  Or else, we  can create a user subroutine. The  only problem is that
+  its name cannot be `TAB`, but  `TAB$` since it produces a string (or
+  `tab$`,   but   you   should   be  consistent,   these   names   are
+  case-sensitive).
+
+  ```
+  10 PRINT tab$(30), "SINE WAVE"
+  20 PRINT tab$(15), "CREATIVE COMPUTING  MORRISTOWN, NEW JERSEY"
+  [...]
+  130 PRINT tab$(A);
+  [...]
+  300 sub tab$(n)
+  310 return string$(n, " ")
+  320 end sub
+  ```
 
 COPYRIGHT AND LICENSE
 =====================

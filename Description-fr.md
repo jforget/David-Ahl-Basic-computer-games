@@ -211,6 +211,128 @@ ERROR in line 140: expression <WHEN?> is not a numerical constant.
 bwBASIC:
 ```
 
+gambas
+------
+
+La [page web](https://gambaswiki.org/website/en/main.html)
+indique la version 3.21.2, le paquet APT en est à la version 3.20.2.
+
+La commande `gambas3` lance un environnement de développement complet,
+pour créer non pas de simples programmes en ligne de commande, pas des
+applications   graphiques  complètes.   C'est   trop  compliqué   pour
+simplement  lancer (et  éventuellement adapter)  des programmes  créés
+dans les années 1970.
+
+yabasic
+------
+
+La [page web](https://2484.de/yabasic/)
+indique la version 2.91.4, le paquet APT en est à la version 2.91.1.
+
+La commande  `yabasic` prend  un nom de  fichier source  en paramètre.
+S'il n'y a  pas de paramètre, la commande entre  dans une interface en
+ligne de  commande où  vous pouvez  saisir votre  programme au  fil de
+l'eau puis l'exécuter. Une fois le programme terminé (programme au fil
+de l'eau ou fichier-programme), `yabasic` rend la main au shell. Si le
+programme n'attend pas de données saisies par l'utilisateur, ou si les
+données saisies  par l'utilisateur  peuvent être préparées,  l'appel à
+`yabasic`  peut  s'intégrer à  un  _pipeline_  shell ou  utiliser  une
+redirection `>`.
+
+Exemple  avec  `love.bas`,  dans  lequel  l'utilisateur  anticipe  sur
+l'unique demande d'entrée du programme :
+
+```
+echo bises | yabasic love.bas | less
+```
+
+Un  certain nombre  de  particularités syntaxiques  de  BASIC dans  la
+version des années 1970 sont refusées par `yabasic` (tous les exemples
+proviennent de `sinewave.bas`) :
+
+* imprimer plusieurs arguments séparés par un point-virgule
+
+  ```
+  ---Error: syntax error
+     10 PRINT TAB(30); "SINE WAVE"
+                       ^~~~~~~~~~~
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+  Mais vous pouvez imprimer plusieurs arguments séparés par une virgule.
+
+* détecter un mot-clé dissimulé à l'intérieur d'un identifiant
+
+  ```
+  ---Error in sinewave.bas, line 4:
+  ---Error: syntax error
+     40 REMARKABLE PROGRAM BY DAVID AHL
+                   ^~~~~~~
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+* `GOTO` implicite dans un `IF ... THEN`
+
+  ```
+  ---Error in sinewave.bas, line 10:
+  ---Error: syntax error
+     140 IF B=1 THEN 180
+                     ^~~
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+* un `IF ... THEN` doit être suivi d'un `ENDIF`
+
+  ```
+  ---Error in sinewave.bas, line 16:
+  ---Error: a closing endif is expected before next
+     200 NEXT T
+         ^~~~
+  ---Error: if-statement starting at line 10 has seen no 'endif' yet
+     200 NEXT T
+         ^~~~
+  ---Error: syntax error
+     200 NEXT T
+              ^
+  ---Error: Couldn't parse program
+  ---Error: Program not executed
+  ```
+
+  Vous pouvez utiliser [`FI`](https://2484.de/yabasic/yabasic.htm#ref_fi)
+  à la place de `ENDIF`.
+
+* la fonction `TAB` qui permet de générer une chaîne contenant _n_ espaces est inconnue
+
+  ```
+  ---Error in sinewave.bas, line 1:
+  ---Error: 'TAB()' is neither array nor subroutine
+     10 PRINT TAB(30), "SINE WAVE"
+                    ^
+  ---Error: Program stopped due to an error
+  ```
+
+  En fait, il faut utiliser la
+  [fonction `string$()`](https://2484.de/yabasic/yabasic.htm#ref_string).
+
+  Une autre possibilité,  c'est de créer une  fonction utilisateur. Il
+  reste un hic, toutefois. La  fonction crée une chaîne de caractères,
+  donc elle pourra s'appeler `TAB$` (ou `tab$`, attention à la casse),
+  mais pas `TAB`.
+
+  ```
+  10 PRINT tab$(30), "SINE WAVE"
+  20 PRINT tab$(15), "CREATIVE COMPUTING  MORRISTOWN, NEW JERSEY"
+  [...]
+  130 PRINT tab$(A);
+  [...]
+  300 sub tab$(n)
+  310 return string$(n, " ")
+  320 end sub
+  ```
+
 
 COPYRIGHT ET LICENCE
 ====================
