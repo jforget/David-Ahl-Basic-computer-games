@@ -71,6 +71,82 @@ le format texte,  il y a de nombreuses erreurs  de transcription. Cela
 dit, cela peut  toujours servir de point de départ  pour récupérer les
 sources de tel ou tel programme.
 
+Interpréteurs BASIC
+===================
+
+Le [langage BASIC](https://rosettacode.org/wiki/99_Bottles_of_Beer/Basic)
+a considérablement évolué entre ses  débuts en 1965 et maintenant. Les
+numéros de ligne ont disparu,  il existe maintenant des fonctions avec
+paramètres,  des  variables locales  avec  règles  de visibilité  bien
+définies. Un
+[programme moderne](https://rosettacode.org/wiki/10001th_prime#BASIC256)
+présente très peu de ressemblances avec un
+[programme classique](https://rosettacode.org/wiki/10001th_prime#GW-BASIC).
+
+Pour  les jeux  programmés  dans  les années  1970,  j'ai besoin  d'un
+interpréteur acceptant la  syntaxe classique avec numéros  de ligne et
+tout.
+
+Pour mes  tests, j'utilise  une machine  virtuelle xubuntu  25.04. Une
+machine virtuelle, car la désinstallation  d'un logiciel peut se faire
+simplement  en  restaurant un  instantané.  xubuntu,  parce que  cette
+distribution  contient  plus de  paquets  pour  BASIC que  les  autres
+distributions que  j'utilise comme  Fedora. 25.04  parce que  c'est la
+plus récente installée parmi mes machines virtuelles.
+
+brandy
+------
+
+Le [site web](https://brandy.matrixnetwork.co.uk/)
+annonce la version 1.23.6, le paquet APT en est à la version 1.23.4.
+
+Lorsque je teste le programme minimal `test1.bas` tiré de `bcg.tar.gz` :
+
+```
+10 print "I am test 1"
+20 end
+```
+
+l'interpréteur `brandy` plante :
+
+```
+$ brandy test1.bas
+heap.c:init_workspace: Requested heapsize is 67108864 (&4000000)
+heap.c:init_workspace: Allocating at 0x400000, size &4000000
+heap.c:init_workspace: mmap returns 0x400000
+```
+
+Idem avec les quelques autres programmes que j'ai essayés.
+
+Néanmoins, si je  lance l'interpréteur sans donner de  nom de fichier,
+l'interpréteur ouvre une fenêtre de saisie où l'on peut taper du BASIC
+(majuscules   uniquement,  les   minuscules   provoquent  un   message
+d'erreur).  Ainsi, le  programme  `test1.bas` ne  fonctionne pas,  car
+`print` et `end`  doivent être en majuscules. En  revanche, les autres
+programmes   comme   `sinewave.bas`,   `amazing.bas`   ou   `love.bas`
+fonctionnent.  D'autres, comme  `bunny.bas`  génèrent  une erreur  (le
+tableau `B` n'est pas dimensionné dans le cas de `bunny.bas`).
+
+Le problème le  plus important, c'est qu'il est  impossible de changer
+les  dimensions de  la  fenêtre  et qu'il  n'y  a  pas possibilité  de
+remonter dans le texte (pas de barre de défilement).
+
+Quelques commandes utiles :
+
+```
+HELP
+HELP "."
+HELP "LOAD"
+LOAD "amazing.bas"
+RUN
+QUIT
+```
+
+Notez que les commandes doivent être  en majuscules, mais que les noms
+de fichier doivent  correspondre à leur nom dans le  répertoire sur le
+disque.
+
+
 COPYRIGHT ET LICENCE
 ====================
 

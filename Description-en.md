@@ -61,6 +61,79 @@ in the text files, there are  many OCR errors. However, this can still
 be  a starting  point to  retrieve the  source file  for such  or such
 program.
 
+BASIC INTERPRETERS
+==================
+
+The [BASIC  language](https://rosettacode.org/wiki/99_Bottles_of_Beer/Basic)
+has changed  in spades between  its first days  in 1965 and  now. Line
+numbers have disappeared, now you have user functions with parameters,
+you have local variables with well-specified scope. A
+[modern program](https://rosettacode.org/wiki/10001th_prime#BASIC256)
+has a very different look when compared with a
+[classical program](https://rosettacode.org/wiki/10001th_prime#GW-BASIC).
+
+Since the games have been written in the 1970's, I need an interpreter
+which accepts the classical syntax with line numbers and the like.
+
+For my  tests, I  use a virtual  machine with xubuntu  25.04. I  use a
+virtual machine, because uninstalling a software can be simply done by
+restoring a previous  snapshot. I choose xubuntu, because  it has more
+software packages  related to BASIC  than other distributions  such as
+Fedora. 25.04  because it is  the most recent xubuntu  virtual machine
+installed on my computer.
+
+brandy
+------
+
+The [website](https://brandy.matrixnetwork.co.uk/)
+mentions version 1.23.6, the APT package has version 1.23.4.
+
+When I test the minimal program `test1.bas` from `bcg.tar.gz`:
+
+```
+10 print "I am test 1"
+20 end
+```
+
+The `brandy` interpreter crashes:
+
+```
+$ brandy test1.bas
+heap.c:init_workspace: Requested heapsize is 67108864 (&4000000)
+heap.c:init_workspace: Allocating at 0x400000, size &4000000
+heap.c:init_workspace: mmap returns 0x400000
+```
+
+I have tried a few other programs, they crash in the same fashion.
+
+Yet, if I type no filename  in the command line, the interpreter opens
+an  input window  and  I  can type  BASIC  statements  in this  window
+(upper-case only,  lower-case letters trigger syntax  error messages).
+The `test1.bas` program  fails, because it contains  `print` and `end`
+in  lowercase chars.  On the  other hand,  several other  programs run
+successfully, such as `sinewave.bas`, `amazing.bas` and `love.bas`. Or
+there are a few errors, such as  `bunny.bas` in which the array `B` is
+not declared.
+
+The most serious  problem is that the window  cannot change dimensions
+and you cannot scroll back to the previous lines (no scrollbars).
+
+A few useful commands:
+
+```
+HELP
+HELP "."
+HELP "LOAD"
+LOAD "amazing.bas"
+RUN
+QUIT
+```
+
+Note that  the commands must  be typed  with upper-case chars.  On the
+other hand,  filenames must be typed  as they appear when  listing the
+file directory.
+
+
 COPYRIGHT AND LICENSE
 =====================
 
