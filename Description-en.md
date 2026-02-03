@@ -52,12 +52,14 @@ Fortunately, the programs  from the first book are available  as a Zip
 archive and as a tar.gz archive on the
 [Vintage Basic webpage](http://www.vintage-basic.net/games.html).
 
-The second book is also available on the
-[archive.org website](https://archive.org/details/More_BASIC_Computer_Games),
-displaying the contents  as GIF images (or JPEG? or  PNG?). There is a
-link to download  the whole book as  a text file. Yet,  there are many
-OCR errors.  However, this can still  be a starting point  to retrieve
-the source file for such or such program.
+The first two books are also available on the
+[archive.org]((https://archive.org/details/basic-computer-games-microcomputer-edition_202207)
+[website](https://archive.org/details/More_BASIC_Computer_Games),
+displaying the  contents as GIF images  (or JPEG? or PNG?).  There are
+links to download the whole book as a text file or as a PDF file. Yet,
+in the text files, there are  many OCR errors. However, this can still
+be  a starting  point to  retrieve the  source file  for such  or such
+program.
 
 COPYRIGHT AND LICENSE
 =====================

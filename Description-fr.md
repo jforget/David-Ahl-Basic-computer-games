@@ -57,14 +57,19 @@ automatisée  de   caractères,  avec  nécessairement   vérification  et
 correction des erreurs. Heureusement,  les programmes du premier livre
 sont  disponibles sous  la forme  d'une archive  Zip ou  d'une archive
 tar.gz sur le
-[site de Vintage Basic](http://www.vintage-basic.net/games.html).
+[site de Vintage Basic](http://www.vintage-basic.net/games.html)
+et les programme  du deuxième livre sont disponibles en  mode texte ou
+sous la forme d'une archive Zip sur
+[un autre site](https://www.roug.org/retrocomputing/languages/basic/morebasicgames).
 
-Le deuxième livre est disponible également sur le site
+Les deux premiers livres sont disponibles également sur le
+[site](https://archive.org/details/basic-computer-games-microcomputer-edition_202207)
 [archive.org](https://archive.org/details/More_BASIC_Computer_Games)
-en mode GIF (ou JPEG ou PNG ?), avec un lien permettant de télécharger
-le livre  en mode texte.  Néanmoins, il y  a de nombreuses  erreurs de
-transcription. Cela dit, cela peut  toujours servir de point de départ
-pour récupérer les sources de tel ou tel programme.
+en  mode  GIF  (ou JPEG  ou  PNG  ?),  avec  des liens  permettant  de
+télécharger le livre au format texte ou au format PDF. Néanmoins, pour
+le format texte,  il y a de nombreuses erreurs  de transcription. Cela
+dit, cela peut  toujours servir de point de départ  pour récupérer les
+sources de tel ou tel programme.
 
 COPYRIGHT ET LICENCE
 ====================
