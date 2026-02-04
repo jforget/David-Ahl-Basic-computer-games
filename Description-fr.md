@@ -37,6 +37,9 @@ disponible également sur
 [un autre site](https://jesperjuul.net/eliza/ELIZA.BAS)
 et [une autre version de 2013](https://github.com/jeffshrager/elizagen.org/blob/3f3414c8a3e359e5f392d92883241d3bd41e7988/Other_Elizas/20120310ShragerNorthEliza.c64basic).
 
+En fait, comme vous le lirez dans le paragraphe suivant, j'ai trouvé
+une autre source pour le programme Eliza.
+
 Basic Computer Games
 --------------------
 
@@ -67,9 +70,8 @@ Les deux premiers livres sont disponibles également sur le
 [archive.org](https://archive.org/details/More_BASIC_Computer_Games)
 en  mode  GIF  (ou JPEG  ou  PNG  ?),  avec  des liens  permettant  de
 télécharger le livre au format texte ou au format PDF. Néanmoins, pour
-le format texte,  il y a de nombreuses erreurs  de transcription. Cela
-dit, cela peut  toujours servir de point de départ  pour récupérer les
-sources de tel ou tel programme.
+le format texte,  il y a de nombreuses erreurs  de transcription. Donc
+autant utiliser les archives Zip.
 
 Interpréteurs BASIC
 ===================
@@ -125,7 +127,7 @@ d'erreur).  Ainsi, le  programme  `test1.bas` ne  fonctionne pas,  car
 `print` et `end`  doivent être en majuscules. En  revanche, les autres
 programmes   comme   `sinewave.bas`,   `amazing.bas`   ou   `love.bas`
 fonctionnent. D'autres,  comme `bunny.bas` et `eliza.bas`  (la version
-de `mbcg.zip`)  génèrent une erreur  : dans  le cas de  `bunny.bas` le
+de `morebasicgames.zip`)  génèrent une erreur : dans le cas de `bunny.bas` le
 tableau `B`  n'est pas  dimensionné, le programme  `eliza.bas` utilise
 une variable `P$` en ligne 255 sans l'avoir définie.
 
@@ -190,7 +192,7 @@ ERROR in line 160: in dim_check(): array subscript var <M> pos <0> val <2> out
 of range <0>-<1>.
 ```
 
-Quant à `eliza.bas` (version de `mbcg.zip`), il y a un problème que je
+Quant à `eliza.bas` (version de `morebasicgames.zip`), il y a un problème que je
 ne comprends pas pour l'association entre les `READ` et les `DATA`. Le
 programme  commence par  lire des  données alphabétiques.  Ensuite, au
 moment  de lire  des  données  numériques, un  déphasage  fait que  le

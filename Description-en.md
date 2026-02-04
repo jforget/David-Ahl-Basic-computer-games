@@ -34,6 +34,9 @@ available at
 [another address](https://jesperjuul.net/eliza/ELIZA.BAS)
 and [another 2013 version](https://github.com/jeffshrager/elizagen.org/blob/3f3414c8a3e359e5f392d92883241d3bd41e7988/Other_Elizas/20120310ShragerNorthEliza.c64basic).
 
+Actually, as  seen just  below, I  have not used  these files,  I have
+found another version.
+
 Basic Computer Games
 --------------------
 
@@ -47,19 +50,20 @@ I did not know about. Among all the programs, we certainly find
 [Eliza](https://www.atariarchives.org/morebasicgames/showpage.php?page=56).
 
 The problem  is that these  files are available  as GIF images.  So we
-need  some OCR  programs  to  convert them  into  ASCII source  files.
+would need some OCR programs to  convert them into ASCII source files.
 Fortunately, the programs  from the first book are available  as a Zip
 archive and as a tar.gz archive on the
-[Vintage Basic webpage](http://www.vintage-basic.net/games.html).
+[Vintage Basic webpage](http://www.vintage-basic.net/games.html)
+and the programs from the second book are available as a Zip archive at
+[another website](https://www.roug.org/retrocomputing/languages/basic/morebasicgames).
 
 The first two books are also available on the
 [archive.org]((https://archive.org/details/basic-computer-games-microcomputer-edition_202207)
 [website](https://archive.org/details/More_BASIC_Computer_Games),
 displaying the  contents as GIF images  (or JPEG? or PNG?).  There are
 links to download the whole book as a text file or as a PDF file. Yet,
-in the text files, there are  many OCR errors. However, this can still
-be  a starting  point to  retrieve the  source file  for such  or such
-program.
+in the text files,  there are many OCR errors. So we  must use the Zip
+archives instead.
 
 BASIC INTERPRETERS
 ==================
@@ -113,8 +117,9 @@ The `test1.bas` program  fails, because it contains  `print` and `end`
 in  lowercase chars.  On the  other hand,  several other  programs run
 successfully, such as `sinewave.bas`, `amazing.bas` and `love.bas`. Or
 there are a few errors, such as  `bunny.bas` in which the array `B` is
-not declared, or `eliza.bas` (the one extracted from `mbcg.zip`) which
-uses a `P$` variable in line 255 without defining it.
+not    declared,   or    `eliza.bas`   (the    one   extracted    from
+`morebasicgames.zip`) which uses  a `P$` variable in  line 255 without
+defining it.
 
 The most serious  problem is that the window  cannot change dimensions
 and you cannot scroll back to the previous lines (no scrollbars).
@@ -174,7 +179,7 @@ ERROR in line 160: in dim_check(): array subscript var <M> pos <0> val <2> out
 of range <0>-<1>.
 ```
 
-About  `eliza.bas` (from  `mbcg.zip`),  the "shell"  errors are  still
+About `eliza.bas` (from `morebasicgames.zip`), the "shell" errors are still
 there. The blocking problem in this program is that there is some loss
 of  synchronisation  between  the  `DATA` statements  and  the  `READ`
 statements. The  program reads  several strings  and then  switches to
