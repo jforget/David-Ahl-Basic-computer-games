@@ -335,6 +335,121 @@ proviennent de `sinewave.bas`) :
   320 end sub
   ```
 
+Vintage BASIC
+-------------
+
+Il n'y a pas de paquet APT pour Vintage BASIC, il faut aller chercher sur le
+[site](http://vintage-basic.net/).
+La version obtenue est 1.0.3.
+
+Le première méthode d'installation que j'ai essayée est :
+
+```
+cp -R vintage-basic-1.0.3-linux-x86_64/bin ~/bin
+cp -R vintage-basic-1.0.3-linux-x86_64/share ~/share
+```
+
+comme indiqué sur le
+[site web](http://vintage-basic.net/download.html).
+Cela ne fonctionne pas, mais
+
+```
+cp -R vintage-basic-1.0.3-linux-x86_64/bin/* ~/bin
+cp -R vintage-basic-1.0.3-linux-x86_64/share/* ~/share
+```
+
+fonctionne  et   permet  d'avoir  un  exécutable   `vintbas`.  Il  est
+obligatoire  de fournir  un nom  de  fichier source  en paramètre.  Le
+programme BASIC est  exécuté puis `vintbas` rend la main  au shell. Le
+fonctionnement  est ainsi  conforme aux  habitudes Unix  (_pipelines_,
+redirection). En  revanche, il  n'y a  pas de mode  où l'on  saisit le
+programme ligne par ligne avant de le lancer.
+
+Tous les programmes venant  de `bcg.tar.gz` et de `morebasicgames.zip`
+et  que j'ai  testés fonctionnent  tels  quels, sans  avoir besoin  de
+modification.
+
+Il faut  faire un peu  de ménage  dans le répertoire  de documentation
+`~/share/doc`, car l'archive comporte  des fichiers cachés spécifiques
+à Mac OSX.
+
+```
+  /home/jf/share/doc:
+  drwxr-xr-x 3 jf jf 4096 févr.  4 19:14 .
+  drwxrwxr-x 3 jf jf 4096 févr.  4 19:14 ..
+  -rw-r--r-- 1 jf jf  120 févr.  4 19:14 ._.DS_Store
+  -rw-r--r-- 1 jf jf 6148 févr.  4 19:14 .DS_Store
+  -rwxr-xr-x 1 jf jf  176 févr.  4 19:14 ._vintage-basic-1.0.3
+  drwxr-xr-x 3 jf jf 4096 févr.  4 19:14 vintage-basic-1.0.3
+```
+
+Par acquit de conscience, j'ai essayé les autres façons d'installer l'interpréteur.
+
+```
+sudo cp -R vintage-basic-1.0.3-linux-x86_64/bin /usr/local/bin
+sudo cp -R vintage-basic-1.0.3-linux-x86_64/share /usr/local/share
+```
+
+Comme  précédemment,  il  faut  ajouter  des  étoiles  pour  que  cela
+fonctionne.
+
+```
+sudo cp -R vintage-basic-1.0.3-linux-x86_64/bin/* /usr/local/bin
+sudo cp -R vintage-basic-1.0.3-linux-x86_64/share/* /usr/local/share
+```
+
+Également, pensez à faire le ménage dans `/usr/local/share/doc`.
+
+Pour l'installation à partir des sources, l'archive
+`vintage-basic-1.0.3.tar.gz` ne doit pas être téléchargée à partir de
+`http://www.vintage-basic.net/downloads.html` ("download" au pluriel,
+ainsi que le lien est codé), mais à partir de l'adresse
+[`http://vintage-basic.net/download.html`](http://vintage-basic.net/download.html),
+("download" au singulier) ou bien à partir de
+[Hackage](https://hackage.haskell.org/package/vintage-basic)
+(pas testé). Je n'ai pas testé non plus l'installation à partir du clone de
+[Github](https://github.com/lylek/vintage-basic).
+
+L'installation de
+[Stack](http://haskellstack.org/)
+se fait  à partir des packages  APT de xubuntu. On  obbient la version
+2.15.7. La commande
+
+```
+stack setup
+```
+
+a pris un temps  certain, car sur ma machine elle  a dû installer GHC.
+Très tôt, il y a eu un avertissement :
+
+```
+Warning: Stack has not been tested with GHC versions 9.10 and above, and using 9.10.3, this may fail.
+Preparing to install GHC (tinfo6) to an isolated location. This will not interfere with any system-level installation.
+```
+
+puis  de nombreux  messages d'erreur  du genre  `mkdir impossible`  ou
+`write impossible` pour se terminer par
+
+```
+Error: [S-7441]
+       Received ExitFailure 2 when running
+       Raw command: /usr/bin/tar Jxf /home/jf/.stack/programs/x86_64-linux/ghc-tinfo6-9.10.3.tar.xz
+       Run from: /home/jf/.stack/programs/x86_64-linux/ghc-tinfo6-9.10.3.temp/
+
+       Error encountered while unpacking GHC with
+         tar Jxf /home/jf/.stack/programs/x86_64-linux/ghc-tinfo6-9.10.3.tar.xz
+         run in /home/jf/.stack/programs/x86_64-linux/ghc-tinfo6-9.10.3.temp/
+
+       The following directories may now contain files, but won't be used by Stack:
+       * /home/jf/.stack/programs/x86_64-linux/ghc-tinfo6-9.10.3.temp/
+       * /home/jf/.stack/programs/x86_64-linux/ghc-tinfo6-9.10.3/
+
+       For more information consider rerunning with --verbose flag.
+```
+
+J'ai préféré laisser tomber cette méthode d'installation basée sur les
+sources. L'installation de l'archive binaire fonctionne très bien.
+
 
 COPYRIGHT ET LICENCE
 ====================
