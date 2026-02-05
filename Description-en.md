@@ -143,7 +143,8 @@ bwbasic
 -------
 
 The [website](https://sourceforge.net/projects/bwbasic/)
-mentions version 3.40, the APT package has version 2.20pl2.
+mentions version 3.40, available since 2025-10-23. The APT package has
+version 2.20pl2.
 
 To invoke  the interpreter, the  command is `bwbasic`. It  accepts the
 pathname for a  BASIC source file as a CLI  parameter. The interpreter
@@ -217,7 +218,8 @@ yabasic
 ------
 
 The [website](https://2484.de/yabasic/)
-mentions version 2.91.4, the APT package has version 2.91.1.
+mentions version  2.91.4, available  since 31st  August 2025.  The APT
+package has version 2.91.1 available since 24th January 2025.
 
 The  `yabasic`  command accepts  a  filename  as  a parameter.  If  no
 filename is  provided, it enters  a CLI  interface where you  can type
@@ -432,6 +434,62 @@ Error: [S-7441]
 
 I  did not  consider rerunning  the  command, I  dropped this  method.
 Anyhow, the installation from the binary archive is fine for me.
+
+EMULATING BASIC COMPUTERS
+=========================
+
+A indirect way to install a BASIC interpreter is to install an program
+emulating a personal computer belonging to the generation of the Apple
+II,  Pet Commodore  and TRS80.  With xubuntu,  available APT  packages
+provide emulators for ZX Spectrum, Commodore computers and TRS80.
+
+There are  other emulators  for game  consoles, but I  do not  know if
+these consoles provide a BASIC interpreter. And I do not know if Atari
+800 and  2600 are  personal computers or  game consoles.  Same problem
+with the emulators for KC85 and MSX.
+
+fbzx
+----
+
+The [website](https://rastersoft.com/programas/fbzx.html)
+presents version 4.8.0 since 2021 and  this version is available as an
+APT package.
+
+I also add package `zmakebas`  (version 1.2b), which allows converting
+a  BASIC source  file  into a  Spectrum  tape file,  that  is, a  file
+emulating a magnetic tape.
+
+If we  want to  use program  `test1.bas`, we  must create  a "magnetic
+tape" with:
+
+```
+zmakebas -n test1 -o test1.tap test1.bas
+```
+
+Then, run program  `fbzx`, select the tape  file with `F1 F3  1` and a
+usual file  selection within  a hierarchy of  directories, `ESC  F1 F6
+ESC` to play  the tape and to redisplay the  Spectrum screen. But when
+we type `R` (for "Run") or `K` (for "List"), we get nothing.
+
+Useful commands:
+
+| Keys(s)   | Function              | Exit   |
+| :-------- | :-------------------  | :----- |
+| F1        | On-line help          | ESC    |
+| F1 F8 1   | Display keyboard      | ESC    |
+| F1 F3 1   | Select a tape file    | ESC    |
+| F1 F6     | Play the tape         | ESC    |
+| K         | List                  |        |
+| R         | Run                   |        |
+
+So I  cannot load the program  inside `test1.tap`, I cannot  run it, I
+cannot list  its source. On  the other hand, I  can type a  program by
+entering  the  line  number  and   then  the  BASIC  keyword  and  its
+parameters, but this requires a  frequent display of the keyboard (`F1
+F8 1`) to remember the association between a key on the keyboard and a
+BASIC keyword.
+
+Unusable, except for very very short programs.
 
 COPYRIGHT AND LICENSE
 =====================

@@ -73,7 +73,7 @@ télécharger le livre au format texte ou au format PDF. Néanmoins, pour
 le format texte,  il y a de nombreuses erreurs  de transcription. Donc
 autant utiliser les archives Zip.
 
-Interpréteurs BASIC
+INTERPRÉTEURS BASIC
 ===================
 
 Le [langage BASIC](https://rosettacode.org/wiki/99_Bottles_of_Beer/Basic)
@@ -154,7 +154,8 @@ bwbasic
 -------
 
 La [page web](https://sourceforge.net/projects/bwbasic/)
-indique la version 3.40, le paquet APT en est à la version 2.20pl2.
+indique la version  3.40, disponible depuis 2025-10-23.  Le paquet APT
+en est à la version 2.20pl2.
 
 La  commande  est  `bwbasic`.  Elle  admet  un  nom  de  programme  en
 paramètre. L'interpréteur  utilise la fenêtre  xterm pour sa  ligne de
@@ -229,7 +230,8 @@ yabasic
 ------
 
 La [page web](https://2484.de/yabasic/)
-indique la version 2.91.4, le paquet APT en est à la version 2.91.1.
+indique  la version  2.91.4, disponible  depuis  le 31  août 2025.  Le
+paquet APT en est à la version 2.91.1, datant du 24 janvier 2025.
 
 La commande  `yabasic` prend  un nom de  fichier source  en paramètre.
 S'il n'y a  pas de paramètre, la commande entre  dans une interface en
@@ -450,6 +452,73 @@ Error: [S-7441]
 J'ai préféré laisser tomber cette méthode d'installation basée sur les
 sources. L'installation de l'archive binaire fonctionne très bien.
 
+ÉMULATEURS DE MACHINES BASIC
+============================
+
+Un moyen détourné d'installer un interpréteur BASIC est d'installer un
+émulateur ciblant un PC de la génération qui a commencé avec les Apple
+II, les  Pet Commodore et  les TRS80. Dans  le cas de  la distribution
+xubuntu, il  existe des  paquets APT  pour émuler  un ZX  Spectrum, un
+Commodore ou un TRS80.
+
+Je note également un émulateur pour  les consoles de jeux Atari 800 et
+2600, mais je  ne sais pas si ces consoles  comportent un interpréteur
+BASIC. Même interrogation à propos des émulateurs KC85, MSX
+
+fbzx
+----
+
+Le [site web](https://rastersoft.com/programas/fbzx.html)
+annonce  la version  4.8.0 depuis  2021, c'est  cette version  qui est
+proposée parmi les paquets APT.
+
+J'y  ajoute  le  paquet  `zmakebas`  (version  1.2b),  qui  permet  de
+convertir  un  fichier source  de  programme  BASIC en  fichier  bande
+magnétique.
+
+Pour utiliser le programme `test1.bas`, commencer par créer une « bande
+magnétique » avec
+
+```
+zmakebas -n test1 -o test1.tap test1.bas
+```
+
+Ensuite,  lancer l'exécutable  `fbzx`, sélectionner  le fichier  bande
+avec `F1  F3 1`,  puis sélection habituelle  dans une  arborescence de
+fichiers, `ESC F1 F6 ESC` et  l'on revient à l'écran du Spectrum. Mais
+lorsque l'on tape `R` (pour « run ») ou `K` (pour « list »), on ne lit
+rien.
+
+Commandes utiles :
+
+| Touche(s) | Fonction              | Sortie |
+| :-------- | :-------------------  | :----- |
+| F1        | Aide en ligne         | ESC    |
+| F1 F8 1   | Affichage du clavier  | ESC    |
+| F1 F3 1   | Sélection d'une bande | ESC    |
+| F1 F6     | Jouer la bande        | ESC    |
+| K         | List                  |        |
+| R         | Run                   |        |
+
+Néanmoins,  je n'arrive  pas  à récupérer  le  programme contenu  dans
+`test1.tap` et à le lister ou  l'exécuter. Je peux taper un programme,
+mais cela  nécessite l'affichage  fréquent du clavier  par `F1  F8 1`,
+pour obtenir la  correspondance entre les mots-clés et  les touches du
+clavier.
+
+Inutilisable, sauf pour des programmes très très courts.
+
+fuse-emulator
+-------------
+
+spectemu-x11
+------------
+
+vice
+----
+
+xtrs
+----
 
 COPYRIGHT ET LICENCE
 ====================
