@@ -511,6 +511,28 @@ Inutilisable, sauf pour des programmes très très courts.
 fuse-emulator
 -------------
 
+Existe en  deux versions, `fuse-emulator-gtk`  et `fuse-emulator-sdl`,
+version   3.6.0   dans   les   deux  cas.   Au   hasard,   j'ai   pris
+`fuse-emulator-sdl`. Comme pour `fbzx`, j'ajoute le paquet `zmakebas`.
+
+Au démarrage, la fenêtre est très petite. Mais avec F1 → Options → Full screen,
+on obtient quelque chose de lisible.
+
+Pour charger un programme, il faut avoir créé un fichier bande avec
+
+```
+zmakebas -n test1 -o test1.tap test1.bas
+```
+
+Pour le  charger, F1 → Media  → Tape → Open,  select file `test1.tap`.
+Attention, les fichiers sources `xxx.bas`  ne sont pas filtrés dans la
+liste des  fichiers. Mais cela ne  fonctionne pas. Et même  si je tape
+ensuite F1  → Media  → Tape  → Play, le  programme n'est  toujours pas
+chargé.
+
+Quant à  taper le programme au  clavier, je ne sais  pas comment taper
+certains caractères indispensables, comme les doubles quotes.
+
 spectemu-x11
 ------------
 

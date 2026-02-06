@@ -491,6 +491,30 @@ BASIC keyword.
 
 Unusable, except for very very short programs.
 
+fuse-emulator
+-------------
+
+Exists in  two variants, `fuse-emulator-gtk`  and `fuse-emulator-sdl`,
+with version 3.6.0  in both cases. I  have used the SDL  variant in my
+tests. Like I did with `fbzx`, I installed also `zmakebas`.
+
+When the  emulator starts,  the window is  very small  and unreadable.
+After F1 → Options → Full screen, the screen is readable.
+
+To load a program, you must create a file emulating a tape with
+
+```
+zmakebas -n test1 -o test1.tap test1.bas
+```
+
+Then, to load it,  F1 → Media → Tape →  Open, select file `test1.tap`.
+Beware, source  files `xxx.bas` are  not filtered out. Yet,  after the
+tape is selected,  the program is not  loaded. Even if I  execute F1 →
+Tape → Play, the program is not loaded.
+
+And if I revert to typing  the program, there are some important chars
+that I cannot type, such as double-quotes.
+
 COPYRIGHT AND LICENSE
 =====================
 
