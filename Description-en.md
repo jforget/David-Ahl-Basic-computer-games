@@ -616,6 +616,12 @@ file into such an image. I suppose that `zmakebas` cannot do that.
 I  stop tinkering  with  `vice` for  now.  There is  no  need to  test
 emulating PETs or emulating VIC20s, I would hit the same wall.
 
+xtrs
+----
+
+As  `vice`,  this package  is  not  complete,  we  must find  the  ROM
+somewhere. I have decided to not explore further this package.
+
 COPYRIGHT AND LICENSE
 =====================
 

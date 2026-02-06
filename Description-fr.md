@@ -645,6 +645,10 @@ des Pet et des VIC-20, je serais bloqué au même endroit.
 xtrs
 ----
 
+Comme pour `vice`, ce paquet est incomplet, il faut se procurer la ROM
+quelque  part. J'ai  décidé  d'arrêter là  et de  ne  pas analyser  ce
+paquet.
+
 COPYRIGHT ET LICENCE
 ====================
 
