@@ -505,12 +505,13 @@ BASIC keyword.
 
 Unusable, except for very very short programs.
 
-fuse-emulator
--------------
+fuse-emulator, SDL variant
+--------------------------
 
 Exists in  two variants, `fuse-emulator-gtk`  and `fuse-emulator-sdl`,
-with version 3.6.0  in both cases. I  have used the SDL  variant in my
-tests. Like I did with `fbzx`, I installed also `zmakebas`.
+with version  3.6.0 in both cases.  Here, I test the  SDL variant. The
+executable program is `fuse`. Like I did with `fbzx`, I installed also
+`zmakebas`.
 
 When the  emulator starts,  the window is  very small  and unreadable.
 After F1 → Options → Full screen, the screen is readable.
@@ -528,6 +529,35 @@ Tape → Play, the program is not loaded.
 
 And if I revert to typing  the program, there are some important chars
 that I cannot type, such as double-quotes.
+
+fuse-emulator, GTK variant
+--------------------------
+
+When the emulator starts, its window  is rather small, as with the SDL
+variant. In addition,  there is a warning about  the original Spectrum
+ROM, which was not  found. Yet, when I select Options  → Select ROMs →
+Machine ROMs, I can choose "Spectrum 48K...".
+
+The  window  is  very  small.   Its  window  manager  menu  has  items
+"Maximise",  "Redimension"  and  "Full  screen", these  items  can  be
+selected,  but  they  achieve  nothing, the  window  keeps  its  small
+dimensions.
+
+The  choice Media  →  Tape →  Open  (or function  key  F7) allows  the
+selection of `test1.tap`.  Contrary to the SDL  variant, filenames are
+filtered and I do not see `xxx.bas` files.
+
+Then I  cannot type command `load  "test1"`. There is no  `J` shortcut
+for  `Load`, but  I do  not  mind typing  the 4-char  command and  the
+following space. Double quotes are typed with `Ctrl-P` as with the SDL
+variant.  The blocking  problem is  with digit  1. I  cannot type  it,
+either with the  numerical pad, or with the keyboard  top row, with or
+without Shift and Ctrl.
+
+On the other hand, I can  type command `load ""`, without the program
+name. I  can list this  program, but  for unknown reasons,  the second
+line is replaced  by `3328 DELETE end`. And when  running the program,
+the Spectrum displays a syntax error message.
 
 COPYRIGHT AND LICENSE
 =====================

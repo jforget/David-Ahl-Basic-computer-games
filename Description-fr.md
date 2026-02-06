@@ -523,12 +523,13 @@ clavier.
 
 Inutilisable, sauf pour des programmes très très courts.
 
-fuse-emulator
--------------
+fuse-emulator, variante SDL
+---------------------------
 
 Existe en  deux versions, `fuse-emulator-gtk`  et `fuse-emulator-sdl`,
-version   3.6.0   dans   les   deux  cas.   Au   hasard,   j'ai   pris
-`fuse-emulator-sdl`. Comme pour `fbzx`, j'ajoute le paquet `zmakebas`.
+version  3.6.0  dans  les  deux  cas. Voici  le  test  de  la  version
+`fuse-emulator-sdl`. L'exécutable s'appelle `fuse`. Comme pour `fbzx`,
+j'ajoute le paquet `zmakebas`.
 
 Au démarrage, la fenêtre est très petite. Mais avec F1 → Options → Full screen,
 on obtient quelque chose de lisible.
@@ -547,6 +548,36 @@ chargé.
 
 Quant à  taper le programme au  clavier, je ne sais  pas comment taper
 certains caractères indispensables, comme les doubles quotes.
+
+fuse-emulator, variante GTK
+---------------------------
+
+La fenêtre  de départ est  toute petite,  comme pour la  variante SDL.
+J'ai de plus un avertissement concernant la ROM originale du Spectrum,
+qui n'a  pas pu être trouvée.  Mais en sélectionnant Options  → Select
+ROMs → Machine ROMs, j'ai un choix pour « Spectrum 48K... ».
+
+La  fenêtre est  toute  petite.  Le menu  du  gestionnaire de  fenêtre
+propose bien  les choix  « maximiser », « redimensionner »  et « plein
+écran », mais  ils sont  inopérants, la fenêtre  reste à  sa dimension
+d'origine.
+
+Le choix Media → Tape → Open  (ou la touche F7) permet de sélectionner
+`test1.tap`. À l'inverse de la variante SDL, les fichiers sont filtrés
+pour éviter d'afficher les fichiers `xxx.bas`.
+
+Ensuite,  je n'arrive  pas  à  taper la  commande  `load "test1"`.  Le
+raccourci  `J` pour  « load » ne  fonctionne  pas, mais  ce n'est  pas
+grave, je  peux taper la  commande en  toutes lettres et  l'espace qui
+suit. Pour  les doubles quotes, je  dois taper `Ctrl-P` comme  avec la
+version SDL. Le problème bloquant, c'est pour taper le chiffre 1. Cela
+ne fonctionne  pas, ni avec  le pavé numérique,  ni avec la  rangée du
+haut du clavier, avec ou sans Shift, avec ou sans Ctrl.
+
+En revanche, je  peux charger le programme avec la  commande `load ""`
+sans donner le nom du programme. Je  peux le lister, mais la ligne `20
+end`  est remplacée  par une  ligne `3328  DELETE end`.  Pourquoi ? Et
+l'exécution avec `run` se traduit pas un message d'erreur de syntaxe.
 
 spectemu-x11
 ------------
