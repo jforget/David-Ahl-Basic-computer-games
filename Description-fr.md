@@ -613,6 +613,35 @@ variante GTK).
 vice
 ----
 
+La version du paquet APT est la version 3.9+dfsg.
+
+Ainsi qu'il est  marqué dans les instructions  présentées par Synaptic
+pour le paquet `vice`,  le paquet ne fournit pas les  ROM, il faut les
+télécharger  en  fonction  de  ce  qui  est  marqué  dans  le  fichier
+`README.ROMs`, c'est-à-dire le fichier
+`/usr/share/doc/vice/README.ROMs`.
+J'ai ainsi téléchargé un  fichier `vice-1.5-roms.tar.gz`, puis dézippé
+et  détarré.  Le  répertoire `vice-1.5.roms/data/C64`  contient  trois
+fichiers qu'il  faut installer dans `~/.local/share/vice/C64`.  Il m'a
+toutefois fallu plusieurs tentatives  pour comprendre qu'il faut aussi
+les renommer :
+
+* `basic-901226-01.bin`
+
+* `chargen-901225-01.bin`
+
+* `kernal-901227-03.bin`
+
+On peut alors lancer l'exécutable `x64`.  Mais ensuite, je ne sais pas
+comment charger un  source BASIC dans la machine, à  moins de le taper
+du début jusqu'à la fin. Les menus permettent d'attacher des images de
+disque, des images de « datassette »  et des images de cartouche, mais
+je ne sais pas comment convertir  un fichier source `test1.bas` en une
+telle image. Je suppose que `zmakebas` ne me sera d'aucun secours.
+
+J'abandonne cette  idée pour l'instant. Inutile  de tester l'émulation
+des Pet et des VIC-20, je serais bloqué au même endroit.
+
 xtrs
 ----
 

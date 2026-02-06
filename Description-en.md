@@ -587,6 +587,34 @@ stops, the program  is loaded. If I  type `list` or `run`,  I see that
 the first program line is fine, but starting with the second line, the
 line numbers are botched (same as with fuse-emulator, variant GTK).
 
+vice
+----
+
+In the APT package, version is 3.9+dfsg.
+
+As  mentionned in  the APT  package notes  displayed by  Synaptic, the
+`vice`  package does  not  contain  the ROMs,  we  must download  them
+according to what is written in file `README.ROMs`, that is, file
+`/usr/share/doc/vice/README.ROMs`.
+So I  downloaded a file  `vice-1.5-roms.tar.gz`, which I  unzipped and
+untarred. The directory  `vice-1.5.roms/data/C64` contains three files
+that must be copied into  `~/.local/share/vice/C64`. But I needed much
+tinkering to understand that these files must be renamed:
+
+* `basic-901226-01.bin`
+
+* `chargen-901225-01.bin`
+
+* `kernal-901227-03.bin`
+
+Once this was done, I could run program `x64`. But then, I do not know
+how I can load a BASIC source  file into the C64, except by typing it.
+The  menus  allows  attaching  disk  images,  "datasette"  images  and
+cartridge images, but I  do not know how I can  convert a BASIC source
+file into such an image. I suppose that `zmakebas` cannot do that.
+
+I  stop tinkering  with  `vice` for  now.  There is  no  need to  test
+emulating PETs or emulating VIC20s, I would hit the same wall.
 
 COPYRIGHT AND LICENSE
 =====================
