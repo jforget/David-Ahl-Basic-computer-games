@@ -471,6 +471,18 @@ usual file  selection within  a hierarchy of  directories, `ESC  F1 F6
 ESC` to play  the tape and to redisplay the  Spectrum screen. But when
 we type `R` (for "Run") or `K` (for "List"), we get nothing.
 
+Other attempt. I select the tape file  with `F1 F3 1` as above, then I
+return to the Spectrum window with `Esc`. And I type the command
+
+```
+load "test1"
+```
+
+Now,  something happens.  Instead  of a  completely  grey screen,  the
+Spectrum window displays  a coloured frame around a  grey center, with
+the frame alternating between cyan and red. This lasts several minutes
+and then I lose my patience and I kill the emulator. Too bad.
+
 Useful commands:
 
 | Keys(s)   | Function              | Exit   |
@@ -481,6 +493,8 @@ Useful commands:
 | F1 F6     | Play the tape         | ESC    |
 | K         | List                  |        |
 | R         | Run                   |        |
+| J         | Load                  |        |
+| Ctrl-P    | double-quote          |        |
 
 So I  cannot load the program  inside `test1.tap`, I cannot  run it, I
 cannot list  its source. On  the other hand, I  can type a  program by

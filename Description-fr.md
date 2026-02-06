@@ -489,6 +489,19 @@ fichiers, `ESC F1 F6 ESC` et  l'on revient à l'écran du Spectrum. Mais
 lorsque l'on tape `R` (pour « run ») ou `K` (pour « list »), on ne lit
 rien.
 
+Autre tentative. Je sélectionne le fichier  bande avec `F1 F3 1` comme
+précédemment, puis je  reviens à l'écran du Spectrum  avec `Esc`. Puis
+je lance la commande
+
+```
+load "test1"
+```
+
+Il se  passe quelque chose. Au  lieu d'un écran complètement  gris, la
+fenêtre  du Spectrum  affiche un  cadre entourant  un centre  gris. Ce
+cadre est tantôt cyan, tantôt rouge. Cela dure plusieurs minutes, puis
+je perds patience et j'interromps l'émulateur. Encore raté, tant pis.
+
 Commandes utiles :
 
 | Touche(s) | Fonction              | Sortie |
@@ -499,6 +512,8 @@ Commandes utiles :
 | F1 F6     | Jouer la bande        | ESC    |
 | K         | List                  |        |
 | R         | Run                   |        |
+| J         | Load                  |        |
+| Ctrl-P    | double-quote          |        |
 
 Néanmoins,  je n'arrive  pas  à récupérer  le  programme contenu  dans
 `test1.tap` et à le lister ou  l'exécuter. Je peux taper un programme,
