@@ -582,6 +582,34 @@ l'exécution avec `run` se traduit pas un message d'erreur de syntaxe.
 spectemu-x11
 ------------
 
+La version  du paquet APT  est 0.94a. L'exécutable  s'appelle `xspect`
+pour  l'utilisation sous  X11. Il  y a  également `vgaspect`  pour une
+utilisation à partir  de la console, mais il n'a  pas été installé sur
+ma   machine.  D'un   autre   côté,  si   le   paquet  APT   s'appelle
+`spectemu-x11`...
+
+Pour utiliser un fichier bande, il faut spécifier le nom du fichier en
+paramètre  de la  commande  `xpesct`.  Le chargement  se  fait par  la
+commande
+
+```
+load "test1"
+```
+
+sachant que  le mot-clé  `load` est  associé à la  touche `J`,  que la
+double-quote est à son emplacement  habituel sur mon clavier AZERTY et
+que le chiffre `1` s'obtient en tapant la touche de la rangée du haut,
+avec `Shift`. Le pavé numérique ne permet pas d'obtenir des caractères
+(chiffres, opérateurs plus, moins, étoile et slash).
+
+Après avoir lancé la commande `load`,  la fenêtre xterm signale que la
+bande est en pause. Il faut  donc la réactiver avec la touche fonction
+`F6`. On obtient un affichage  légèrement semblable à l'affichage avec
+`fbzx`, mais beaucoup  plus bref, et le programme est  chargé. Si l'on
+demande un `list` ou un `run`,  on s'aperçoit que la deuxième ligne du
+programme  `test1.bas` est  incohérente (déjà  vu avec  fuse-emulator,
+variante GTK).
+
 vice
 ----
 

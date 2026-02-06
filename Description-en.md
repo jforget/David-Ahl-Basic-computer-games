@@ -559,6 +559,35 @@ name. I  can list this  program, but  for unknown reasons,  the second
 line is replaced  by `3328 DELETE end`. And when  running the program,
 the Spectrum displays a syntax error message.
 
+spectemu-x11
+------------
+
+The APT package  version is 0.94a. The package  provides two programs,
+`xspect` to  be used within  X11 and `vgaspect`,  to be used  from the
+console. Actually, on my computer, only `xspect` is installed. Maybe I
+should not be surprised, since the package name is `spectemu-x11`...
+
+To use a  tape file, you must  provide its name as a  parameter to the
+`xpect` command. Then,  loading the program is done  with the Spectrum
+command
+
+```
+load "test1"
+```
+
+with `J`  as the  shortcut for  `load`, with  the double-quote  at its
+usual place on my AZERTY keyboard and  with digits from the top row of
+the keyboard  while using `Shift`.  The numeric keypad gives  no chars
+(digits, plus, minus, star, slash).
+
+Once the `load`  command is run, the xterm window  shows that the tape
+is paused. I  must activate it with function key  `F6`. The display is
+similar with what I had with `fbzx`, but much shorter in time. When it
+stops, the program  is loaded. If I  type `list` or `run`,  I see that
+the first program line is fine, but starting with the second line, the
+line numbers are botched (same as with fuse-emulator, variant GTK).
+
+
 COPYRIGHT AND LICENSE
 =====================
 
