@@ -14,7 +14,8 @@ So  my interest  in  Eliza  expanded into  an  interest  in the  Basic
 computer games from these books.
 
 This repository describes  my efforts to get these  computer games and
-to run them.
+to  run  them.   the  repo  does  not  contain  the   games,  but  the
+documentation gives links to retrieve the games.
 
 COPYRIGHT AND LICENSE
 =====================

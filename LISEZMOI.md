@@ -16,7 +16,8 @@ livre à  succès _Basic Computer  Games_. Mon intérêt pour  Eliza s'est
 ainsi étendu aux jeux publiés par David Ahl.
 
 Ce  dépôt décrit  mes  efforts pour  récupérer ces  jeux  et pour  les
-exécuter.
+exécuter. Les jeux  en eux-mêmes n'y figurent pas,  mais j'indique les
+liens pour y accéder.
 
 COPYRIGHT ET LICENCE
 ====================
