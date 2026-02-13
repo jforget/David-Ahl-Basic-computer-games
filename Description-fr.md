@@ -649,6 +649,86 @@ Comme pour `vice`, ce paquet est incomplet, il faut se procurer la ROM
 quelque  part. J'ai  décidé  d'arrêter là  et de  ne  pas analyser  ce
 paquet.
 
+LANGAGE BASIC
+=============
+
+On brocarde  souvent les objets ou  concepts conçus ou définis  par un
+comité. La plaisanterie traditionnelle est
+
+> Regardez le chameau, on dirait que  c'est un cheval tel que l'aurait
+> conçu un comité.
+
+Il y  a pis. Dans  le chapitre 2 de  son roman _Le  Dernier Restaurant
+avant la fin du monde_, Douglas Adams décrit un vaisseau spatial ainsi
+
+> Comme tous les vaisseaux vogons,  il ne ressemblait pas au résultat
+> d'une conception, mais plutôt au résultat d'une congélation.
+
+(Traduction par mes soins, j'ai lu le livre en V.O.)
+
+En fait, certains  langages ont été initialement conçus  par un comité
+ou bien leur définition est mise à  jour par un comité, comme C ou Ada
+et le résultat  est, somme toute, tout-à-fait correct. On  ne peut pas
+en  dire  autant  de  certains  langages, comme  BASIC,  qui  ont  été
+congelés.
+
+Noms de variables
+-----------------
+
+Dans le premier livre de programmation  BASIC que j'ai lu, les noms de
+variable étaient soit  des noms à une lettre (`A`,  `B`, etc) soit des
+noms  formés  d'une lettre  et  d'un  chiffre  (`A0`, `A1`,  etc).  En
+d'autres termes,  les noms de variable  devaient vérifier l'expression
+rationnelle `/^[A-Z][0-9]?$/`. Cela donnait  donc 286 noms de variable
+différents. Le  livre ajoutait que  si ce n'était pas  suffisant, vous
+pouviez utiliser les  tableaux pour stocker plusieurs  valeurs dans la
+même variable.
+
+Je ne me souviens plus si  ce livre mentionnait les variables stockant
+des chaînes de caractères (`A$`, `B1$`). Je les laisse de côté dans la
+suite de ce chapitre.
+
+En  survolant  les  livres  de  D.  Ahl,  j'ai  l'impression  que  les
+programmes de  `bcg.tar.gz` et  de `morebasicgames.zip`  suivent cette
+règle.
+
+Puis j'ai  lu un livre  sur le PET  Commodore. Sur cette  machine, les
+variables   pouvaient   avoir   un   nom   de   plusieurs   caractères
+alphanumériques, peut-être  jusqu'à 8  ou jusqu'à  16, sachant  que le
+premier devait  être obligatoirement une  lettre, ce qui  correspond à
+l'expression  rationnelle  `/^[A-Z][A-Z0-9]*$/`. Plus  une  contrainte
+exposée dans le chapitre suivant.
+
+Cela  permettait d'avoir  des noms  plus clairs.  Le hic,  c'était que
+seuls les  deux premiers  caractères étaient significatifs.  Ainsi, le
+programme
+
+```
+10 INDEX = 1
+20 INITIAL = 3
+30 PRINT INDEX
+```
+
+aurait affiché  « `3` ». Cela  donne 936 variables  différentes. C'est
+ainsi que fonctionne `vintbas`.
+
+Ultérieurement, sont apparues  des machines qui tenaient  compte de la
+totalité  des  caractères des  noms  de  variable.  C'est le  cas  des
+interpréteurs et des émulateurs que j'ai testés : `brandy`, `bwbasic`,
+`yabasic`, `fuse` et `xspect` affichent tous « `1` ».
+
+Remarquons  que la  première  version  donne quand  même  286 noms  de
+variable différents.  C'est plus qu'il  n'en faut pour  des programmes
+fonctionnant  sur des  machines de  48 Ko  de mémoire.  Dans les  gros
+programmes apparus depuis  (noyau Linux, par exemple),  il existe plus
+de 286 variables. Mais avec les  règles de visibilité, je pense que le
+nombre de  variables visibles à  tel ou  tel point du  programme reste
+limité, vraisemblablement en-deçà de 286. Le principal défaut de cette
+version, c'est que les noms sont arbitraires et peu explicatifs. C'est
+seulement  gênant pour  les  jeux  diffusés par  David  Ahl, c'est  en
+revanche  très pénalisant  dans le  cas d'un  programme sérieux  et de
+taille importante, comme le noyau Linux.
+
 COPYRIGHT ET LICENCE
 ====================
 

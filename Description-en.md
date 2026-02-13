@@ -622,6 +622,73 @@ xtrs
 As  `vice`,  this package  is  not  complete,  we  must find  the  ROM
 somewhere. I have decided to not explore further this package.
 
+BASIC LANGUAGE
+==============
+
+People often make fun of concepts or programs designed by a committee.
+The usual quip is
+
+> A camel is a horse designed by a committee
+
+It can  be worse. In chapter  2 of _The  Restaurant at the end  of the
+Universe_, Douglas Adams describe a spaceship in this way:
+
+> Like  all Vogon  ships it  looked  as if  it  had been  not so  much
+> designed as congealed.
+
+Actually, some programming languages  have been designed or maintained
+by a committee, such  as C or Ada, and the  result is fine, especially
+when compared with others, such as BASIC which has been congealed.
+
+Variable Names
+--------------
+
+In the first book about BASIC  programming that I have read, the names
+of variables were  either single-letter names (`A`, `B` and  so on) or
+names built with one letter and  one digit (`A0`, `A1`, etc). In other
+words, variable  names must  match the regexp  `/^[A-Z][0-9]?$/`. This
+gives 286  possible names. According to  the book, if you  needed more
+variables, you  could use arrays to  store several values in  the same
+variable.
+
+I  do not  remember if  the book  dealt with  variables for  character
+strings (`A$`, `B1$`). In the following, I leave them aside and I deal
+with only numeric variables.
+
+Then  I read  a book  about the  PET Commodore.  On this  machine, the
+variables could use  a name with several alphanumeric  chars, maybe up
+to 8  or 16  chars. The first  char must be  a letter.  The associated
+regexp is `/^[A-Z][A-Z0-9]*$/`. To this, we add a constraint described
+in the following chapter.
+
+This  gives more  readable names  and self-documenting  variables. The
+problem  was that  only  the  first two  chars  were significant.  For
+example, the following program
+
+```
+10 INDEX = 1
+20 INITIAL = 3
+30 PRINT INDEX
+```
+
+would print "`3`". This gives 936  possible variables. This is the way
+`vintbas` works.
+
+Later, some new BASIC interpreters in some new computers would use all
+chars  in  the   variable  names  as  significant   chars.  Among  the
+interpreters  and  emulators  I  have  tested,  most  use  this  rule.
+`brandy`, `bwbasic`, `yabasic`, `fuse` et `xspect` all print "`1`".
+
+Back  to the  first version.  This  version still  gives 286  possible
+variable names. This is more than sufficient for computer with a 48 KB
+memory. Nowadays,  we have  much bigger  programs (e.g.  Linux kernel)
+with more than 286 variables. Yet, with scoping rules, I think that at
+any  point of  the  program,  only a  small  number  of variables  are
+visible,  probably fewer  than 286.  The main  problem with  the first
+version is that we have to  use obscure non-descriptive names. This is
+a mere nuisance with the games published  by David Ahl, this is a huge
+hindrance for big serious programs such as the Linux kernel.
+
 COPYRIGHT AND LICENSE
 =====================
 
