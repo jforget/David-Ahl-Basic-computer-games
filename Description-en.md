@@ -585,19 +585,39 @@ executable program is `fuse`. Like I did with `fbzx`, I installed also
 When the  emulator starts,  the window is  very small  and unreadable.
 After F1 → Options → Full screen, the screen is readable.
 
+To type a program, or to just run a few commands, use the keyboard
+[as described in FBZX](#using-the-keyboard).
+
 To load a program, you must create a file emulating a tape with
 
 ```
 zmakebas -n test1 -o test1.tap test1.bas
 ```
 
-Then, to load it,  F1 → Media → Tape →  Open, select file `test1.tap`.
-Beware, source  files `xxx.bas` are  not filtered out. Yet,  after the
-tape is selected,  the program is not  loaded. Even if I  execute F1 →
-Tape → Play, the program is not loaded.
+There is two ways  to load this file into `fuse`. The  first one is to
+launch `fuse` from the command line, with the filename as a parameter.
 
-And if I revert to typing  the program, there are some important chars
-that I cannot type, such as double-quotes.
+```
+fuse test1.tap
+```
+
+The second way  to load this file  is from the application  menu: F1 →
+Media →  Tape →  Open, select file  `test1.tap`. Beware,  source files
+`xxx.bas` are not filtered out.  Then, from the Spectrum command line,
+type `load ""` (keys J, Ctrl-P, Ctrl-P).
+
+Beware. In  both cases, the BASIC  source must be compatible  with the
+Spectrum variant. For example, the  keyword `LET` is mandatory and the
+keyword `END` is forbidden. Failing that,  you would get an error such
+as
+
+```
+C Nonsense in BASIC, 10:1
+```
+
+The consequence  is that using  the source files from  `bcg.tar.gz` or
+from `morebasicgames.zip`  needs some work before  generating the tape
+files.
 
 fuse-emulator, GTK variant
 --------------------------

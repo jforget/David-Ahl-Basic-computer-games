@@ -602,8 +602,12 @@ version  3.6.0  dans  les  deux  cas. Voici  le  test  de  la  version
 `fuse-emulator-sdl`. L'exécutable s'appelle `fuse`. Comme pour `fbzx`,
 j'ajoute le paquet `zmakebas`.
 
-Au démarrage, la fenêtre est très petite. Mais avec F1 → Options → Full screen,
-on obtient quelque chose de lisible.
+Au démarrage,  la fenêtre est  très petite. Mais  avec F1 →  Options →
+Full screen, on obtient quelque chose de lisible.
+
+Pour  taper un  programme ou  des instructions,  le fonctionnement  du
+clavier  est  le  même  que   pour  FBZX.  Reportez-vous  à  ce
+[mode d'emploi](#utilisation-du-clavier).
 
 Pour charger un programme, il faut avoir créé un fichier bande avec
 
@@ -611,14 +615,32 @@ Pour charger un programme, il faut avoir créé un fichier bande avec
 zmakebas -n test1 -o test1.tap test1.bas
 ```
 
-Pour le  charger, F1 → Media  → Tape → Open,  select file `test1.tap`.
-Attention, les fichiers sources `xxx.bas`  ne sont pas filtrés dans la
-liste des  fichiers. Mais cela ne  fonctionne pas. Et même  si je tape
-ensuite F1  → Media  → Tape  → Play, le  programme n'est  toujours pas
-chargé.
+Pour  charger le  fichier  bande,  il y  a  deux  façons. La  première
+consiste à  lancer l'émulateur depuis la  ligne de commande Unix  et à
+fournir le nom du fichier bande en paramètre.
 
-Quant à  taper le programme au  clavier, je ne sais  pas comment taper
-certains caractères indispensables, comme les doubles quotes.
+```
+fuse test1.tap
+```
+
+La seconde façon : pour charger le fichier bande, sélectionner dans le
+menu applicatif  F1 →  Media →  Tape → Open,  puis choisir  le fichier
+`test1.tap`.  Attention, les  fichiers sources  `xxx.bas` ne  sont pas
+filtrés dans la liste des fichiers. Ensuite, dans la ligne de commande
+du Spectrum, taper `LOAD ""` (touches J, Ctrl-P, Ctrl-P).
+
+Attention, dans les  deux cas, le source BASIC doit  correspondre à la
+version utilisée  par le Spectrum.  Par exemple, le mot-clé  `LET` est
+obligatoire et le mot-clé `END` est  infini. Faute de quoi, vous aurez
+une erreur du genre
+
+```
+C Nonsense in BASIC, 10:1
+```
+
+La  conséquence  est   que  pour  utiliser  les   fichiers  source  de
+`bcg.tar.gz` ou de `morebasicgames.zip`, il  y aura un certain travail
+d'adaptation à effectuer avant de générer les fichiers bandes.
 
 fuse-emulator, variante GTK
 ---------------------------
