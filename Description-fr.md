@@ -414,7 +414,7 @@ ainsi que le lien est codé), mais à partir de l'adresse
 
 L'installation de
 [Stack](http://haskellstack.org/)
-se fait  à partir des packages  APT de xubuntu. On  obbient la version
+se fait  à partir des packages  APT de xubuntu. On  obtient la version
 2.15.7. La commande
 
 ```
@@ -522,6 +522,77 @@ pour obtenir la  correspondance entre les mots-clés et  les touches du
 clavier.
 
 Inutilisable, sauf pour des programmes très très courts.
+
+### Utilisation du clavier
+
+En héritage du ZX80 et du ZX81, la saisie au clavier du ZX Spectrum et
+de ses émulateurs utilise un curseur multiforme, rappelant un automate
+à états finis. Voici une description approximative de cet automate.
+
+Curseur K : en début de ligne  (avec ou sans numéro de ligne) ou après
+un  séparateur  « `:` », on  attend  un  mot-clé d'instruction  ou  un
+chiffre (numéro de ligne).
+
+Curseur L :  une fois que l'on  a tapé le mot-clé blanc,  on attend en
+général un  nombre, un nom  de variable,  un mot-clé de  fonction (par
+opposition à mot-clé d'instruction) ou une chaîne de caractères.
+
+Curseur C :  variante du curseur L, lorsque l'on  a activé `Caps-Lock`
+(`shift-é` sur AZERTY, `shift-2` sur QWERTY ou QWERTZ).
+
+Curseur  E  : pour  saisir  un  paramètre  étendu.  Le curseur  E  est
+sélectionné en  appuyant sur  Ctrl-Shift, puis  en relâchant  les deux
+touches.  Il   disparaît  dès   que  vous   avez  tapé   le  caractère
+sélectionnant le paramètre  étendu ou lorsque vous  appuyez de nouveau
+sur Ctrl-Shift.
+
+Curseur  G :  pour  saisir  un caractère  graphique  ou  une série  de
+caractères  graphiques.  Le  curseur  G est  activé  en  sélectionnant
+`Graphics` (`shift-ç` sur mon clavier AZERTY, `shift-9` sur un clavier
+QWERTY /  QWERTZ). Il est  désactivé de  la même manière,  sachant que
+dans ce cas, le modificateur `shift` est facultatif.
+
+![clavier obtenu par F1 F8 1](Spectrum-keyboard.png)
+
+Prenons l'exemple de la touche « Q ».
+
+| On veut                       | exemple | Curseur      | Taper             |
+| :---------------------------- | :------ | :----------: | :---------------- |
+| La lettre majuscule           | Q       |      L       | Shift-q           |
+| La lettre majuscule           | Q       |      C       | q ou Shift-q      |
+| La lettre minuscule           | q       |      L       | q                 |
+| Le mot-clé blanc              | PLOT    |      K       | q ou Shift-q      |
+| La chaîne rouge à côté        | <=      | K ou L ou C  | Ctrl-q            |
+| Le mot-clé vert au-dessus     | SIN     |      E       | q                 |
+| Le mot-clé rouge en-dessous   | ASN     |      E       | Ctrl-q ou Shift-q |
+
+Utilisation de la  rangée supérieure du clavier,  en prenant l'exemple
+de la première touche, « `&` » sur  mon clavier AZERTY (ou « `1` » sur
+un clavier QWERTY / QWERTZ).
+
+| On veut                           | exemple | Curseur     | Taper   |
+| :-------------------------------- | :------ | :---------: | :------ |
+| Le chiffre                        | 1       | K ou L ou C | &       |
+| L'instruction en blanc au-dessus  | EDIT    | K ou L ou C | Shift-& |
+| Le caractère graphique à côté     | ▝       |      G      | &       |
+| Car. graphique en vidéo inverse   | ▙       |      G      | Shift-& |
+| Le caractère ASCII rouge à côté   | !       | K ou L ou C | Ctrl-&  |
+| La couleur de fond                | BLUE    |      E      | &       |
+| La couleur des caractères         | BLUE    |      E      | Shift-& |
+| L'instruction en rouge au-dessous | EDIT    |      E      | Ctrl-&  |
+
+Lorsque l'on utilise  des touches alphabétiques avec le  curseur G, la
+plupart du  temps on obtient  la lettre majuscule. Il  existe quelques
+exceptions,  qui  ne  sont  pas  mentionnées  dans  la  copie  d'écran
+ci-dessus
+
+| Touche | Fonction |
+| :----: | :------- |
+|   V    | RND      |
+|   X    | PI       |
+|   W    | INKEY$   |
+|   Y    | FN       |
+|   Z    | POINT    |
 
 fuse-emulator, variante SDL
 ---------------------------

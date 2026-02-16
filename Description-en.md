@@ -58,7 +58,7 @@ and the programs from the second book are available as a Zip archive at
 [another website](https://www.roug.org/retrocomputing/languages/basic/morebasicgames).
 
 The first two books are also available on the
-[archive.org]((https://archive.org/details/basic-computer-games-microcomputer-edition_202207)
+[archive.org](https://archive.org/details/basic-computer-games-microcomputer-edition_202207)
 [website](https://archive.org/details/More_BASIC_Computer_Games),
 displaying the  contents as GIF images  (or JPEG? or PNG?).  There are
 links to download the whole book as a text file or as a PDF file. Yet,
@@ -504,6 +504,75 @@ F8 1`) to remember the association between a key on the keyboard and a
 BASIC keyword.
 
 Unusable, except for very very short programs.
+
+### Using the keyboard
+
+Typing on  the keyboard of a  ZX Spectrum or an  emulator is inherited
+from the  ZX80 and ZX81. It  uses a multishaped cursor,  which behaves
+more or  less like  a finite-state automaton.  Here is  an approximate
+description of this automaton.
+
+Cursor K: at the  beginning of a line, with or  without a line number,
+or after  a `:` delimiter, waiting  for a statement keyword  or a line
+number.
+
+Cursor L: after  a keyword, waiting for a litteral  string, or number,
+or  variable  name,  or  function keyword  (as  opposed  to  statement
+keyword).
+
+Cursor  C:  variant  of  cursor   L,  when  `Caps-Lock`  is  activated
+(`Shift-é`  on an  AZERTY keyboard,  `Shift-2`  on a  QWERTY /  QWERTZ
+keyboard).
+
+Cursor  E: for  extended keyword  or extended  litterals. Selected  by
+typing simultaneously Ctrl-Shift, then  releasing the keys. The cursor
+reverts to its  previous state when you select  the extended parameter
+or when you press a second time Ctrl-Shift.
+
+Cursor G: for graphical chars. Selected by `Graphics` (`shift-ç` on my
+AZERTY keyboard,  `shift-9` on a  QWERTY / QWERTZ keyboard).  The same
+de-selects cursor G and reverts to the previous cursor (note that when
+de-selecting cursor G, modifier `shift` is optional).
+
+![keyboard as displayed by F1 F8 1](Spectrum-keyboard.png)
+
+We use the example of key `Q`.
+
+| We want                 | example | Cursor      | Type              |
+| :---------------------- | :------ | :---------: | :---------------- |
+| Upper-case letter       | Q       |      L      | Shift-q           |
+| Upper-case letter       | Q       |      C      | q or Shift-q      |
+| Lower-case letter       | q       |      L      | q                 |
+| White keyword           | PLOT    |      K      | q or Shift-q      |
+| Red string on the right | <=      | K or L or C | Ctrl-q            |
+| Green keyword above     | SIN     |      E      | q                 |
+| Red keyword below       | ASN     |      E      | Ctrl-q or Shift-q |
+
+Same thing, with the  upper keyboard row. We use the  key `&` (from my
+AZERTY keyboard, or `1` for QWERTY / QWERTZ keyboards) as an example.
+
+| We want                       | example | Cursor      | Type    |
+| :---------------------------- | :------ | :---------: | :------ |
+| The digit                     | 1       | K or L or C | &       |
+| White keyword above           | EDIT    | K or L or C | Shift-& |
+| White graphic char beside     | ▝       |      G      | &       |
+| Graphic char in reverse video | ▙       |      G      | Shift-& |
+| Red ASCII char beside         | !       | K or L or C | Ctrl-&  |
+| Background colour             | BLUE    |      E      | &       |
+| Char colour                   | BLUE    |      E      | Shift-& |
+| Red keyword below             | EDIT    |      E      | Ctrl-&  |
+
+When  we use  alphabetic keys  with cursor  G, we  usually obtain  the
+corresponding upper-case letter.  There are a few  exception, which do
+not appear in the screen copy above.
+
+| Key | Function |
+| :-: | :------- |
+|  V  | RND      |
+|  X  | PI       |
+|  W  | INKEY$   |
+|  Y  | FN       |
+|  Z  | POINT    |
 
 fuse-emulator, SDL variant
 --------------------------
