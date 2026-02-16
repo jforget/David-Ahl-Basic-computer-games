@@ -664,17 +664,44 @@ command
 load "test1"
 ```
 
-with `J`  as the  shortcut for  `load`, with  the double-quote  at its
-usual place on my AZERTY keyboard and  with digits from the top row of
-the keyboard  while using `Shift`.  The numeric keypad gives  no chars
-(digits, plus, minus, star, slash).
-
 Once the `load`  command is run, the xterm window  shows that the tape
 is paused. I  must activate it with function key  `F6`. The display is
 similar with what I had with `fbzx`, but much shorter in time. When it
-stops, the program  is loaded. If I  type `list` or `run`,  I see that
-the first program line is fine, but starting with the second line, the
-line numbers are botched (same as with fuse-emulator, variant GTK).
+stops, the program  is loaded.
+
+The warning for [fuse](#fuse-emulator-sdl-variant)
+applies to  spectemu too. The BASIC  source must follow the  rules for
+the  Spectrum  variant, in  which  `LET`  is  mandatory and  `END`  is
+forbidden. So,  just as for fuse,  there will be some  conversion work
+before generating  the tape files if  we want to use  the source files
+from `bcg.tar.gz` or from `morebasicgames.zip`.
+
+### Using the keyboard in Spectemu
+
+Similar to the Spectrum and its emulators FBZX and Fuse, the cursor in
+Spectemu has several states K, L, C, G and E. The problem is that I do
+not know  how to enable C,  G and E, for  the moment I have  only been
+able to use K and L.
+
+Another peculiarity  in Spectemu is  that the  left Shift key  and the
+right Shift  key are used for  different purposes. The left  Shift key
+gives the upper-case letter, the right Shift key gives the red keyword
+beside the letter (e.g. "`<=`" for "`q`", "`STOP`" for "`a`").
+
+If you  press F1, the  emulator prints some  help in the  Unix command
+line window.  If you  press Ctrl-K,  the emulator  opens a  new window
+showing the Spectrum keyboard. You can  click on the various keys, but
+you can click only one location at a time, which means that you cannot
+activate simultaneously  the modifier  key `CAPS  SHIFT` and  a normal
+key, or the modifier key `SYMBOL SHIFT` and a normal key.
+
+On my AZERTY keyboard, the numpad is completely useless, I cannot type
+digits with it. I have to use the  top row of the main keypad, with of
+course  a `SHIFT`  modifier  (in this  case, left  or  right does  not
+matter). Using a key without a  modifier gives the usual special char:
+"`&`"  for key  "1", double-quote  for key  "3", etc.  If the  char is
+unknown  to the  Spectrum ("é"  for  key "2",  "ç" for  key "9"),  the
+emulator ignores the key if no modifier is used.
 
 vice
 ----

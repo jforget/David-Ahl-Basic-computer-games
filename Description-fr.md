@@ -689,19 +689,49 @@ commande
 load "test1"
 ```
 
-sachant que  le mot-clé  `load` est  associé à la  touche `J`,  que la
-double-quote est à son emplacement  habituel sur mon clavier AZERTY et
-que le chiffre `1` s'obtient en tapant la touche de la rangée du haut,
-avec `Shift`. Le pavé numérique ne permet pas d'obtenir des caractères
-(chiffres, opérateurs plus, moins, étoile et slash).
-
 Après avoir lancé la commande `load`,  la fenêtre xterm signale que la
 bande est en pause. Il faut  donc la réactiver avec la touche fonction
 `F6`. On obtient un affichage  légèrement semblable à l'affichage avec
-`fbzx`, mais beaucoup  plus bref, et le programme est  chargé. Si l'on
-demande un `list` ou un `run`,  on s'aperçoit que la deuxième ligne du
-programme  `test1.bas` est  incohérente (déjà  vu avec  fuse-emulator,
-variante GTK).
+`fbzx`, mais beaucoup  plus bref, et le programme est  chargé.
+
+Comme pour [fuse](#fuse-emulator-variante-sdl),
+le source  du programme  doit correspondre à  la variante  Spectrum de
+BASIC, où  l'instruction `LET` est obligatoire  et l'instruction `END`
+est interdite.  Donc, comme pour  fuse, il  y aura un  certain travail
+d'adaptation à  effectuer avant de  générer les fichiers  bandes. pour
+utiliser    les    fichiers    source   de    `bcg.tar.gz`    ou    de
+`morebasicgames.zip`.
+
+### Utilisation du clavier dans Spectemu
+
+Comme pour  le Spectrum  et ses  émulateurs FBZX  et Fuse,  le curseur
+possède plusieurs  états K, L,  C, G et E.  Le problème est  que, pour
+l'instant, je n'ai réussi à activer que les états K et L.
+
+Une autre  particularité de Spectemu,  c'est que les touches  Shift de
+mon  clavier ne  sont pas  équivalentes, elles  donnent des  résultats
+différents dans  l'émulateur Spectemu.  La touche  de gauche  donne la
+lettre majuscule, la touche de droite donne le mot-clé ou la chaîne de
+caractères en rouge  à côté de la lettre (« `<=` »  pour Q, « `STOP` »
+pour A, etc).
+
+En  appuyant sur  F1,  l'émulateur  affiche un  texte  d'aide dans  la
+fenêtre  de la  ligne de  commande Unix.  En appuyant  sur Ctrl-K,  on
+obtient une nouvelle fenêtre affichant  le clavier du Spectrum. Il est
+possible  de cliquer  sur  les  touches de  ce  clavier,  mais il  est
+impossible  avec la  souris  d'activer simultanément  la touche  `CAPS
+SHIFT` et une touche normale, ou  bien la touche `SYMBOL SHIFT` et une
+touche normale.
+
+Sur mon clavier  AZERTY, le pavé numérique ne permet  pas de taper les
+chiffres. Il  faut utiliser  la rangée  supérieure du  pavé principal,
+bien  entendu avec  la touche  `SHIFT` (celle  de gauche  ou celle  de
+droite,  peu importe  dans ce  cas),  tandis que  l'utilisation de  la
+touche sans modificateur donne le caractère spécial habituel : « `&` »
+pour la touche  « 1 », double quote pour la touche  « 3 », et ainsi de
+suite. Si le  caractère n'est pas reconnu par le  Spectrum (« é » pour
+la touche  « 2 », « ç » pour  la touche « 9 »), l'émulateur  ignore la
+touche si elle n'a pas de modificateur `SHIFT`
 
 vice
 ----
