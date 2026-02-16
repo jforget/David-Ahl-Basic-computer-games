@@ -465,7 +465,7 @@ Je note également un émulateur pour  les consoles de jeux Atari 800 et
 2600, mais je  ne sais pas si ces consoles  comportent un interpréteur
 BASIC. Même interrogation à propos des émulateurs KC85, MSX
 
-fbzx
+FBZX
 ----
 
 Le [site web](https://rastersoft.com/programas/fbzx.html)
@@ -631,8 +631,8 @@ du Spectrum, taper `LOAD ""` (touches J, Ctrl-P, Ctrl-P).
 
 Attention, dans les  deux cas, le source BASIC doit  correspondre à la
 version utilisée  par le Spectrum.  Par exemple, le mot-clé  `LET` est
-obligatoire et le mot-clé `END` est  infini. Faute de quoi, vous aurez
-une erreur du genre
+obligatoire  et le  mot-clé `END`  est interdit.  Faute de  quoi, vous
+aurez une erreur du genre
 
 ```
 C Nonsense in BASIC, 10:1
@@ -668,9 +668,9 @@ ne fonctionne  pas, ni avec  le pavé numérique,  ni avec la  rangée du
 haut du clavier, avec ou sans Shift, avec ou sans Ctrl.
 
 En revanche, je  peux charger le programme avec la  commande `load ""`
-sans donner le nom du programme. Je  peux le lister, mais la ligne `20
-end`  est remplacée  par une  ligne `3328  DELETE end`.  Pourquoi ? Et
-l'exécution avec `run` se traduit pas un message d'erreur de syntaxe.
+sans donner le nom du programme. Et avec les mêmes précautios à propos
+de la  variante de  BASIC, sachant  que `LET`  est obligatoire  et que
+`END` est interdit.
 
 spectemu-x11
 ------------
@@ -827,8 +827,8 @@ seuls les  deux premiers  caractères étaient significatifs.  Ainsi, le
 programme
 
 ```
-10 INDEX = 1
-20 INITIAL = 3
+10 LET INDEX = 1
+20 LET INITIAL = 3
 30 PRINT INDEX
 ```
 

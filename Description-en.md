@@ -448,7 +448,7 @@ these consoles provide a BASIC interpreter. And I do not know if Atari
 800 and  2600 are  personal computers or  game consoles.  Same problem
 with the emulators for KC85 and MSX.
 
-fbzx
+FBZX
 ----
 
 The [website](https://rastersoft.com/programas/fbzx.html)
@@ -643,10 +643,9 @@ variant.  The blocking  problem is  with digit  1. I  cannot type  it,
 either with the  numerical pad, or with the keyboard  top row, with or
 without Shift and Ctrl.
 
-On the other hand, I can  type command `load ""`, without the program
-name. I  can list this  program, but  for unknown reasons,  the second
-line is replaced  by `3328 DELETE end`. And when  running the program,
-the Spectrum displays a syntax error message.
+On the other  hand, I can type command `load  ""`, without the program
+name.  Still the  same warnings  about the  BASIC variant,  with `LET`
+being mandatory and `END` being forbidden.
 
 spectemu-x11
 ------------
@@ -782,8 +781,8 @@ problem  was that  only  the  first two  chars  were significant.  For
 example, the following program
 
 ```
-10 INDEX = 1
-20 INITIAL = 3
+10 LET INDEX = 1
+20 LET INITIAL = 3
 30 PRINT INDEX
 ```
 
