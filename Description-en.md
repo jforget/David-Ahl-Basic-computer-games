@@ -805,6 +805,19 @@ a 34-letter prefix.
 
 `bwbasic`, `yabasic`, `fuse` and `xspect` all print "`1`" and then "`9`".
 
+Results are different with the following program
+
+```
+10 LET index = 1
+20 LET INDEX = 3
+30 PRINT index
+40 PRINT INDEX
+```
+
+`bwbasic` and `yabasic` are case-sensitive  and display "`1`" and then
+"`3`". `vintbas`, `fuse` et  `xspect` are case-insensitive and display
+twice "`3`".
+
 Back  to the  first version.  This  version still  gives 286  possible
 variable names. This is more than sufficient for computer with a 48 KB
 memory. Nowadays,  we have  much bigger  programs (e.g.  Linux kernel)
@@ -814,6 +827,29 @@ visible,  probably fewer  than 286.  The main  problem with  the first
 version is that we have to  use obscure non-descriptive names. This is
 a mere nuisance with the games published  by David Ahl, this is a huge
 hindrance for big serious programs such as the Linux kernel.
+
+Extracting lexical units (tokenizing)
+-------------------------------------
+
+The constraint I postponed in the  previous chapter is that a variable
+name must not contain a BASIC keyword. When I read this in the 1980's,
+my reaction was that if I ever  wrote a program about the Five Nations
+Championship  (Italy was  not  yeat  part of  it),  I  would not  have
+problems  with  French-speaking  variable   names  such  as  `FRANCE`,
+`IRLANDE` and `GALLES`,  but there would be  trouble with `ANGLETERRE`
+and `ECOSSE`, because of the statement `LET` and the function `COS`.
+
+So I have tested the following program
+
+```
+10 let ANGLETERRE = 1
+20 let ECOSSE = 2
+30 print cos(1), ANGLETERRE, ECOSSE
+```
+
+`bwbasic`, `yabasic` `fuse` et `xspect` succeed, while `vintbas` stops
+with a syntax error.
+
 
 COPYRIGHT AND LICENSE
 =====================

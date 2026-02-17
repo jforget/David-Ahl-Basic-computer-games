@@ -875,6 +875,32 @@ seulement  gênant pour  les  jeux  diffusés par  David  Ahl, c'est  en
 revanche  très pénalisant  dans le  cas d'un  programme sérieux  et de
 taille importante, comme le noyau Linux.
 
+Extraction des unités lexicales (_tokenizing_)
+----------------------------------------------
+
+La contrainte que j'ai laissée de  côté dans le chapitre précédent est
+que le  nom de variable  ne doit pas  contenir de mot-clé  du langage.
+Lorsque j'avais  lu cela dans les  années 1980, je m'étais  dit que si
+l'on écrit  un programme sur le  thème du Tournoi des  Cinq Nations (à
+l'époque,  l'Italie  n'y  participait  pas),  on  peut  sans  problème
+utiliser des variables  `FRANCE`, `IRLANDE` et `GALLES`,  mais on aura
+des problèmes avec `ANGLETERRE` et  `ECOSSE`, à cause de l'instruction
+`LET` et de la fonction `COS`. C'est  pour cela que je n'ai pas essayé
+de lancer `vintbas` avec le programme contenant
+"anticonstitutionnellement".
+
+En testant avec le programme
+
+```
+10 let ANGLETERRE = 1
+20 let ECOSSE = 2
+30 print cos(1), ANGLETERRE, ECOSSE
+```
+
+`bwbasic`,  `yabasic`  `fuse`  et  `xspect`  réussissent,  tandis  que
+`vintbas` s'arrête sur une erreur de syntaxe.
+
+
 COPYRIGHT ET LICENCE
 ====================
 
