@@ -792,7 +792,18 @@ would print "`3`". This gives 936  possible variables. This is the way
 Later, some new BASIC interpreters in some new computers would use all
 chars  in  the   variable  names  as  significant   chars.  Among  the
 interpreters  and  emulators  I  have  tested,  most  use  this  rule.
-`brandy`, `bwbasic`, `yabasic`, `fuse` et `xspect` all print "`1`".
+`bwbasic`, `yabasic`, `fuse` et `xspect` all print "`1`".
+I have tried with the following program, in which the variables share
+a 34-letter prefix.
+
+```
+10 LET supercalifragilisticexpialidocious = 1
+20 LET supercalifragilisticexpialidociousness = 9
+30 PRINT supercalifragilisticexpialidocious
+40 PRINT supercalifragilisticexpialidociousness
+```
+
+`bwbasic`, `yabasic`, `fuse` and `xspect` all print "`1`" and then "`9`".
 
 Back  to the  first version.  This  version still  gives 286  possible
 variable names. This is more than sufficient for computer with a 48 KB

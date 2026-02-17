@@ -668,7 +668,7 @@ ne fonctionne  pas, ni avec  le pavé numérique,  ni avec la  rangée du
 haut du clavier, avec ou sans Shift, avec ou sans Ctrl.
 
 En revanche, je  peux charger le programme avec la  commande `load ""`
-sans donner le nom du programme. Et avec les mêmes précautios à propos
+sans donner le nom du programme. Et avec les mêmes précautions à propos
 de la  variante de  BASIC, sachant  que `LET`  est obligatoire  et que
 `END` est interdit.
 
@@ -835,10 +835,33 @@ programme
 aurait affiché  « `3` ». Cela  donne 936 variables  différentes. C'est
 ainsi que fonctionne `vintbas`.
 
-Ultérieurement, sont apparues  des machines qui tenaient  compte de la
+Ultérieurement, sont apparues  des interpréteurs qui tenaient compte de la
 totalité  des  caractères des  noms  de  variable.  C'est le  cas  des
-interpréteurs et des émulateurs que j'ai testés : `brandy`, `bwbasic`,
-`yabasic`, `fuse` et `xspect` affichent tous « `1` ».
+interpréteurs et des émulateurs que j'ai testés : `bwbasic`,
+`yabasic`, `fuse` et `xspect` affichent tous « `1` ». J'ai essayé
+avec le programme suivant, où les deux variables partagent 22 caractères.
+
+```
+10 LET anticonstitutionnellement = 1
+20 LET anticonstitutionnelles    = 3
+30 PRINT anticonstitutionnellement
+40 PRINT anticonstitutionnelles
+```
+
+`bwbasic`, `yabasic`, `fuse` et `xspect` affichent tous "`1`" puis "`3`".
+
+Les résultats sont plus nuancés avec le programme suivant
+
+```
+10 LET index = 1
+20 LET INDEX = 3
+30 PRINT index
+40 PRINT INDEX
+```
+
+`bwbasic` et `yabasic`  tiennent compte de la casse  des caractères et
+affichent  "`1`"  puis  "`3`".  `vintbas`,  `fuse`  et  `xspect`  n'en
+tiennent pas compte et affichent deux fois "`3`".
 
 Remarquons  que la  première  version  donne quand  même  286 noms  de
 variable différents.  C'est plus qu'il  n'en faut pour  des programmes
