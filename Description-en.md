@@ -600,9 +600,7 @@ To load a program, you must create a file emulating a tape with
 zmakebas -n test1 -o test1.tap test1.bas
 ```
 
-There is two ways  to load this file into
-[`fuse`](https://specemu.zxe.io/).
-The  first one is to
+There is two ways  to load this file into `fuse` The  first one is to
 launch `fuse` from the command line, with the filename as a parameter.
 
 ```
@@ -659,7 +657,8 @@ being mandatory and `END` being forbidden.
 spectemu-x11
 ------------
 
-The APT package  version is 0.94a. The package  provides two programs,
+The [APT package](https://packages.debian.org/fr/stable/spectemu-x11)
+version is 0.94a. The package  provides two programs,
 `xspect` to  be used within  X11 and `vgaspect`,  to be used  from the
 console. Actually, on my computer, only `xspect` is installed. Maybe I
 should not be surprised, since the package name is `spectemu-x11`...
@@ -678,7 +677,8 @@ similar with what I had with `fbzx`, but much shorter in time. When it
 stops, the program  is loaded.
 
 The warning for [fuse](#fuse-emulator-sdl-variant)
-applies to  spectemu too. The BASIC  source must follow the  rules for
+applies to  [spectemu](https://archivegame.org/spectemu/)
+too. The BASIC  source must follow the  rules for
 the  Spectrum  variant, in  which  `LET`  is  mandatory and  `END`  is
 forbidden. So,  just as for fuse,  there will be some  conversion work
 before generating  the tape files if  we want to use  the source files
@@ -691,7 +691,9 @@ Spectemu has several states K, L, C, G and E. The problem is that I do
 not know  how to enable C,  G and E, for  the moment I have  only been
 able to use K and L.
 
-Another peculiarity  in Spectemu is  that the  left Shift key  and the
+Another peculiarity in
+[Spectemu](https://sourceforge.net/projects/spectemu/),
+is  that the  left Shift key  and the
 right Shift  key are used for  different purposes. The left  Shift key
 gives the upper-case letter, the right Shift key gives the red keyword
 beside the letter (e.g. "`<=`" for "`q`", "`STOP`" for "`a`").
@@ -859,6 +861,50 @@ So I have tested the following program
 `bwbasic`, `yabasic` `fuse` et `xspect` succeed, while `vintbas` stops
 with a syntax error.
 
+On the other hand, this trick is  used in a few games from David Ahl's
+books, even if it is fixed  in `bcg.zip`. For example, a smart comment
+(`REM`) in
+[Sine Wave](https://www.atariarchives.org/basicgames/showpage.php?page=146)
+
+```
+40 REMARKABLE PROGRAM BY DAVID AHL
+```
+
+or in [Cube](https://www.atariarchives.org/basicgames/showpage.php?page=54)
+
+```
+410 LETB=INT(3*(RND(X)))
+420 IFB<>0THEN440
+```
+
+I have tried with a minimal case program:
+
+```
+10 LETA=2
+20 PRINTA
+```
+
+`vintbas` has no problems with  that, `bwbasic`, `yabasic`, `fuse` and
+`xspect` trigger  an error. Actually, `bwbasic`  and `yabasic` trigger
+an error on line  20. If we think about that,  it is perfectly normal,
+because for them, `LETA` is a perfectly valid name for a variable.
+
+
+CONCLUSION
+==========
+
+Even  if the  starting point  of  this project  was Eliza,  I am  more
+interested in playing
+[Hammurabi](https://www.atariarchives.org/basicgames/showpage.php?page=78),
+[Star Trek](https://www.atariarchives.org/basicgames/showpage.php?page=157)
+or [Wumpus hunt](https://www.atariarchives.org/morebasicgames/showpage.php?page=178).
+For these, `vintbas` is fine.
+
+Exploring ZX Spectrum emulators was not a waste of time. If I find interesting
+games among
+[available Spectrum games](https://itch.io/c/2612515/zx-spectrum-homebrew)
+I may as well  install them and play them on an  emulator. From what I
+have seen until now, the best emulator would be `fuse`.
 
 COPYRIGHT AND LICENSE
 =====================

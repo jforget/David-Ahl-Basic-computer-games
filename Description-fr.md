@@ -622,9 +622,7 @@ zmakebas -n test1 -o test1.tap test1.bas
 ```
 
 Pour  charger le  fichier  bande,  il y  a  deux  façons. La  première
-consiste à  lancer
-l'[émulateur](https://specemu.zxe.io/)
-depuis la  ligne de commande Unix  et à
+consiste à  lancer l'émulateur depuis la  ligne de commande Unix  et à
 fournir le nom du fichier bande en paramètre.
 
 ```
@@ -684,7 +682,9 @@ de la  variante de  BASIC, sachant  que `LET`  est obligatoire  et que
 spectemu-x11
 ------------
 
-La version  du paquet APT  est 0.94a. L'exécutable  s'appelle `xspect`
+La version  du
+[paquet APT](https://packages.debian.org/fr/stable/spectemu-x11)
+est 0.94a. L'exécutable  s'appelle `xspect`
 pour  l'utilisation sous  X11. Il  y a  également `vgaspect`  pour une
 utilisation à partir  de la console, mais il n'a  pas été installé sur
 ma   machine.  D'un   autre   côté,  si   le   paquet  APT   s'appelle
@@ -703,8 +703,9 @@ bande est en pause. Il faut  donc la réactiver avec la touche fonction
 `F6`. On obtient un affichage  légèrement semblable à l'affichage avec
 `fbzx`, mais beaucoup  plus bref, et le programme est  chargé.
 
-Comme pour [fuse](#fuse-emulator-variante-sdl),
-le source  du programme  doit correspondre à  la variante  Spectrum de
+Les avertissements pour [fuse](#fuse-emulator-variante-sdl)
+s'appliquent également à [spectemu](https://archivegame.org/spectemu/).
+Le source  du programme  doit correspondre à  la variante  Spectrum de
 BASIC, où  l'instruction `LET` est obligatoire  et l'instruction `END`
 est interdite.  Donc, comme pour  fuse, il  y aura un  certain travail
 d'adaptation à  effectuer avant de  générer les fichiers  bandes. pour
@@ -717,7 +718,9 @@ Comme pour  le Spectrum  et ses  émulateurs FBZX  et Fuse,  le curseur
 possède plusieurs  états K, L,  C, G et E.  Le problème est  que, pour
 l'instant, je n'ai réussi à activer que les états K et L.
 
-Une autre  particularité de Spectemu,  c'est que les touches  Shift de
+Une autre  particularité de
+[Spectemu](https://sourceforge.net/projects/spectemu/),
+c'est que les touches  Shift de
 mon  clavier ne  sont pas  équivalentes, elles  donnent des  résultats
 différents dans  l'émulateur Spectemu.  La touche  de gauche  donne la
 lettre majuscule, la touche de droite donne le mot-clé ou la chaîne de
@@ -909,6 +912,51 @@ En testant avec le programme
 `bwbasic`,  `yabasic`  `fuse`  et  `xspect`  réussissent,  tandis  que
 `vintbas` s'arrête sur une erreur de syntaxe.
 
+D'un  autre  côté,  cette  astuce  est mise  à  profit  dans  certains
+programmes du  livre de  David Ahl,  même si cela  a été  corrigé dans
+`bcg.zip`. Par exemple, un commentaire astucieux (`REM`) dans
+[Sine Wave](https://www.atariarchives.org/basicgames/showpage.php?page=146)
+
+```
+40 REMARKABLE PROGRAM BY DAVID AHL
+```
+
+ou bien dans [Cube](https://www.atariarchives.org/basicgames/showpage.php?page=54)
+
+```
+410 LETB=INT(3*(RND(X)))
+420 IFB<>0THEN440
+```
+
+J'ai essayé avec une version aussi réduite que possible
+
+```
+10 LETA=2
+20 PRINTA
+```
+
+`vintbas` n'a aucun problème  avec ce programme, `bwbasic`, `yabasic`,
+`fuse` et  `xspect` déclenchent  une erreur.  Notons que  `bwbasic` et
+`yabasic` déclenchent l'erreur sur la ligne 20 et non pas sur la ligne
+10. À y  réfléchir, c'est normal, puisque pour eux,  `LETA` est un nom
+de variable valide.
+
+CONCLUSION
+==========
+
+Même si c'est Eliza qui m'a donné le déclic pour ce projet, c'est plutôt
+pour jouer à
+[Hammurabi](https://www.atariarchives.org/basicgames/showpage.php?page=78),
+[Star Trek](https://www.atariarchives.org/basicgames/showpage.php?page=157)
+ou la [chasse au Wumpus](https://www.atariarchives.org/morebasicgames/showpage.php?page=178).
+Pour ceci, `vintbas` convient très bien.
+
+L'exploration des émulateurs de ZX  Spectrum n'a pas forcément été une
+perte de temps. Si je trouve des jeux m'intéressent parmi
+[ceux déjà écrits](https://itch.io/c/2612515/zx-spectrum-homebrew)
+pour Spectrum  alors pourquoi ne pas  les récupérer et y  jouer sur un
+émulateur. Au vu  de ce que j'ai pu voir  jusqu'à présent, l'émulateur
+le plus adéquat serait `fuse`.
 
 COPYRIGHT ET LICENCE
 ====================
