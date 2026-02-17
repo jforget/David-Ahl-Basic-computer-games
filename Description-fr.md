@@ -456,7 +456,8 @@ sources. L'installation de l'archive binaire fonctionne très bien.
 ============================
 
 Un moyen détourné d'installer un interpréteur BASIC est d'installer un
-émulateur ciblant un PC de la génération qui a commencé avec les Apple
+[émulateur](https://www.emu-france.com/emulateurs/10-ordinateurs/173-sinclair-zx-spectrum/)
+ciblant un PC de la génération qui a commencé avec les Apple
 II, les  Pet Commodore et  les TRS80. Dans  le cas de  la distribution
 xubuntu, il  existe des  paquets APT  pour émuler  un ZX  Spectrum, un
 Commodore ou un TRS80.
@@ -483,7 +484,9 @@ magnétique » avec
 zmakebas -n test1 -o test1.tap test1.bas
 ```
 
-Ensuite,  lancer l'exécutable  `fbzx`, sélectionner  le fichier  bande
+Ensuite,  lancer l'exécutable
+[`fbzx`](https://archivegame.org/fbzx/),
+sélectionner  le fichier  bande
 avec `F1  F3 1`,  puis sélection habituelle  dans une  arborescence de
 fichiers, `ESC F1 F6 ESC` et  l'on revient à l'écran du Spectrum. Mais
 lorsque l'on tape `R` (pour « run ») ou `K` (pour « list »), on ne lit
@@ -597,12 +600,15 @@ ci-dessus
 fuse-emulator, variante SDL
 ---------------------------
 
-Existe en  deux versions, `fuse-emulator-gtk`  et `fuse-emulator-sdl`,
+Cet [émulateur](https://emulatorguides.com/emulators/fuse/)
+existe en  deux versions, `fuse-emulator-gtk`  et `fuse-emulator-sdl`,
 version  3.6.0  dans  les  deux  cas. Voici  le  test  de  la  version
 `fuse-emulator-sdl`. L'exécutable s'appelle `fuse`. Comme pour `fbzx`,
 j'ajoute le paquet `zmakebas`.
 
-Au démarrage,  la fenêtre est  très petite. Mais  avec F1 →  Options →
+Au démarrage,  la fenêtre de
+l'[émulateur](https://fuse-emulator.sourceforge.net/)
+est  très petite. Mais  avec F1 →  Options →
 Full screen, on obtient quelque chose de lisible.
 
 Pour  taper un  programme ou  des instructions,  le fonctionnement  du
@@ -616,7 +622,9 @@ zmakebas -n test1 -o test1.tap test1.bas
 ```
 
 Pour  charger le  fichier  bande,  il y  a  deux  façons. La  première
-consiste à  lancer l'émulateur depuis la  ligne de commande Unix  et à
+consiste à  lancer
+l'[émulateur](https://specemu.zxe.io/)
+depuis la  ligne de commande Unix  et à
 fournir le nom du fichier bande en paramètre.
 
 ```
@@ -640,7 +648,8 @@ C Nonsense in BASIC, 10:1
 
 La  conséquence  est   que  pour  utiliser  les   fichiers  source  de
 `bcg.tar.gz` ou de `morebasicgames.zip`, il  y aura un certain travail
-d'adaptation à effectuer avant de générer les fichiers bandes.
+d'adaptation à effectuer avant de générer les fichiers bandes pour
+[fuse](https://directory.fsf.org/wiki/Fuse-emulator).
 
 fuse-emulator, variante GTK
 ---------------------------

@@ -438,8 +438,9 @@ Anyhow, the installation from the binary archive is fine for me.
 EMULATING BASIC COMPUTERS
 =========================
 
-A indirect way to install a BASIC interpreter is to install an program
-emulating a personal computer belonging to the generation of the Apple
+A indirect way to install a BASIC interpreter is to install a
+[program emulating](https://worldofspectrum.net/faq/emulators/emulators.htm)
+a personal computer belonging to the generation of the Apple
 II,  Pet Commodore  and TRS80.  With xubuntu,  available APT  packages
 provide emulators for ZX Spectrum, Commodore computers and TRS80.
 
@@ -466,7 +467,9 @@ tape" with:
 zmakebas -n test1 -o test1.tap test1.bas
 ```
 
-Then, run program  `fbzx`, select the tape  file with `F1 F3  1` and a
+Then, run
+[program  `fbzx`](https://archivegame.org/fbzx/),
+select the tape  file with `F1 F3  1` and a
 usual file  selection within  a hierarchy of  directories, `ESC  F1 F6
 ESC` to play  the tape and to redisplay the  Spectrum screen. But when
 we type `R` (for "Run") or `K` (for "List"), we get nothing.
@@ -577,12 +580,15 @@ not appear in the screen copy above.
 fuse-emulator, SDL variant
 --------------------------
 
-Exists in  two variants, `fuse-emulator-gtk`  and `fuse-emulator-sdl`,
+This [emulator](https://emulatorguides.com/emulators/fuse/)
+exists in  two variants, `fuse-emulator-gtk`  and `fuse-emulator-sdl`,
 with version  3.6.0 in both cases.  Here, I test the  SDL variant. The
 executable program is `fuse`. Like I did with `fbzx`, I installed also
 `zmakebas`.
 
-When the  emulator starts,  the window is  very small  and unreadable.
+When the
+[emulator](https://fuse-emulator.sourceforge.net/)
+starts,  the window is  very small  and unreadable.
 After F1 → Options → Full screen, the screen is readable.
 
 To type a program, or to just run a few commands, use the keyboard
@@ -594,7 +600,9 @@ To load a program, you must create a file emulating a tape with
 zmakebas -n test1 -o test1.tap test1.bas
 ```
 
-There is two ways  to load this file into `fuse`. The  first one is to
+There is two ways  to load this file into
+[`fuse`](https://specemu.zxe.io/).
+The  first one is to
 launch `fuse` from the command line, with the filename as a parameter.
 
 ```
@@ -617,7 +625,8 @@ C Nonsense in BASIC, 10:1
 
 The consequence  is that using  the source files from  `bcg.tar.gz` or
 from `morebasicgames.zip`  needs some work before  generating the tape
-files.
+files for
+[fuse](https://directory.fsf.org/wiki/Fuse-emulator).
 
 fuse-emulator, GTK variant
 --------------------------
