@@ -849,7 +849,7 @@ ainsi que fonctionne `vintbas`.
 
 Ultérieurement, sont apparues  des interpréteurs qui tenaient compte de la
 totalité  des  caractères des  noms  de  variable.  C'est le  cas  des
-interpréteurs et des émulateurs que j'ai testés : `bwbasic`,
+interpréteurs et des émulateurs que j'ai testés : `brandy`, `bwbasic`,
 `yabasic`, `fuse` et `xspect` affichent tous « `1` ». J'ai essayé
 avec le programme suivant, où les deux variables partagent 22 caractères.
 
@@ -860,7 +860,8 @@ avec le programme suivant, où les deux variables partagent 22 caractères.
 40 PRINT anticonstitutionnelles
 ```
 
-`bwbasic`, `yabasic`, `fuse` et `xspect` affichent tous "`1`" puis "`3`".
+`brandy`,  `bwbasic`, `yabasic`,  `fuse`  et  `xspect` affichent  tous
+"`1`" puis "`3`".
 
 Les résultats sont plus nuancés avec le programme suivant
 
@@ -871,7 +872,7 @@ Les résultats sont plus nuancés avec le programme suivant
 40 PRINT INDEX
 ```
 
-`bwbasic` et `yabasic`  tiennent compte de la casse  des caractères et
+`brandy`, `bwbasic` et `yabasic`  tiennent compte de la casse  des caractères et
 affichent  "`1`"  puis  "`3`".  `vintbas`,  `fuse`  et  `xspect`  n'en
 tiennent pas compte et affichent deux fois "`3`".
 
@@ -904,13 +905,21 @@ de lancer `vintbas` avec le programme contenant
 En testant avec le programme
 
 ```
-10 let ANGLETERRE = 1
-20 let ECOSSE = 2
-30 print cos(1), ANGLETERRE, ECOSSE
+10 LET ANGLETERRE = 1
+20 LET ECOSSE = 2
+30 PRINT COS(1), ANGLETERRE, ECOSSE
 ```
 
-`bwbasic`,  `yabasic`  `fuse`  et  `xspect`  réussissent,  tandis  que
-`vintbas` s'arrête sur une erreur de syntaxe.
+`brandy`, `bwbasic`, `yabasic` `fuse`  et `xspect` réussissent, tandis
+que `vintbas` s'arrête sur une erreur de syntaxe. Si `brandy` réussit,
+c'est parce que `LET` et `COS` sont _au milieu_ des noms de variables.
+En revanche,  si ces  mots clés  sont _au début_  du nom  de variable,
+`brandy` s'arrête avec une erreur de syntaxe.
+
+```
+10 LET LETTRE$ = "a"
+30 PRINT LETTRE$
+```
 
 D'un  autre  côté,  cette  astuce  est mise  à  profit  dans  certains
 programmes du  livre de  David Ahl,  même si cela  a été  corrigé dans
@@ -935,7 +944,7 @@ J'ai essayé avec une version aussi réduite que possible
 20 PRINTA
 ```
 
-`vintbas` n'a aucun problème  avec ce programme, `bwbasic`, `yabasic`,
+`brandy` et `vintbas` n'ont aucun problème  avec ce programme, `bwbasic`, `yabasic`,
 `fuse` et  `xspect` déclenchent  une erreur.  Notons que  `bwbasic` et
 `yabasic` déclenchent l'erreur sur la ligne 20 et non pas sur la ligne
 10. À y  réfléchir, c'est normal, puisque pour eux,  `LETA` est un nom

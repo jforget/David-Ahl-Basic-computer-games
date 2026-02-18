@@ -803,7 +803,7 @@ would print "`3`". This gives 936  possible variables. This is the way
 Later, some new BASIC interpreters in some new computers would use all
 chars  in  the   variable  names  as  significant   chars.  Among  the
 interpreters  and  emulators  I  have  tested,  most  use  this  rule.
-`bwbasic`, `yabasic`, `fuse` et `xspect` all print "`1`".
+`brandy`, `bwbasic`, `yabasic`, `fuse` et `xspect` all print "`1`".
 I have tried with the following program, in which the variables share
 a 34-letter prefix.
 
@@ -814,7 +814,8 @@ a 34-letter prefix.
 40 PRINT supercalifragilisticexpialidociousness
 ```
 
-`bwbasic`, `yabasic`, `fuse` and `xspect` all print "`1`" and then "`9`".
+`brandy`, `bwbasic`,  `yabasic`, `fuse`  and `xspect` all  print "`1`"
+and then "`9`".
 
 Results are different with the following program
 
@@ -825,7 +826,7 @@ Results are different with the following program
 40 PRINT INDEX
 ```
 
-`bwbasic` and `yabasic` are case-sensitive  and display "`1`" and then
+`brandy`, `bwbasic` and `yabasic` are case-sensitive  and display "`1`" and then
 "`3`". `vintbas`, `fuse` et  `xspect` are case-insensitive and display
 twice "`3`".
 
@@ -853,13 +854,21 @@ and `ECOSSE`, because of the statement `LET` and the function `COS`.
 So I have tested the following program
 
 ```
-10 let ANGLETERRE = 1
-20 let ECOSSE = 2
-30 print cos(1), ANGLETERRE, ECOSSE
+10 LET ANGLETERRE = 1
+20 LET ECOSSE = 2
+30 PRINT COS(1), ANGLETERRE, ECOSSE
 ```
 
-`bwbasic`, `yabasic` `fuse` et `xspect` succeed, while `vintbas` stops
-with a syntax error.
+`brandy`,  `bwbasic`,  `yabasic`  `fuse` et  `xspect`  succeed,  while
+`vintbas` stops with  a syntax error. `brandy`  succeeds because `LET`
+and `COS` are  _inside_ the variable names. If these  keywords are _at
+the beginning_  of the  variable names, `brandy`  stops with  a syntax
+error:
+
+```
+10 LET LETTER$ = "a"
+30 PRINT LETTER$
+```
 
 On the other hand, this trick is  used in a few games from David Ahl's
 books, even if it is fixed  in `bcg.zip`. For example, a smart comment
@@ -884,7 +893,7 @@ I have tried with a minimal case program:
 20 PRINTA
 ```
 
-`vintbas` has no problems with  that, `bwbasic`, `yabasic`, `fuse` and
+`brandy` and `vintbas` have no problems with  that, `bwbasic`, `yabasic`, `fuse` and
 `xspect` trigger  an error. Actually, `bwbasic`  and `yabasic` trigger
 an error on line  20. If we think about that,  it is perfectly normal,
 because for them, `LETA` is a perfectly valid name for a variable.
