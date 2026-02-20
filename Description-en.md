@@ -898,6 +898,150 @@ I have tried with a minimal case program:
 an error on line  20. If we think about that,  it is perfectly normal,
 because for them, `LETA` is a perfectly valid name for a variable.
 
+`PRINT` Statement
+-----------------
+
+The first  books about BASIC I  have read said that  the question mark
+"`?`" is a shortcut for  the statement "`PRINT`". `bwbasic`, `yabasic`
+and  `vintbas`  accept this  shortcut,  `brandy`,  `fbzx`, `fuse`  and
+`xspect` trigger a syntax error.
+
+In  the same  books,  I learnt  the rules  for  the coarse  formatting
+provided by the  BASIC language. It works with  the delimiters between
+the printed values.
+
+* Comma
+
+  The  following value  is  printed  at the  next  tabstop.  I do  not
+  remember the positions of the tabstops.
+
+* Semi-colon
+
+  The following value is printed next to the previous value.
+
+* No separator
+
+  The next value is printed on the next line.
+
+* `TAB(n)`
+
+  The next value  is printed at a temporary tabstop  whose position is
+  parameter `n`, or  maybe `n+1`. If this position  is already reached
+  in the  current line, I  do not  remember the expected  behaviour of
+  `PRINT`.  Contrary to  the other  separators, the  `PRINT` statement
+  using `TAB(n)`  must contain  both the previous  value and  the next
+  value.
+
+Here is the test program
+
+```
+10 LET N = 5
+20 LET R$ = "....+....1....+....2....+....3....+....4"
+100 PRINT 100
+110 FOR I = 1 TO N
+120 READ A$, B$
+130 PRINT A$, B$
+140 PRINT B$,
+150 PRINT A$
+160 NEXT
+170 RESTORE
+180 PRINT R$
+200 PRINT 200
+210 FOR I = 1 TO N
+220 READ A$, B$
+230 PRINT A$; B$
+240 PRINT B$;
+250 PRINT A$
+260 NEXT
+270 RESTORE
+280 PRINT R$
+300 PRINT 300
+310 FOR I = 1 TO N
+320 READ A$, B$
+330 PRINT A$ TAB(20) B$
+340 PRINT B$ TAB(20) A$
+360 NEXT
+370 RESTORE
+400 PRINT 400
+410 FOR I = 1 TO N
+420 READ A$, B$
+430 PRINT A$ B$
+440 PRINT B$
+450 PRINT A$
+460 NEXT
+470 RESTORE
+1000 DATA a, b
+1010 DATA alpha, bravo
+1020 DATA able, baker
+1040 DATA Alice, Bob
+1050 DATA anticonstitutionnellement, bactériologistes
+```
+
+The  program which  matchs best  my  memories is  `vintbas`. The  only
+discrepancy with what I remember is that when printing two values with
+an  empty separator  as  in `PRINT  A$ B$`,  both  values are  printed
+together, just  like when printed  with a semi-colon, while  I thought
+they were  printed on separate lines.  Then about the details  which I
+have forgotten: For the comma separators, tabstops are at positions 1,
+15, 29,  etc. When using `TAB(n)`,  if the target position  is already
+reached,  `vintbas`  prints  the  next  value  immediately  after  the
+previous value in a semi-colon-like fashion.
+
+`brandy` contradicts only two rules from  my memory. In the case of an
+empty  separator as  in  `PRINT  A$ B$`,  `brandy`  prints them  glued
+together like what is expected from a semi-colon, while I thought they
+should be printed  on different lines. Also, when  a `PRINT` statement
+ends with  a comma, the first  value of the next  `PRINT` statement is
+printed on  a new  line instead  of at  the next  tabstop. As  for the
+forgotten details,  the tabstops are at  positions 1, 11, 21,  etc. If
+the  column targetted  by  a `TAB(n)`  separator  is already  reached,
+`brandy` skips to a new line and sets the print position on the target
+column on the new line.
+
+`bwbasic` does  not recognise the keyword  `TAB`. If lines 300  to 360
+are deleted,  we find  that `bwbasic` rejects  a `PRINT`  statement in
+which  two  arguments  are  separated   by  neither  a  comma,  nor  a
+semi-colon.  A positive  result, the  comma  works and  tab stops  are
+located at 1, 14, 28, 42, etc.
+
+As we have  already seen, the only separator `yabasic`  accepts is the
+comma. The semi-colon, the keyword `TAB` and the lack of separator all
+trigger a syntax  error. When I delete the offending  lines, I have an
+error on the first `DATA` line. So I type this new test program:
+
+```
+100 PRINT "....+....1....+....2....+....3....+....4"
+120 PRINT "a", "b"
+130 PRINT "alpha", "bravo"
+140 PRINT "able", "baker"
+150 PRINT "Alice", "Bob"
+160 PRINT "anticonstitutionnellement", "bactériologistes"
+```
+
+and  I  discover  that  for  `yabasic`, the  comma  behaves  like  the
+semi-colon behaves with other interpreters.
+
+I could not test the Spectrum emulators. Line
+
+```
+120 READ A$, B$
+```
+
+triggers this error:
+
+```
+2 Variable not found, 120:1
+```
+
+Text Encoding
+-------------
+
+A serendipitous  test: when  looking for a  long French  word starting
+with "b", I chose _bactériologistes_,  which happens to contain a "é".
+Together  with printout  formatted by  tab stops,  this allowed  me to
+check how each  interpreter and each emulator  behaves when processing
+Unicode chars outside of the ASCII range.
+
 
 CONCLUSION
 ==========

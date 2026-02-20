@@ -900,7 +900,7 @@ utiliser des variables  `FRANCE`, `IRLANDE` et `GALLES`,  mais on aura
 des problèmes avec `ANGLETERRE` et  `ECOSSE`, à cause de l'instruction
 `LET` et de la fonction `COS`. C'est  pour cela que je n'ai pas essayé
 de lancer `vintbas` avec le programme contenant
-"anticonstitutionnellement".
+"anticonstitutionnellement", qui contient deux fois le mot-clé "`ON`".
 
 En testant avec le programme
 
@@ -949,6 +949,154 @@ J'ai essayé avec une version aussi réduite que possible
 `yabasic` déclenchent l'erreur sur la ligne 20 et non pas sur la ligne
 10. À y  réfléchir, c'est normal, puisque pour eux,  `LETA` est un nom
 de variable valide.
+
+Instruction `PRINT`
+-------------------
+
+Dans les  premiers livres que j'ai  lus sur le BASIC,  il était marqué
+que   le  point   d'interrogation  "`?`"   était  un   raccourci  pour
+l'instruction "`PRINT`".  `bwbasic`, `yabasic` et  `vintbas` acceptent
+ce raccourci, `brandy`, `fbzx`, `fuse` et `xspect` le rejettent.
+
+Dans  ces mêmes  livres, j'ai  appris  les règles  pour un  formattage
+rudimentaire  des impressions  en BASIC.  Cela dépend  des séparateurs
+entre les valeurs à imprimer.
+
+* Virgule
+
+  La valeur suivante  est imprimée sur un taquet de  tabulation. Je ne
+  sais plus quelle est la distance entre deux taquets de tabulation.
+
+* Point-virgule
+
+  La  valeur  suivante  est   imprimée  directement  après  la  valeur
+  précédente.
+
+* Rien
+
+  La valeur suivante est imprimée après un passage à la ligne.
+
+* `TAB(n)`
+
+  La  valeur  suivante  est  imprimée  sur  un  taquet  de  tabulation
+  provisoire en position `n` ou en position `n+1`, je ne sais plus. Et
+  si la position  visée est déjà dépassée, je ne  sais plus quelle est
+  la  règle  à appliquer.  Contrairement  aux  autres séparateurs,  le
+  séparateur `TAB(n)` ne peut s'appliquer que si les deux valeurs sont
+  imprimées par la même instruction `PRINT`.
+
+Voici le programme de test
+
+```
+10 LET N = 5
+20 LET R$ = "....+....1....+....2....+....3....+....4"
+100 PRINT 100
+110 FOR I = 1 TO N
+120 READ A$, B$
+130 PRINT A$, B$
+140 PRINT B$,
+150 PRINT A$
+160 NEXT
+170 RESTORE
+180 PRINT R$
+200 PRINT 200
+210 FOR I = 1 TO N
+220 READ A$, B$
+230 PRINT A$; B$
+240 PRINT B$;
+250 PRINT A$
+260 NEXT
+270 RESTORE
+280 PRINT R$
+300 PRINT 300
+310 FOR I = 1 TO N
+320 READ A$, B$
+330 PRINT A$ TAB(20) B$
+340 PRINT B$ TAB(20) A$
+360 NEXT
+370 RESTORE
+400 PRINT 400
+410 FOR I = 1 TO N
+420 READ A$, B$
+430 PRINT A$ B$
+440 PRINT B$
+450 PRINT A$
+460 NEXT
+470 RESTORE
+1000 DATA a, b
+1010 DATA alpha, bravo
+1020 DATA able, baker
+1040 DATA Alice, Bob
+1050 DATA anticonstitutionnellement, bactériologistes
+```
+
+Celui qui correspond  le mieux à mes souvenirs est  `vintbas`. Le seul
+problème est  que lorsque l'on  utilise l'absence de  séparateur entre
+deux  valeurs,  alors  elles  se  retrouvent  collées  comme  avec  un
+point-virgule , alors  que je pensais qu'elles  seraient imprimées sur
+deux  lignes séparées.  Quant aux  détails que  j'ai oubliés,  pour la
+virgule, les  taquets de tabulations  sont placés en positions  1, 15,
+29, etc. Lorsque la colonne  cible de `TAB(n)` est dépassée, `vintbas`
+colle la nouvelle valeur à la précédente comme avec un point-virgule.
+
+`brandy` contredit  deux des règles dont  je me souviens. Dans  le cas
+d'un séparateur  vide, avec `PRINT  A$ B$`, `brandy` affiche  les deux
+valeurs collées comme  avec un point-virgule, alors  qu'il me semblait
+qu'elles  devaient apparaître  sur  deux  lignes séparées.  Également,
+lorsqu'une instruction  `PRINT` se  termine par une  virgule, `brandy`
+passe à la ligne au lieu  de positionner l'impression sur le taquet de
+tabulation suivant.  Quant aux  détails que  j'ai oubliés,  notons que
+selon `brandy` les taquets de tabulations sont en positions 1, 11, 21,
+31, etc  et que si la  colonne visée par `TAB(n)`  est dépassée, alors
+`brandy` passe à la ligne et se positionne sur la colonne visée.
+
+`bwbasic` ne connaît pas le séparateur vide ni le séparateur `TAB(n)`.
+Comme  `brandy`, lorsqu'une  instruction  `PRINT` se  termine par  une
+virgule, la  première valeur du  `PRINT` suivant  ne se trouve  pas au
+prochain taquet de  tabulation, mais à la ligne  suivante. Les taquets
+de tabulation sont en positions 1, 14, 28, 42, etc.
+
+Ainsi  que  nous l'avons  déjà  vu,  le  seul séparateur  reconnu  par
+`yabasic`  est  la virgule.  Le  point-virgule,  le mot-clé  `TAB`  et
+l'absence  de séparateur  déclenchent  une erreur  de  syntaxe. Et  en
+supprimant toutes les lignes correspondantes, j'obtiens une erreur sur
+l'instruction `DATA`.  Je remplace  donc le programme  de test  par le
+programme suivant :
+
+```
+100 PRINT "....+....1....+....2....+....3....+....4"
+120 PRINT "a", "b"
+130 PRINT "alpha", "bravo"
+140 PRINT "able", "baker"
+150 PRINT "Alice", "Bob"
+160 PRINT "anticonstitutionnellement", "bactériologistes"
+```
+
+et je  constate que pour `yabasic`,  la virgule doit fonctionner  à la
+manière du point-virgule des autres interpréteurs.
+
+Je ne suis pas arrivé à tester les émulateurs. La ligne
+
+```
+120 READ A$, B$
+```
+
+déclenche une erreur
+
+```
+2 Variable not found, 120:1
+```
+
+Encodage
+--------
+
+Une  surprise  agréable  lors  des tests  sur  l'instruction  `PRINT`.
+Lorsque  j'ai cherché  un  mot  français commençant  par  « b » et  de
+longueur   importante,  j'ai   choisi,  plus   ou  moins   au  hasard,
+« bactériologiste », qui se trouve contenir un « é ». Avec le test des
+taquets  de  tabulation, cela  m'a  permis  de tester  comment  chaque
+interpréteur  et  chaque émulateur  se  comporte  avec les  caractères
+Unicode en dehors du domaine ASCII.
 
 CONCLUSION
 ==========
