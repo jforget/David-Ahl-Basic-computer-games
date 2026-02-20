@@ -807,6 +807,17 @@ et le résultat  est, somme toute, tout-à-fait correct. On  ne peut pas
 en  dire  autant  de  certains  langages, comme  BASIC,  qui  ont  été
 congelés.
 
+Remarque  : parmi  les  interpréteurs et  les  émulateurs, j'ai  testé
+`fuse` (version SDL)  et `xspect` et j'ai laissé tomber  `fbzx` car il
+est impossible  de charger  un programme écrit  dans la  machine hôte.
+J'ai  laissé tomber  également `fuse`  (version GTK)  parce qu'il  est
+impossible  d'installer  les  deux  versions  SDL  et  GTK  de  `fuse`
+simultanément. En fait, s'il est  justifié de comparer l'ergonomie des
+différents  émulateurs, la  comparaison  des  interpréteurs BASIC  des
+différents  émulateurs n'a  pas  de sens.  Comme  tous les  émulateurs
+utilisent la  ROM du ZX  Spectrum, ils utilisent le  même interpréteur
+BASIC.
+
 Noms de variables
 -----------------
 

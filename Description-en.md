@@ -766,6 +766,16 @@ Actually, some programming languages  have been designed or maintained
 by a committee, such  as C or Ada, and the  result is fine, especially
 when compared with others, such as BASIC which has been congealed.
 
+Remark: when testing the BASIC language among the various interpreters
+and emulators, I have discarded `fbzx` because I cannot take a program
+written in  the host computer and  load it into the  emulator. Also, I
+have discarded `fuse`  (GTK version) because I think  I cannot install
+both version SDL and version GTK on the same computer. Actually, if it
+makes sense comparing  the ergonomy of the various  emulators, it does
+not make sense to compare  their BASIC interpreters. All the emulators
+use the  ROM from  ZX Spectrum,  so all emulators  use the  same BASIC
+interpreter.
+
 Variable Names
 --------------
 
