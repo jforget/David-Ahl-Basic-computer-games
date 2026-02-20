@@ -1060,7 +1060,7 @@ strings entered by the user (statement `INPUT`).
 result  of the  test  program above:  UTF-8 string  "`é`"  is read  as
 "`Ã©`".
 
-![The result of the test of the previous chapter](brandy-test.png)
+![The result of the test of the previous chapter](brandy-print.png)
 
 On the  other hand, when reading  alpha data from the  user (statement
 `INPUT`), no  mojibake occurs. Here  is the  test program, which  is a
@@ -1136,7 +1136,7 @@ ENTER A NUMBER? 5
 
 
 ASC(A$) =  70
-CHR$(N) = 
+CHR$(N) =
 LEFT$(A$,N) = Fréd
 MID$(A$,N) = déric
 MID$(A$,N,3) = dé

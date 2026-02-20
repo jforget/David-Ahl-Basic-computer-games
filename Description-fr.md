@@ -1118,7 +1118,7 @@ fichiers,  ainsi que  les chaînes  saisies par  l'utilisateur (mot-clé
 ISO-8859,  ainsi qu'on  peut  le  voir dans  le  résultat  du test  du
 chapitre précédent.
 
-![Le résultat du test du chapitre précédent](brandy-test.png)
+![Le résultat du test du chapitre précédent](brandy-print.png)
 
 D'un  autre côté,  lorsqu'un programme  lit des  données alphabétiques
 saisies   par  l'utilisateur   (mot-clé  `INPUT`),   aucune  confusion
@@ -1198,7 +1198,7 @@ ENTER A NUMBER? 5
 
 
 ASC(A$) =  70
-CHR$(N) = 
+CHR$(N) =
 LEFT$(A$,N) = Fréd
 MID$(A$,N) = déric
 MID$(A$,N,3) = dé
