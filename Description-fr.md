@@ -582,7 +582,7 @@ un clavier QWERTY / QWERTZ).
 | Le caractère ASCII rouge à côté   | !       | K ou L ou C | Ctrl-&  |
 | La couleur de fond                | BLUE    |      E      | &       |
 | La couleur des caractères         | BLUE    |      E      | Shift-& |
-| L'instruction en rouge au-dessous | EDIT    |      E      | Ctrl-&  |
+| L'instruction en rouge au-dessous | DEF FN  |      E      | Ctrl-&  |
 
 Lorsque l'on utilise  des touches alphabétiques avec le  curseur G, la
 plupart du  temps on obtient  la lettre majuscule. Il  existe quelques
@@ -1108,6 +1108,110 @@ longueur   importante,  j'ai   choisi,  plus   ou  moins   au  hasard,
 taquets  de  tabulation, cela  m'a  permis  de tester  comment  chaque
 interpréteur  et  chaque émulateur  se  comporte  avec les  caractères
 Unicode en dehors du domaine ASCII.
+
+`vintbas` lit sans  problème les fichiers sources  BASIC contenant des
+caractères UTF-8  et traite convenablement  les chaînes lues  dans ces
+fichiers,  ainsi que  les chaînes  saisies par  l'utilisateur (mot-clé
+`INPUT`).
+
+`brandy`  ouvre  les  fichiers  sources BASIC  en  tant  que  fichiers
+ISO-8859,  ainsi qu'on  peut  le  voir dans  le  résultat  du test  du
+chapitre précédent.
+
+![Le résultat du test du chapitre précédent](brandy-test.png)
+
+D'un  autre côté,  lorsqu'un programme  lit des  données alphabétiques
+saisies   par  l'utilisateur   (mot-clé  `INPUT`),   aucune  confusion
+n'apparaît.  Voici un  programme  de test,  adaptation d'un  programme
+fourni avec `vintbas`, stocké dans
+`$HOME/share/share/doc/vintage-basic-1.0.3/examples/strings.bas`
+
+```
+10 INPUT "ENTER A STRING";A$
+20 INPUT "ENTER A NUMBER";N
+25 PRINT : PRINT : PRINT : PRINT
+30 PRINT "ASC(A$) = ";ASC(A$)
+40 PRINT "CHR$(N) = ";CHR$(N)
+50 PRINT "LEFT$(A$,N) = ";LEFT$(A$,N)
+60 PRINT "MID$(A$,N) = ";MID$(A$,N)
+70 PRINT "MID$(A$,N,3) = ";MID$(A$,N,3)
+80 PRINT "RIGHT$(A$,N) = ";RIGHT$(A$,N)
+90 PRINT "LEN(A$) = ";LEN(A$)
+100 PRINT "VAL(A$) = ";VAL(A$)
+110 PRINT "STR$(N) = ";STR$(N)
+120 PRINT "SPC(N) = '";SPC(N);"'"
+```
+
+Le résultat de ce programme :
+
+![Le résultat de ce programme](brandy-strings.png)
+
+`bwbasic`  fonctionne   comme  `brandy`,   mais  avec   une  subtilité
+supplémentaire.  J'ai lancé  le programme  test du  chapitre précédent
+avec quelques  adaptations : suppression  des lignes 330, 340  et 430,
+fusion des lignes 140 et 150 en une seule :
+
+```
+140 print B$, A$
+```
+
+Avec ces adaptations, le résultat des lignes 100 à 180 est le suivant :
+
+```
+ 100
+a            b
+b            a
+alpha        bravo
+bravo        alpha
+able         baker
+baker        able
+Alice        Bob
+Bob          Alice
+anticonstitutionnellement  bactériologistes
+bactériologistes          anticonstitutionnellement
+....+....1....+....2....+....3....+....4
+```
+
+Comme vous  pouvez le constater,  il semblerait  que sur une  ligne le
+taquet de  tabulation soit en colonne  28 et sur la  ligne suivante il
+soit en  colonne 27.  Ce qui  se passe, c'est  que `bwbasic`  ouvre le
+fichier   source   avec  l'encodage   ISO-8859   et   lit  la   chaîne
+"bactÃ©riologistes",  qui  semble  contenir  17  caractères.  Donc  le
+programme  affiche  cette  chaîne  (17 caractères  ISO-8859,  soit  17
+octets) plus 10  espaces, pour atteindre la colonne 27  et afficher le
+mot  suivant en  colonne 28.  De l'autre  côté du  _pipe_, la  fenêtre
+`xterm` reçoit  un flux de  17 octets  divers, puis 10  octets `0x20`,
+puis  encore 25  octets divers.  Les 17  premiers octets  sont décodés
+comme étant  16 caractères  UTF-8. La fenêtre  `xterm` affiche  ces 16
+caractères, puis 10  espaces, ce qui aboutit en colonne  26. Puis elle
+affiche "anticonstitutionnellement" à partir de  la colonne 27 au lieu
+de la colonne 28.
+
+De la même manière, en lançant la version adaptée de `strings.bas` sur
+les données "Frédéric" et "5", on obtient :
+
+```
+ENTER A STRING? Frédéric
+ENTER A NUMBER? 5
+
+
+
+
+ASC(A$) =  70
+CHR$(N) = 
+LEFT$(A$,N) = Fréd
+MID$(A$,N) = déric
+MID$(A$,N,3) = dé
+RIGHT$(A$,N) = éric
+LEN(A$) =  10
+VAL(A$) =  0
+STR$(N) =  5
+SPC(N) = '     '
+```
+
+De la même manière que précédemment, `LEFT$(A$,5)` est une chaîne de 5
+caractères ISO-8859, `FrÃ©d`, qui est  affichée par la fenêtre `xterm`
+en tant que 4 caractères UTF-8, `Fréd`.
 
 CONCLUSION
 ==========

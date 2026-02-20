@@ -563,7 +563,7 @@ AZERTY keyboard, or `1` for QWERTY / QWERTZ keyboards) as an example.
 | Red ASCII char beside         | !       | K or L or C | Ctrl-&  |
 | Background colour             | BLUE    |      E      | &       |
 | Char colour                   | BLUE    |      E      | Shift-& |
-| Red keyword below             | EDIT    |      E      | Ctrl-&  |
+| Red keyword below             | DEF FN  |      E      | Ctrl-&  |
 
 When  we use  alphabetic keys  with cursor  G, we  usually obtain  the
 corresponding upper-case letter.  There are a few  exception, which do
@@ -1052,6 +1052,103 @@ Together  with printout  formatted by  tab stops,  this allowed  me to
 check how each  interpreter and each emulator  behaves when processing
 Unicode chars outside of the ASCII range.
 
+`vintbas` can read BASIC source  files containing UTF-8 characters and
+can process  the strings containing  such chars. It processes  as well
+strings entered by the user (statement `INPUT`).
+
+`brandy`  opens BASIC  source files  as  ISO-8859, as  shown with  the
+result  of the  test  program above:  UTF-8 string  "`é`"  is read  as
+"`Ã©`".
+
+![The result of the test of the previous chapter](brandy-test.png)
+
+On the  other hand, when reading  alpha data from the  user (statement
+`INPUT`), no  mojibake occurs. Here  is the  test program, which  is a
+conversion of
+`$HOME/share/share/doc/vintage-basic-1.0.3/examples/strings.bas`
+
+```
+10 INPUT "ENTER A STRING";A$
+20 INPUT "ENTER A NUMBER";N
+25 PRINT : PRINT : PRINT : PRINT
+30 PRINT "ASC(A$) = ";ASC(A$)
+40 PRINT "CHR$(N) = ";CHR$(N)
+50 PRINT "LEFT$(A$,N) = ";LEFT$(A$,N)
+60 PRINT "MID$(A$,N) = ";MID$(A$,N)
+70 PRINT "MID$(A$,N,3) = ";MID$(A$,N,3)
+80 PRINT "RIGHT$(A$,N) = ";RIGHT$(A$,N)
+90 PRINT "LEN(A$) = ";LEN(A$)
+100 PRINT "VAL(A$) = ";VAL(A$)
+110 PRINT "STR$(N) = ";STR$(N)
+120 PRINT "SPC(N) = '";SPC(N);"'"
+```
+
+The result of this program:
+
+![The result of the test of this chapter](brandy-strings.png)
+
+`bwbasic`  works like  `brandy`,  but with  a twist.  I  have run  the
+previous chapter's  program with a few  fixes: lines 330, 340  and 430
+have been  deleted, lines 140 and  150 have been merged  into a single
+line:
+
+```
+140 print B$, A$
+```
+
+With these fixes, lines 100 to 180 give:
+
+```
+ 100
+a            b
+b            a
+alpha        bravo
+bravo        alpha
+able         baker
+baker        able
+Alice        Bob
+Bob          Alice
+anticonstitutionnellement  bactériologistes
+bactériologistes          anticonstitutionnellement
+....+....1....+....2....+....3....+....4
+```
+
+As you can see, it seems that  in one line, the tabstop is at position
+28 and  in the next line  it is at  position 27. What happens  is that
+`bwbasic`  opens the  source  file with  ISO-8859  encoding and  reads
+"bactÃ©riologistes", which  seems to be  17-char long. So  the program
+outputs this string  (17 ISO-8859 chars, 17 bytes), plus  10 spaces to
+reach column 27 and print "anticonstitutionnellement" at column 28. On
+the other side of the pipe, the `xterm` window receives a stream of 17
+various bytes, 10 `0x20` bytes, and  again 25 various bytes. The first
+17 bytes are decoded as a  UTF-8 16-char string. So the `xterm` window
+displays 16  chars and 10  spaces, which reach  column 26 and  then it
+prints "anticonstitutionnellement", which begins  in column 27 instead
+of column 28.
+
+Likewise, running the fixed version of `strings.bas` gives:
+
+```
+ENTER A STRING? Frédéric
+ENTER A NUMBER? 5
+
+
+
+
+ASC(A$) =  70
+CHR$(N) = 
+LEFT$(A$,N) = Fréd
+MID$(A$,N) = déric
+MID$(A$,N,3) = dé
+RIGHT$(A$,N) = éric
+LEN(A$) =  10
+VAL(A$) =  0
+STR$(N) =  5
+SPC(N) = '     '
+```
+
+In the same way, `LEFT$(A$,5)` is a string with 5 ISO-8859 chars, `FrÃ©d`,
+which is displayed by the `xterm` window as 4 UTF-8 chars, `Fréd`.
 
 CONCLUSION
 ==========
