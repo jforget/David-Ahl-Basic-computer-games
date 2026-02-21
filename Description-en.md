@@ -766,8 +766,8 @@ Actually, some programming languages  have been designed or maintained
 by a committee, such  as C or Ada, and the  result is fine, especially
 when compared with others, such as BASIC which has been congealed.
 
-Remark: when testing the BASIC language among the various interpreters
-and emulators, I have discarded `fbzx` because I cannot take a program
+Remark: when testing the BASIC language among the various
+emulators, I have discarded `fbzx` because I cannot take a program
 written in  the host computer and  load it into the  emulator. Also, I
 have discarded `fuse`  (GTK version) because I think  I cannot install
 both version SDL and version GTK on the same computer. Actually, if it
@@ -1043,6 +1043,15 @@ triggers this error:
 2 Variable not found, 120:1
 ```
 
+And even if I change this program line to
+
+```
+120 READ A$ : READ B$
+```
+
+the program still triggers the error. Too bad, I will not test this on
+the Spectrum emulators.
+
 Text Encoding
 -------------
 
@@ -1150,6 +1159,33 @@ SPC(N) = '     '
 In the same way, `LEFT$(A$,5)` is a string with 5 ISO-8859 chars, `FrÃ©d`,
 which is displayed by the `xterm` window as 4 UTF-8 chars, `Fréd`.
 
+As for the  Spectrum emulators, the program from  the previous chapter
+has not been completely useless. If we list the program until the last
+lines, we read
+
+![Listing the last lines of the test program](fuse-print.png)
+
+We   see  that   "bactériologistes"   appears  as   "bact  NOT   POINT
+riologistes". Not  only the `zmakebas`  utility has opened  the source
+file with the ISO-8859 encoding scheme, but in addition bytes `C3` and
+`A9` give  keywords `NOT`  and `POINT` instead  of the  usual ISO-8859
+chars.
+
+About   the   program   adapted  from   `strings.bas`,   which   reads
+interactively a string provided by  the user, this program cannot read
+chars such  as "`é`", because  the Spectrum keyboard does  not include
+these chars.
+
+There is  another reason why  this program  cannot work on  a Spectrum
+emulator, even  if using  plain 7-bit  ASCII strings.  If we  read the
+[French-speaking article](https://archive.org/details/ord-ind-s1-032/page/98/mode/2up)
+from  magazine _l'Ordinateur  Individuel_, which  describes the  ZX81,
+forerunner  of  Spectrum,  we  read  on page  99  that  the  classical
+functions `LEFT$`,  `MID$` and `RIGHT$`  do not  work and we  must use
+another  syntax. For  example,  we must  replace `MID$(A$,12,4)`  with
+`A$(12 TO 15)`. In the same  way, the function `ASC` has been replaced
+by `CODE`.
+
 CONCLUSION
 ==========
 
@@ -1162,7 +1198,7 @@ For these, `vintbas` is fine.
 
 Exploring ZX Spectrum emulators was not a waste of time. If I find interesting
 games among
-[available Spectrum games](https://itch.io/c/2612515/zx-spectrum-homebrew)
+[available Spectrum games](https://archive.org/details/softwarelibrary_zx_spectrum)
 I may as well  install them and play them on an  emulator. From what I
 have seen until now, the best emulator would be `fuse`.
 

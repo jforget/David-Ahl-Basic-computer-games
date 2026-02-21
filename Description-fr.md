@@ -807,7 +807,7 @@ et le résultat  est, somme toute, tout-à-fait correct. On  ne peut pas
 en  dire  autant  de  certains  langages, comme  BASIC,  qui  ont  été
 congelés.
 
-Remarque  : parmi  les  interpréteurs et  les  émulateurs, j'ai  testé
+Remarque  : parmi   les  émulateurs, j'ai  testé
 `fuse` (version SDL)  et `xspect` et j'ai laissé tomber  `fbzx` car il
 est impossible  de charger  un programme écrit  dans la  machine hôte.
 J'ai  laissé tomber  également `fuse`  (version GTK)  parce qu'il  est
@@ -1098,6 +1098,14 @@ déclenche une erreur
 2 Variable not found, 120:1
 ```
 
+Et même en changeant en
+
+```
+120 READ A$ : READ B$
+```
+
+cela ne fonctionne pas. Tant pis, je ne ferai pas le test.
+
 Encodage
 --------
 
@@ -1213,6 +1221,30 @@ De la même manière que précédemment, `LEFT$(A$,5)` est une chaîne de 5
 caractères ISO-8859, `FrÃ©d`, qui est  affichée par la fenêtre `xterm`
 en tant que 4 caractères UTF-8, `Fréd`.
 
+Pour  les  émulateurs, le  test  du  chapitre  précédent n'a  pas  été
+totalement inutile. En listant le programme jusqu'au bout, on obtient
+
+![Listing des dernières lignes du programme de test](fuse-print.png)
+
+On  voit  ainsi que  "bactériologistes"  est  devenu "bact  NOT  POINT
+riologistes".  Non  seulement  l'utilitaire  `zmakebas`  a  ouvert  le
+fichier  source en  ISO-8859, mais  en plus  les octets  `C3` et  `A9`
+donnent les mots-clés `NOT` et `POINT`.
+
+Quant au  programme inspiré de `strings.bas`,  qui lit interactivement
+une chaîne  de caractères, il ne  pourra pas lire des  caractères tels
+que "`é`", car il n'y a pas  moyen de les taper avec le fonctionnement
+du clavier du Spectrum.
+
+Et il y a une deuxième raison pour laquelle ce programme ne peut pas
+fonctionner, même en pur ASCII 7-bits. Si l'on consulte
+l'[article](https://archive.org/details/ord-ind-s1-032/page/98/mode/2up)
+de  l'Ordinateur   Individuel  présentant  le  prédécesseur   ZX81  du
+Spectrum, il est marqué (page 99) que les fonctions `LEFT$`, `MID$` et
+`RIGHT$` ne fonctionnent pas et qu'il faut utiliser une autre syntaxe.
+Par exemple, remplacer `MID$(A$,12,4)` par `A$(12 TO 15)`. De même, il
+n'existe pas de fonction `ASC`, il faut utiliser `CODE` à la place.
+
 CONCLUSION
 ==========
 
@@ -1225,7 +1257,7 @@ Pour ceci, `vintbas` convient très bien.
 
 L'exploration des émulateurs de ZX  Spectrum n'a pas forcément été une
 perte de temps. Si je trouve des jeux m'intéressent parmi
-[ceux déjà écrits](https://itch.io/c/2612515/zx-spectrum-homebrew)
+[ceux déjà écrits](https://archive.org/details/softwarelibrary_zx_spectrum)
 pour Spectrum  alors pourquoi ne pas  les récupérer et y  jouer sur un
 émulateur. Au vu  de ce que j'ai pu voir  jusqu'à présent, l'émulateur
 le plus adéquat serait `fuse`.
