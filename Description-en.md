@@ -1147,7 +1147,7 @@ conversion of
 120 PRINT "SPC(N) = '";SPC(N);"'"
 ```
 
-The result of this program:
+The result of this program, with entries `Frédéric` and `5`:
 
 ![The result of the test of this chapter](brandy-strings.png)
 
@@ -1227,9 +1227,10 @@ lines, we read
 
 We   see  that   "bactériologistes"   appears  as   "bact  NOT   POINT
 riologistes". Not  only the `zmakebas`  utility has opened  the source
-file with the ISO-8859 encoding scheme, but in addition bytes `C3` and
-`A9` give  keywords `NOT`  and `POINT` instead  of the  usual ISO-8859
-chars.
+file with an encoding scheme in  which every character is encoded as a
+single  byte (possibly  ISO-8859, but  maybe another  scheme), but  in
+addition bytes `C3`  and `A9` give keywords `NOT`  and `POINT` instead
+of the usual ISO-8859 chars.
 
 About   the   program   adapted  from   `strings.bas`,   which   reads
 interactively a string provided by  the user, this program cannot read

@@ -471,7 +471,7 @@ Je note également un émulateur pour  les consoles de jeux Atari 800 et
 BASIC. Même interrogation à propos des émulateurs KC85, MSX
 
 Notons que le
-[manuel d'utilisation du ZX Spectrum (en anglais)[https://archive.org/details/zx-spectrum-basic-programming/page/n3/mode/2up]
+[manuel d'utilisation du ZX Spectrum (en anglais)](https://archive.org/details/zx-spectrum-basic-programming/page/n3/mode/2up)
 est disponible sur Internet.
 
 FBZX
@@ -1207,7 +1207,7 @@ fourni avec `vintbas`, stocké dans
 120 PRINT "SPC(N) = '";SPC(N);"'"
 ```
 
-Le résultat de ce programme :
+Le résultat de ce programme, avec les entrées `Frédéric` et `5` :
 
 ![Le résultat de ce programme](brandy-strings.png)
 
@@ -1289,8 +1289,9 @@ totalement inutile. En listant le programme jusqu'au bout, on obtient
 
 On  voit  ainsi que  "bactériologistes"  est  devenu "bact  NOT  POINT
 riologistes".  Non  seulement  l'utilitaire  `zmakebas`  a  ouvert  le
-fichier  source en  ISO-8859, mais  en plus  les octets  `C3` et  `A9`
-donnent les mots-clés `NOT` et `POINT`.
+fichier source  avec un encodage où  1 caractère correspod à  1 octets
+(peut-être ISO-8859,  peut-être un autre  encodage), mais en  plus les
+octets `C3` et `A9` donnent les mots-clés `NOT` et `POINT`.
 
 Quant au  programme inspiré de `strings.bas`,  qui lit interactivement
 une chaîne  de caractères, il ne  pourra pas lire des  caractères tels
