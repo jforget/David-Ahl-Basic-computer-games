@@ -634,6 +634,9 @@ from `morebasicgames.zip`  needs some work before  generating the tape
 files for
 [fuse](https://directory.fsf.org/wiki/Fuse-emulator).
 
+The emulator provides functions to  create snapshots, movies or screen
+hard-copies. I have not experimented with these functions.
+
 fuse-emulator, GTK variant
 --------------------------
 
@@ -692,6 +695,9 @@ forbidden. So,  just as for fuse,  there will be some  conversion work
 before generating  the tape files if  we want to use  the source files
 from `bcg.tar.gz` or from `morebasicgames.zip`.
 
+The emulator  has functions to  create and  use snapshots. I  have not
+tested these functions.
+
 ### Using the keyboard in Spectemu
 
 Similar to the Spectrum and its emulators FBZX and Fuse, the cursor in
@@ -720,6 +726,40 @@ matter). Using a key without a  modifier gives the usual special char:
 "`&`"  for key  "1", double-quote  for key  "3", etc.  If the  char is
 unknown  to the  Spectrum ("é"  for  key "2",  "ç" for  key "9"),  the
 emulator ignores the key if no modifier is used.
+
+zmakebas
+--------
+
+[`zmakebas`](https://www.timexsinclair.com/zmakebas/index.html)
+is not an emulator proper, it is  a very convenient addition to the ZX
+Spectrum emulators. This program allows  you to convert a BASIC source
+file into  a file  which emulates  the magnetic tapes  used in  the ZX
+Spectrum. These files can be read by `fuse` and `xspect`.
+
+The version from the APT package is 1.2b. The version from the
+[web site](https://github.com/ohnosec/zmakebas)
+is version 1.8.6.
+
+When I began testing the emulators,  I thought that most problems were
+caused  by a  bad translation  from `zmakebas`.  Actually, most  of my
+problems  come  from the  difference  between  ZX Spectrum  BASIC  and
+standard BASIC: no `END`, no `ELSE`, mandatory `LET`, etc. The website
+for `zmakebas` lists
+[several bugs](https://github.com/ohnosec/zmakebas/blob/master/README.md#bugs),
+but we will manage to live with them.
+
+I do  not even think about  forking the development repo,  then fixing
+the bugs which annoy me, then creating pull requests to send the fixes
+to the original repo. The problem  is that `zmakebas` has been written
+with a development environment I  do not know (Microsoft Visual Studio
+if I  understand correctly  the comments  in some  files), which  is a
+barrier big enough to prevent my entering.
+
+`zmakebas` provides  the means  to write  BASIC programs  without line
+numbers and to automatically generate these line numbers when creating
+the  `.tap` file.  Since my  purpose is  running some  of David  Ahl's
+programs inside  an emulator, I do  not need these options  and I have
+not tested them.
 
 vice
 ----

@@ -657,6 +657,9 @@ La  conséquence  est   que  pour  utiliser  les   fichiers  source  de
 d'adaptation à effectuer avant de générer les fichiers bandes pour
 [fuse](https://directory.fsf.org/wiki/Fuse-emulator).
 
+L'émulateur propose  des fonctions pour  créer des _snapshots_  ou des
+films, ou bien pour effectuer des copies d'écran. Je n'ai pas testé.
+
 fuse-emulator, variante GTK
 ---------------------------
 
@@ -720,6 +723,9 @@ d'adaptation à  effectuer avant de  générer les fichiers  bandes. pour
 utiliser    les    fichiers    source   de    `bcg.tar.gz`    ou    de
 `morebasicgames.zip`.
 
+L'émulateur propose des fonctions pour  créer des _snapshots_ puis les
+charger. Je n'ai pas testé.
+
 ### Utilisation du clavier dans Spectemu
 
 Comme pour  le Spectrum  et ses  émulateurs FBZX  et Fuse,  le curseur
@@ -752,6 +758,41 @@ pour la touche  « 1 », double quote pour la touche  « 3 », et ainsi de
 suite. Si le  caractère n'est pas reconnu par le  Spectrum (« é » pour
 la touche  « 2 », « ç » pour  la touche « 9 »), l'émulateur  ignore la
 touche si elle n'a pas de modificateur `SHIFT`
+
+zmakebas
+--------
+
+[`zmakebas`](https://www.timexsinclair.com/zmakebas/index.html)
+n'est pas  un émulateur à  proprement parler, mais un  complément bien
+utile  pour les  émulateurs de  ZX  Spectrum. Ce  programme permet  de
+convertir un  fichier source  BASIC en un  fichier émulant  les bandes
+magnétiques utilisées  par le ZX  Spectrum. Ces fichiers  peuvent être
+lus par les émulateurs `fuse` et `xspect`.
+
+La version provenant des paquets APT est la version 1.2b. La version du
+[site web](https://github.com/ohnosec/zmakebas)
+est la version 1.8.6.
+
+Au  début de  mes  tests,  je croyais  que  la  plupart des  problèmes
+venaient d'une mauvaise traduction par `zmakebas`. En fait, la plupart
+du temps, les problèmes viennent des  particularités du BASIC ZX : pas
+de  `END`  ni de  `ELSE`,  `LET`  obligatoire,  etc.  Le site  web  de
+`zmakebas` admet qu'il existe
+[des bugs](https://github.com/ohnosec/zmakebas/blob/master/README.md#bugs),
+mais il faudra faire avec.
+
+Quant à  forker le dépôt,  faire les corrections qui  m'intéressent et
+créer des _pull requests_ pour  proposer ces corrections dans le dépôt
+origine,  le problème  est  que  `zmakebas` a  été  développé avec  un
+environnement de développement que je ne connais pas (Microsoft Visual
+Studio,  si j'en  crois certains  fichiers),  ce qui  est un  obstacle
+important pour que je puisse envisager des adaptations du programme.
+
+`zmakebas` propose une méthode pour écrire les programmes sans numéros
+de ligne, puis générer ces numéros de ligne automatiquement lors de la
+création du fichier  bande. Dans le cadre de la  récupération des jeux
+de David Ahl, je  n'ai pas besoin de cette méthode et  je ne l'ai donc
+pas testée.
 
 vice
 ----
