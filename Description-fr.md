@@ -337,6 +337,10 @@ proviennent de `sinewave.bas`) :
   320 end sub
   ```
 
+  Cela  résoud  le problème  des  paramètres  `TAB(n)` au  début  d'un
+  `PRINT`, mais  pas le  problème d'un  paramètre `TAB(n)`  entre deux
+  valeurs à imprimer.
+
 Vintage BASIC
 -------------
 
@@ -465,6 +469,10 @@ Commodore ou un TRS80.
 Je note également un émulateur pour  les consoles de jeux Atari 800 et
 2600, mais je  ne sais pas si ces consoles  comportent un interpréteur
 BASIC. Même interrogation à propos des émulateurs KC85, MSX
+
+Notons que le
+[manuel d'utilisation du ZX Spectrum (en anglais)[https://archive.org/details/zx-spectrum-basic-programming/page/n3/mode/2up]
+est disponible sur Internet.
 
 FBZX
 ----
@@ -994,7 +1002,9 @@ entre les valeurs à imprimer.
   si la position  visée est déjà dépassée, je ne  sais plus quelle est
   la  règle  à appliquer.  Contrairement  aux  autres séparateurs,  le
   séparateur `TAB(n)` ne peut s'appliquer que si les deux valeurs sont
-  imprimées par la même instruction `PRINT`.
+  imprimées par la même instruction  `PRINT`. D'un autre côté, on peut
+  avoir un `TAB(n)` en premier paramètre d'une instruction `PRINT`, ce
+  qui n'est pas possible pour une virgule ni un point-virgule.
 
 Voici le programme de test
 
@@ -1106,6 +1116,12 @@ Et même en changeant en
 
 cela ne fonctionne pas. Tant pis, je ne ferai pas le test.
 
+Le manuel de programmation ne nous aide pas sur ce problème. La
+[page sur les messages d'erreur](https://archive.org/details/zx-spectrum-basic-programming/page/n169/mode/2up)
+nous  explique  qu'avant  d'utiliser  une variable,  il  faut  l'avoir
+initialisée  par  `LET`, `INPUT`  ou  `READ`.  Or  c'est le  cas  ici.
+Qu'est-ce qui ne va pas dans le programme ?
+
 Encodage
 --------
 
@@ -1187,7 +1203,11 @@ fichier   source   avec  l'encodage   ISO-8859   et   lit  la   chaîne
 "bactÃ©riologistes",  qui  semble  contenir  17  caractères.  Donc  le
 programme  affiche  cette  chaîne  (17 caractères  ISO-8859,  soit  17
 octets) plus 10  espaces, pour atteindre la colonne 27  et afficher le
-mot  suivant en  colonne 28.  De l'autre  côté du  _pipe_, la  fenêtre
+mot suivant  en colonne  28 sur  `stdout`. On  peut considérer  que la
+sortie standard `stdout` est un  _pipe_ alimenté par le processus Unix
+et lu  par la routine d'affichage  de la fenêtre `xterm`.  Le problème
+est que ce _pipe_  est ouvert en ISO-8859 côté BASIC  et en UTF-8 côté
+`xterm`. Du  côté « réception » du  _pipe_, la  fenêtre
 `xterm` reçoit  un flux de  17 octets  divers, puis 10  octets `0x20`,
 puis  encore 25  octets divers.  Les 17  premiers octets  sont décodés
 comme étant  16 caractères  UTF-8. La fenêtre  `xterm` affiche  ces 16
@@ -1244,6 +1264,8 @@ Spectrum, il est marqué (page 99) que les fonctions `LEFT$`, `MID$` et
 `RIGHT$` ne fonctionnent pas et qu'il faut utiliser une autre syntaxe.
 Par exemple, remplacer `MID$(A$,12,4)` par `A$(12 TO 15)`. De même, il
 n'existe pas de fonction `ASC`, il faut utiliser `CODE` à la place.
+
+Quelqu'un a dit « congelé » ?
 
 CONCLUSION
 ==========

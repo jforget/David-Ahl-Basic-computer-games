@@ -322,6 +322,10 @@ from `yabasic`. All examples are taken from `sinewave.bas`.
   320 end sub
   ```
 
+  Remark: this solves  the problem of a `TAB(n)`  specification at the
+  beginning of a `PRINT` statement, but  not the problem of a `TAB(n)`
+  between two printed values.
+
 Vintage BASIC
 -------------
 
@@ -448,6 +452,10 @@ There are  other emulators  for game  consoles, but I  do not  know if
 these consoles provide a BASIC interpreter. And I do not know if Atari
 800 and  2600 are  personal computers or  game consoles.  Same problem
 with the emulators for KC85 and MSX.
+
+The
+[programming manual for ZX Spectrum](https://archive.org/details/zx-spectrum-basic-programming/page/n3/mode/2up)
+is available on the Internet.
 
 FBZX
 ----
@@ -940,7 +948,8 @@ the printed values.
   in the  current line, I  do not  remember the expected  behaviour of
   `PRINT`.  Contrary to  the other  separators, the  `PRINT` statement
   using `TAB(n)`  must contain  both the previous  value and  the next
-  value.
+  value. On the  other hand, `TAB(n)` can be the  first parameter of a
+  `PRINT` statement, while the comma and the semi-colon cannot.
 
 Here is the test program
 
@@ -1052,6 +1061,12 @@ And even if I change this program line to
 the program still triggers the error. Too bad, I will not test this on
 the Spectrum emulators.
 
+The programming manual is not helpful on this problem. Its
+[page on error messages](https://archive.org/details/zx-spectrum-basic-programming/page/n169/mode/2up)
+tells  us that  before  using  a variable,  it  must  be declared  and
+initialised by  `LET`, `INPUT` or  `READ`, which  is the case  in this
+program. So what is wrong in the program?
+
 Text Encoding
 -------------
 
@@ -1127,8 +1142,13 @@ As you can see, it seems that  in one line, the tabstop is at position
 `bwbasic`  opens the  source  file with  ISO-8859  encoding and  reads
 "bactÃ©riologistes", which  seems to be  17-char long. So  the program
 outputs this string  (17 ISO-8859 chars, 17 bytes), plus  10 spaces to
-reach column 27 and print "anticonstitutionnellement" at column 28. On
-the other side of the pipe, the `xterm` window receives a stream of 17
+reach column 27 and print  "anticonstitutionnellement" at column 28 in
+`stdout`. We may consider that the standard output is a Unix pipe, fed
+by the UNIX  program we run, and consumed by  the display routine from
+`xterm`.  The problem  is  that the  UNIX program  we  run, the  BASIC
+interpreter,  opens this  pipe  in ISO-8859  and  the `xterm`  display
+routine opens this  pipe in UTF-8. So, on the  "consuming" side of the
+pipe, the `xterm` window receives a stream of 17
 various bytes, 10 `0x20` bytes, and  again 25 various bytes. The first
 17 bytes are decoded as a  UTF-8 16-char string. So the `xterm` window
 displays 16  chars and 10  spaces, which reach  column 26 and  then it
@@ -1185,6 +1205,8 @@ functions `LEFT$`,  `MID$` and `RIGHT$`  do not  work and we  must use
 another  syntax. For  example,  we must  replace `MID$(A$,12,4)`  with
 `A$(12 TO 15)`. In the same  way, the function `ASC` has been replaced
 by `CODE`.
+
+Did someone say "congealed"?
 
 CONCLUSION
 ==========
