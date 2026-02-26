@@ -99,7 +99,7 @@ When I test the minimal program `test1.bas` from `bcg.tar.gz`:
 20 end
 ```
 
-The `brandy` interpreter crashes:
+The `brandy` interpreter emits some impressive error messages:
 
 ```
 $ brandy test1.bas
@@ -108,7 +108,7 @@ heap.c:init_workspace: Allocating at 0x400000, size &4000000
 heap.c:init_workspace: mmap returns 0x400000
 ```
 
-I have tried a few other programs, they crash in the same fashion.
+I have tried a few other programs, they emit the same messages.
 
 Yet, if I type no filename  in the command line, the interpreter opens
 an  input window  and  I  can type  BASIC  statements  in this  window
@@ -138,6 +138,32 @@ QUIT
 Note that  the commands must  be typed  with upper-case chars.  On the
 other hand,  filenames must be typed  as they appear when  listing the
 file directory.
+
+Actually, when  reading the `brandy`  manpages, I learnt that  you can
+specify a filename on the command  line and still get some interaction
+with the interpreter. We can choose between
+
+* loading the file without executing it
+
+  ```
+  brandy -load test1.bas
+  ```
+
+* loading and executing the file, then leaving the window open
+
+  ```
+  brandy -chain test1.bas
+  ```
+
+* loading and executing the file, then closing the window
+
+  ```
+  brandy -quit test1.bas
+  ```
+
+The  manpage  writes  that  using  a filename  without  an  option  is
+equivalent  to option  `-chain`. This  is false,  it is  equivalent to
+`-quit`.
 
 bwbasic
 -------

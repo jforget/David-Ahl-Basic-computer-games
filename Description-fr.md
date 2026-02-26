@@ -109,7 +109,7 @@ Lorsque je teste le programme minimal `test1.bas` tiré de `bcg.tar.gz` :
 20 end
 ```
 
-l'interpréteur `brandy` plante :
+l'interpréteur `brandy` envoie des messages d'erreur qui font peur :
 
 ```
 $ brandy test1.bas
@@ -149,6 +149,32 @@ QUIT
 Notez que les commandes doivent être  en majuscules, mais que les noms
 de fichier doivent  correspondre à la façon dont ils  sont écrits dans
 le répertoire sur le disque.
+
+En fait, après  avoir lu la page de manuel  de `brandy`, je m'aperçois
+qu'il y  a moyen  de lancer  l'interpréteur en  mentionnant le  nom de
+fichier dans la ligne de commande. On a le choix entre
+
+* charger le fichier, sans l'exécuter
+
+  ```
+  brandy -load test1.bas
+  ```
+
+* charger le fichier et l'exécuter, puis laisser la fenêtre ouverte
+
+  ```
+  brandy -chain test1.bas
+  ```
+
+* charger le fichier et l'exécuter, puis fermer la fenêtre
+
+  ```
+  brandy -quit test1.bas
+  ```
+
+Il est marqué  dans cette page de manuel que  spécifier directement un
+nom de fichier  est équivalent à l'option `-chain`.  C'est faux, c'est
+équivalent à l'option `-quit`.
 
 bwbasic
 -------
