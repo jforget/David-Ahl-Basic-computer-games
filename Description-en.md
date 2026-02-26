@@ -906,8 +906,12 @@ name must not contain a BASIC keyword. When I read this in the 1980's,
 my reaction was that if I ever  wrote a program about the Five Nations
 Championship  (Italy was  not  yeat  part of  it),  I  would not  have
 problems  with  French-speaking  variable   names  such  as  `FRANCE`,
-`IRLANDE` and `GALLES`,  but there would be  trouble with `ANGLETERRE`
+`IRLANDE` (*) and `GALLES`,  but there would be  trouble with `ANGLETERRE`
 and `ECOSSE`, because of the statement `LET` and the function `COS`.
+
+(*) Actually,  a few decades later,  I have realised that  the problem
+occurs also  with variable name  `IRLANDE` which contains  an embedded
+keyword, `AND`.
 
 So I have tested the following program
 
@@ -1288,3 +1292,6 @@ This program is distributed in the hope that it will be useful, but it
 is provided “as is” and without any express or implied warranties. For
 details, see the full text of the licenses in the file LICENSE.
 
+There  is an  exception.  I  have copied  one  test  program from  the
+"Vintage BASIC"  distribution and I  kept the  BSD 3 license  for this
+program.

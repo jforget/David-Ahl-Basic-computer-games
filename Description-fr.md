@@ -956,11 +956,15 @@ que le  nom de variable  ne doit pas  contenir de mot-clé  du langage.
 Lorsque j'avais  lu cela dans les  années 1980, je m'étais  dit que si
 l'on écrit  un programme sur le  thème du Tournoi des  Cinq Nations (à
 l'époque,  l'Italie  n'y  participait  pas),  on  peut  sans  problème
-utiliser des variables  `FRANCE`, `IRLANDE` et `GALLES`,  mais on aura
+utiliser des variables  `FRANCE`, `IRLANDE` (*) et `GALLES`,  mais on aura
 des problèmes avec `ANGLETERRE` et  `ECOSSE`, à cause de l'instruction
 `LET` et de la fonction `COS`. C'est  pour cela que je n'ai pas essayé
 de lancer `vintbas` avec le programme contenant
 "anticonstitutionnellement", qui contient deux fois le mot-clé "`ON`".
+
+(*)  En fait,  quelques  décennies  plus tard,  j'ai  constaté que  le
+problème  se  manifeste  également  avec `IRLANDE`,  qui  contient  le
+mot-clé `AND`.
 
 En testant avec le programme
 
@@ -1289,7 +1293,7 @@ totalement inutile. En listant le programme jusqu'au bout, on obtient
 
 On  voit  ainsi que  "bactériologistes"  est  devenu "bact  NOT  POINT
 riologistes".  Non  seulement  l'utilitaire  `zmakebas`  a  ouvert  le
-fichier source  avec un encodage où  1 caractère correspod à  1 octets
+fichier source  avec un encodage où  1 caractère correspond à  1 octet
 (peut-être ISO-8859,  peut-être un autre  encodage), mais en  plus les
 octets `C3` et `A9` donnent les mots-clés `NOT` et `POINT`.
 
@@ -1345,3 +1349,6 @@ Si nécessaire, pour les programmes de ce dépôt
 Les programmes de ce dépôt sont sous la même licence que Perl : GPL et
 licence  artistique.  Voir  le  texte (en  anglais)  dans  le  fichier
 `LICENSE`.
+
+Une exception :  j'ai copié un  programme à partir de  la distribution
+Vintage BASIC, j'ai donc conservé la licence BSD 3 de ce programme.

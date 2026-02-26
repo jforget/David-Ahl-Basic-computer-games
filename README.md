@@ -40,3 +40,6 @@ This program is distributed in the hope that it will be useful, but it
 is provided “as is” and without any express or implied warranties. For
 details, see the full text of the licenses in the file LICENSE.
 
+There  is an  exception.  I  have copied  one  test  program from  the
+"Vintage BASIC"  distribution and I  kept the  BSD 3 license  for this
+program.

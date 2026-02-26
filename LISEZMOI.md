@@ -38,3 +38,6 @@ Si nécessaire, pour les programmes de ce dépôt
 Les programmes de ce dépôt sont sous la même licence que Perl : GPL et
 licence  artistique.  Voir  le  texte (en  anglais)  dans  le  fichier
 `LICENSE`.
+
+Une exception :  j'ai copié un  programme à partir de  la distribution
+Vintage BASIC, j'ai donc conservé la licence BSD 3 de ce programme.
