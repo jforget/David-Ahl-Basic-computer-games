@@ -506,7 +506,6 @@ Pour l'instant, je n'ai eu de problème que pour
 > 920   IF J=4 THEN GOTO 1100
 ```
 
-
 ÉMULATEURS DE MACHINES BASIC
 ============================
 
@@ -1064,6 +1063,64 @@ J'ai essayé avec une version aussi réduite que possible
 `yabasic` déclenchent l'erreur sur la ligne 20 et non pas sur la ligne
 10. À y  réfléchir, c'est normal, puisque pour eux,  `LETA` est un nom
 de variable valide.
+
+Un léger parfum de PL/1
+-----------------------
+
+Lorsqu'un article ou un livre parle d'analyse lexicale et de PL/1 dans
+la même phrase, les paragraphes voisins contiennent souvent un exemple
+du genre
+
+```
+IF ELSE < THEN THEN IF = ELSE ELSE IF = THEN
+```
+
+C'est  parfaitement valide  en  PL/1,  où les  mots-clés  ne sont  pas
+réservés. La même chose existe dans  la variante ZX Spectrum de BASIC.
+On ne peut pas reprendre l'exemple tel quel, en raison de l'absence de
+`ELSE`. Néanmoins, on peut écrire puis lancer
+
+```
+1040 INPUT "THEN", THEN
+1050 INPUT "IF", IF
+1060 IF IF < THEN THEN GO TO 1090 
+1070 LET LET = THEN
+1080 GO TO 1100
+1090 LET LET = IF
+1100 PRINT LET
+```
+
+Il va de  soi que cet exemple ne fonctionnera  dans aucun compilateur,
+je n'ai même pas testé. De même, inutile d'essayer de créer un fichier
+bande avec `zmakebas`, il faut tout écrire au clavier.
+
+Attention, les mots-clés  sont tantôt saisis en une  seule touche avec
+le curseur "K",  tantôt saisis en toutes lettres avec  le curseur "L".
+Ci-dessous, je précise  les curseurs avec "K" ou "L",  en ajoutant "C"
+lorsque l'on utilise la touche `Ctrl` avec le curseur "L".
+
+```
+1040 INPUT "THEN", THEN
+KKKKKKKKKKKCLLLLCLLLLLL
+1050 INPUT "IF", IF
+KKKKKKKKKKKCLLCLLLL
+1060 IF IF < THEN THEN GO TO 1090 
+KKKKKKKKLLLCLLLLLCCCCCCKKKKKKLLLL
+1070 LET LET = THEN
+KKKKKKKKKLLLLCLLLLL
+1080 GO TO 1100
+KKKKKKKKKKKLLLL
+1090 LET LET = IF
+KKKKKKKKKLLLLCLLL
+1100 PRINT LET
+KKKKKKKKKKKLLL
+```
+
+Remarque : j'ai saisi les virgules en tapant sur la touche « virgule »
+de mon clavier Unix, mais j'aurais  pu utiliser la méthode Spectrum et
+taper `Ctrl-N`. En  revanche, pour la double-quote, la  touche Unix ne
+fonctionne pas et  j'ai dû utiliser `Ctrl-P`. C'est pour  cela que les
+virgules sont soulignées par "L" et les doubles-quotes par "C".
 
 Instruction `PRINT`
 -------------------

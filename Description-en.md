@@ -1010,6 +1010,65 @@ I have tried with a minimal case program:
 an error on line  20. If we think about that,  it is perfectly normal,
 because for them, `LETA` is a perfectly valid name for a variable.
 
+A taste of PL/1
+---------------
+
+When an  article or a  book mentions  "tokenisation" and "PL1"  in the
+same  sentence, the  neighbouring  paragraphs usually  contain a  code
+example such as
+
+```
+IF ELSE < THEN THEN IF = ELSE ELSE IF = THEN
+```
+
+This line of code is absolutely  legal in PL/1, since keywords are not
+reserved. The same can be done in the ZX Spectrum variant of BASIC. We
+cannot use  the exact  example above, because  this variant  lacks the
+`ELSE` keyword. Yet, we can type and run
+
+```
+1040 INPUT "THEN", THEN
+1050 INPUT "IF", IF
+1060 IF IF < THEN THEN GO TO 1090 
+1070 LET LET = THEN
+1080 GO TO 1100
+1090 LET LET = IF
+1100 PRINT LET
+```
+
+Of course,  all the  interpreters I have  tested would  trigger syntax
+errors (actually, I have not  even tested). Likewise, we cannot create
+a `.tap` file  with `zmakebas`, we must enter the  program source with
+the keyboard.
+
+Beware, the  keywords are  sometimes entered  with a  single keystroke
+("K" keyboard), or else entered as  a full word ("L" keyboard). In the
+code below, I  underline which keyboard applies: "K" or  "L", with "C"
+meaning "using Ctrl while the current keyboard if `L`".
+
+```
+1040 INPUT "THEN", THEN
+KKKKKKKKKKKCLLLLCLLLLLL
+1050 INPUT "IF", IF
+KKKKKKKKKKKCLLCLLLL
+1060 IF IF < THEN THEN GO TO 1090 
+KKKKKKKKLLLCLLLLLCCCCCCKKKKKKLLLL
+1070 LET LET = THEN
+KKKKKKKKKLLLLCLLLLL
+1080 GO TO 1100
+KKKKKKKKKKKLLLL
+1090 LET LET = IF
+KKKKKKKKKLLLLCLLL
+1100 PRINT LET
+KKKKKKKKKKKLLL
+```
+
+Note: the comma is entered with the comma key of my Unix keyboard, but
+I could have  used `Ctrl-N` with the Spectrum entry  mechanism. On the
+other hand, I cannot use the double quote key of the Unix keyboard, so
+I have to  use `Ctrl-P`. This is the reason  why commas are underlined
+with "L" and double quotes are underlined with "C".
+
 `PRINT` Statement
 -----------------
 
