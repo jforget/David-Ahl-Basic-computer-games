@@ -482,6 +482,31 @@ Error: [S-7441]
 J'ai préféré laisser tomber cette méthode d'installation basée sur les
 sources. L'installation de l'archive binaire fonctionne très bien.
 
+### Vintage BASIC et les jeux de David Ahl
+
+Pas besoin de tester de près les jeux du
+[premier livre](https://www.atariarchives.org/basicgames/),
+l'un des
+[buts de Vintage BASIC](http://www.vintage-basic.net/games.html)
+est de pouvoir les exécuter. En revanche, l'auteur de Vintage BASIC
+n'a pas vérifié les jeux du
+[deuxième livre](https://www.atariarchives.org/morebasicgames/).
+
+Pour l'instant, je n'ai eu de problème que pour
+[`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
+
+```
+83c83
+< 890   IF SQR(D)>1 GOTO 950
+---
+> 890   IF SQR(D)>1 THEN GOTO 950
+86c86
+< 920   IF J=4 GOTO 1100
+---
+> 920   IF J=4 THEN GOTO 1100
+```
+
+
 ÉMULATEURS DE MACHINES BASIC
 ============================
 

@@ -465,6 +465,30 @@ Error: [S-7441]
 I  did not  consider rerunning  the  command, I  dropped this  method.
 Anyhow, the installation from the binary archive is fine for me.
 
+### Vintage BASIC and David Ahl's Games
+
+No need to test all the games from the
+[first book](https://www.atariarchives.org/basicgames/),
+one of
+[Vintage BASIC's aims](http://www.vintage-basic.net/games.html)
+is running all  these games. On the other hand,  the author of Vintage
+BASIC has not checked the games from the
+[second book](https://www.atariarchives.org/morebasicgames/).
+
+Until now, the only problem I have found is in
+[`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
+
+```
+83c83
+< 890   IF SQR(D)>1 GOTO 950
+---
+> 890   IF SQR(D)>1 THEN GOTO 950
+86c86
+< 920   IF J=4 GOTO 1100
+---
+> 920   IF J=4 THEN GOTO 1100
+```
+
 EMULATING BASIC COMPUTERS
 =========================
 
