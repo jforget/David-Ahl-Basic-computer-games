@@ -382,7 +382,7 @@ redirection and the like.  On the other hand, there is  no way to type
 the program  "on the fly",  by repeatedly typing  a line number  and a
 BASIC statement.
 
-All programs from `bcg.tar.gz` and from `morebasicgames.zip` (at least
+Nearly all programs from `bcg.tar.gz` and from `morebasicgames.zip` (at least
 all the programs I have tried) run without requiring any modification.
 
 As  an  aside, there  is  some  cleanup  to  do in  the  documentation
@@ -496,12 +496,12 @@ A indirect way to install a BASIC interpreter is to install a
 [program emulating](https://worldofspectrum.net/faq/emulators/emulators.htm)
 a personal computer belonging to the generation of the Apple
 II,  Pet Commodore  and TRS80.  With xubuntu,  available APT  packages
-provide emulators for ZX Spectrum, Commodore computers and TRS80.
+provide emulators for ZX Spectrum, Commodore computers, TRS80, Atari
+800 and ST, MSX computers and KC85 computers.
 
-There are  other emulators  for game  consoles, but I  do not  know if
-these consoles provide a BASIC interpreter. And I do not know if Atari
-800 and  2600 are  personal computers or  game consoles.  Same problem
-with the emulators for KC85 and MSX.
+There are  other emulators  for game  consoles such  as Atari  2600 or
+Playstation,  but  I  think  I   will  not  find  any  embedded  BASIC
+interpreter, so I will not check these emulators.
 
 The
 [programming manual for ZX Spectrum](https://archive.org/details/zx-spectrum-basic-programming/page/n3/mode/2up)
@@ -1010,8 +1010,8 @@ I have tried with a minimal case program:
 an error on line  20. If we think about that,  it is perfectly normal,
 because for them, `LETA` is a perfectly valid name for a variable.
 
-A taste of PL/1
----------------
+Lexical Units: A taste of PL/1
+------------------------------
 
 When an  article or a  book mentions  "tokenisation" and "PL1"  in the
 same  sentence, the  neighbouring  paragraphs usually  contain a  code
@@ -1029,7 +1029,7 @@ cannot use  the exact  example above, because  this variant  lacks the
 ```
 1040 INPUT "THEN", THEN
 1050 INPUT "IF", IF
-1060 IF IF < THEN THEN GO TO 1090 
+1060 IF IF < THEN THEN GO TO 1090
 1070 LET LET = THEN
 1080 GO TO 1100
 1090 LET LET = IF
@@ -1044,14 +1044,15 @@ the keyboard.
 Beware, the  keywords are  sometimes entered  with a  single keystroke
 ("K" keyboard), or else entered as  a full word ("L" keyboard). In the
 code below, I  underline which keyboard applies: "K" or  "L", with "C"
-meaning "using Ctrl while the current keyboard if `L`".
+meaning "using Ctrl while the current  keyboard if `L`" (this "C" does
+not refer to `Caps-Lock`).
 
 ```
 1040 INPUT "THEN", THEN
 KKKKKKKKKKKCLLLLCLLLLLL
 1050 INPUT "IF", IF
 KKKKKKKKKKKCLLCLLLL
-1060 IF IF < THEN THEN GO TO 1090 
+1060 IF IF < THEN THEN GO TO 1090
 KKKKKKKKLLLCLLLLLCCCCCCKKKKKKLLLL
 1070 LET LET = THEN
 KKKKKKKKKLLLLCLLLLL
@@ -1358,7 +1359,8 @@ forerunner  of  Spectrum,  we  read  on page  99  that  the  classical
 functions `LEFT$`,  `MID$` and `RIGHT$`  do not  work and we  must use
 another  syntax. For  example,  we must  replace `MID$(A$,12,4)`  with
 `A$(12 TO 15)`. In the same  way, the function `ASC` has been replaced
-by `CODE`.
+by `CODE`. This is explained also in the
+[ZX Spectrum BASIC Programming Manual](https://archive.org/details/zx-spectrum-basic-programming/page/n51/mode/2up).
 
 Did someone say "congealed"?
 
@@ -1377,6 +1379,27 @@ games among
 [available Spectrum games](https://archive.org/details/softwarelibrary_zx_spectrum)
 I may as well  install them and play them on an  emulator. From what I
 have seen until now, the best emulator would be `fuse`.
+
+What Next?
+----------
+
+For the moment, I will do nothing more about this subject (except play
+a few games every now and then). If, some time in the future, I decide
+to invest more  time in this subject, an interesting  project would be
+creating a  parser, which would  be abel  to process any  program from
+`bcg.tar.gz` and `morebasicgames.zip`. The semantic actions could be:
+
+* tabulating all variable  names, to check my  hypothesis about regexp
+  `/^[A-Z][0-9]?$/`,
+
+* generate  a  program with  the  ZX  Spectrum  dialect of  the  BASIC
+  language, or any properly defined dialect,
+
+* or even generate a program with another programming language,
+
+* generate `.tap` file, if I happen to find an error in `zmakebas`,
+
+* generate tape files with other formats for other emulators.
 
 COPYRIGHT AND LICENSE
 =====================

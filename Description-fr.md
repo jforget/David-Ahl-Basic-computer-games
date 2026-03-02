@@ -397,7 +397,7 @@ fonctionnement  est ainsi  conforme aux  habitudes Unix  (_pipelines_,
 redirection). En  revanche, il  n'y a  pas de mode  où l'on  saisit le
 programme ligne par ligne avant de le lancer.
 
-Tous les programmes venant  de `bcg.tar.gz` et de `morebasicgames.zip`
+Presque tous les programmes venant  de `bcg.tar.gz` et de `morebasicgames.zip`
 et  que j'ai  testés fonctionnent  tels  quels, sans  avoir besoin  de
 modification.
 
@@ -514,11 +514,11 @@ Un moyen détourné d'installer un interpréteur BASIC est d'installer un
 ciblant un PC de la génération qui a commencé avec les Apple
 II, les  Pet Commodore et  les TRS80. Dans  le cas de  la distribution
 xubuntu, il  existe des  paquets APT  pour émuler  un ZX  Spectrum, un
-Commodore ou un TRS80.
+Commodore, un TRS80, un Atari 800 ou ST, un ordinateur MSX ou KC85.
 
-Je note également un émulateur pour  les consoles de jeux Atari 800 et
-2600, mais je  ne sais pas si ces consoles  comportent un interpréteur
-BASIC. Même interrogation à propos des émulateurs KC85, MSX
+Je  note également  des émulateurs  pour  des consoles  de jeux  comme
+l'Atari 2600 ou la Playstation, mais à  mon avis il est inutile de s'y
+attarder, elles ne doivent pas avoir d'interpréteur BASIC inclus.
 
 Notons que le
 [manuel d'utilisation du ZX Spectrum (en anglais)](https://archive.org/details/zx-spectrum-basic-programming/page/n3/mode/2up)
@@ -1064,8 +1064,8 @@ J'ai essayé avec une version aussi réduite que possible
 10. À y  réfléchir, c'est normal, puisque pour eux,  `LETA` est un nom
 de variable valide.
 
-Un léger parfum de PL/1
------------------------
+Unités lexicales : un léger parfum de PL/1
+------------------------------------------
 
 Lorsqu'un article ou un livre parle d'analyse lexicale et de PL/1 dans
 la même phrase, les paragraphes voisins contiennent souvent un exemple
@@ -1083,28 +1083,30 @@ On ne peut pas reprendre l'exemple tel quel, en raison de l'absence de
 ```
 1040 INPUT "THEN", THEN
 1050 INPUT "IF", IF
-1060 IF IF < THEN THEN GO TO 1090 
+1060 IF IF < THEN THEN GO TO 1090
 1070 LET LET = THEN
 1080 GO TO 1100
 1090 LET LET = IF
 1100 PRINT LET
 ```
 
-Il va de  soi que cet exemple ne fonctionnera  dans aucun compilateur,
+Il va de  soi que cet exemple ne fonctionnera  dans aucun interpréteur
+(`brandy`, `bwbasic`, `yabasic`, `vintbas`),
 je n'ai même pas testé. De même, inutile d'essayer de créer un fichier
 bande avec `zmakebas`, il faut tout écrire au clavier.
 
 Attention, les mots-clés  sont tantôt saisis en une  seule touche avec
 le curseur "K",  tantôt saisis en toutes lettres avec  le curseur "L".
 Ci-dessous, je précise  les curseurs avec "K" ou "L",  en ajoutant "C"
-lorsque l'on utilise la touche `Ctrl` avec le curseur "L".
+lorsque l'on utilise la touche `Ctrl` avec le curseur "L" (ici, "C" ne
+signifie pas `Caps-Lock`).
 
 ```
 1040 INPUT "THEN", THEN
 KKKKKKKKKKKCLLLLCLLLLLL
 1050 INPUT "IF", IF
 KKKKKKKKKKKCLLCLLLL
-1060 IF IF < THEN THEN GO TO 1090 
+1060 IF IF < THEN THEN GO TO 1090
 KKKKKKKKLLLCLLLLLCCCCCCKKKKKKLLLL
 1070 LET LET = THEN
 KKKKKKKKKLLLLCLLLLL
@@ -1417,7 +1419,10 @@ de  l'Ordinateur   Individuel  présentant  le  prédécesseur   ZX81  du
 Spectrum, il est marqué (page 99) que les fonctions `LEFT$`, `MID$` et
 `RIGHT$` ne fonctionnent pas et qu'il faut utiliser une autre syntaxe.
 Par exemple, remplacer `MID$(A$,12,4)` par `A$(12 TO 15)`. De même, il
-n'existe pas de fonction `ASC`, il faut utiliser `CODE` à la place.
+n'existe pas de fonction `ASC`, il faut utiliser `CODE` à la place. Un
+petit coup d'œil sur le
+[manuel de programmation](https://archive.org/details/zx-spectrum-basic-programming/page/n51/mode/2up)
+le confirme.
 
 Quelqu'un a dit « congelé » ?
 
@@ -1437,6 +1442,29 @@ perte de temps. Si je trouve des jeux m'intéressent parmi
 pour Spectrum  alors pourquoi ne pas  les récupérer et y  jouer sur un
 émulateur. Au vu  de ce que j'ai pu voir  jusqu'à présent, l'émulateur
 le plus adéquat serait `fuse`.
+
+Et à l'avenir ?
+---------------
+
+Pour l'instant,  j'en reste là sur  ce sujet (à part  jouer à certains
+jeux  de temps  en temps).  Mais si  je m'y  intéresse de  nouveau, je
+pourrai  créer  un  analyse  syntaxique destiné  à  traiter  tous  les
+programmes  de `bcg.tar.gz`  et de  `morebasicgames.zip`. Les  actions
+sémantiques pourraient être :
+
+* collecter tous les noms de variables pour vérifier mon hypothèse sur
+  l'expression régulière `/^[A-Z][0-9]?$/`,
+
+* générer un programme dans le dialecte ZX Spectrum de BASIC, ou tout
+  autre dialecte bien défini,
+
+* voire générer un programme dans un autre langage de programmation,
+
+* générer  des fichiers  `.tap` et  remplacer ainsi  `zmakebas` si  je
+  trouve des problèmes dans ce programme,
+
+* créer  des  fichiers  bandes  dans d'autres  formats  pour  d'autres
+  émulateurs.
 
 COPYRIGHT ET LICENCE
 ====================
