@@ -1356,6 +1356,50 @@ BASIC has not checked the games from the
 
 Here are the games that I have tested and in which I have found problems.
 
+[`l-game.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=80)
+-----------------------------------------------------------------------------------
+
+I have found a bug,  but I do not know how to fix  it (I have read the
+listing for one  minute or two, I  did not spend more time  on it). At
+one point, the computer moved a box into position 1, which was already
+occupied by my "L".
+
+```
+YOUR MOVE FOR L? 1,2,5,9
+YOUR MOVE FOR THE BOXES? 11,8
+O.K.
+
+OOOOOOOO========
+OOOOOOOO: 3:: 4:
+OOOOOOOO========
+OOOO////====****
+OOOO////: 7:*  *
+OOOO////====****
+OOOO////****====
+OOOO////*  *:12:
+OOOO////****====
+////////========
+////////:15::16:
+////////========
+
+
+COMPUTER MOVES TO  6   10   14   7
+         MOVES BOXES TO  4  AND  1
+
+OOOOOOOO====****
+OOOOOOOO: 3:*  *
+OOOOOOOO====****
+OOOO////////====
+OOOO////////: 8:
+OOOO////////====
+OOOO////========
+OOOO////:11::12:
+OOOO////========
+====////========
+:13:////:15::16:
+====////========
+```
+
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
 ------------------------------------------------------------------------------------
 

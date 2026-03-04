@@ -1418,6 +1418,50 @@ n'a pas vérifié les jeux du
 
 Voici les jeux que j'ai testés et pour lesquels j'ai trouvé un problème.
 
+[`l-game.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=80)
+-----------------------------------------------------------------------------------
+
+Je suis  tombé sur un  bug. Je ne sais  pas comment le  corriger. J'ai
+juste regardé une  minute ou deux dans le source,  je n'ai pas investi
+plus de temps  sur le sujet. Le  bug est que la machine  a déplacé une
+boîte en position 1, alors que mon « L » s'y trouvait déjà.
+
+```
+YOUR MOVE FOR L? 1,2,5,9
+YOUR MOVE FOR THE BOXES? 11,8
+O.K.
+
+OOOOOOOO========
+OOOOOOOO: 3:: 4:
+OOOOOOOO========
+OOOO////====****
+OOOO////: 7:*  *
+OOOO////====****
+OOOO////****====
+OOOO////*  *:12:
+OOOO////****====
+////////========
+////////:15::16:
+////////========
+
+
+COMPUTER MOVES TO  6   10   14   7
+         MOVES BOXES TO  4  AND  1
+
+OOOOOOOO====****
+OOOOOOOO: 3:*  *
+OOOOOOOO====****
+OOOO////////====
+OOOO////////: 8:
+OOOO////////====
+OOOO////========
+OOOO////:11::12:
+OOOO////========
+====////========
+:13:////:15::16:
+====////========
+```
+
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
 ------------------------------------------------------------------------------------
 
