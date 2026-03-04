@@ -1340,7 +1340,7 @@ by `CODE`. This is explained also in the
 
 Did someone say "congealed"?
 
-Vintage BASIC and David Ahl's Games
+VINTAGE BASIC AND DAVID AHL'S GAMES
 ===================================
 
 From all  the interpreters  and emulators I  have tested,  the obvious
@@ -1354,8 +1354,12 @@ is running all  these games. On the other hand,  the author of Vintage
 BASIC has not checked the games from the
 [second book](https://www.atariarchives.org/morebasicgames/).
 
-Until now, the only problem I have found is in
+Here are the games that I have tested and in which I have found problems.
+
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
+------------------------------------------------------------------------------------
+
+Only two lines needs to be fixed:
 
 ```
 83c83
@@ -1367,6 +1371,74 @@ Until now, the only problem I have found is in
 ---
 > 920   IF J=4 THEN GOTO 1100
 ```
+
+[`maze.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=101)
+--------------------------------------------------------------------------------
+
+Line 220 contains the  statement `CLEAR`, with parameters unrecognised
+by  `vintbas`. I  have  tried  to understand  what  is  the syntax  of
+`CLEAR`, but the
+[explanations](https://stackoverflow.com/questions/53680260/was-there-ever-a-first-parameter-for-the-clear-statement)
+did not enlighten me. So I remove  the line. A consequence is that you
+can no longer ask  for a second maze, because of  line 270 which would
+redimension two already existing arrays. Here is the patch:
+
+```
+17d16
+< 220 CLEAR 100: REM ERASE ALL ARRAYS AND VARIABLE VALUES
+257,258d255
+< 2620 PRINT:PRINT:PRINT "DO YOU WANT ANOTHER MAZE";:INPUT A$
+< 2630 IF LEFT$(A$,1)="Y" THEN PRINT : GOTO 210
+```
+
+There is  still a  problem if  you ask for  the solution.  The program
+prints a  vertical path which  crosses walls!  And stops with  a index
+overflow.
+
+```
+:--:--:--:**:--:
+I         **   I
+:  :  :--:--:--:
+I  I  I   **   I
+:  :  :  :--:  :
+I  I  I   **I  I
+:  :  :--:--:  :
+I  I      **   I
+:  :  :--:--:--:
+I  I      **   I
+:--:--:--:--:  :
+
+
+!OUT OF ARRAY BOUNDS IN LINE 2030
+```
+
+I think the reason is that on one hand the program uses `AND` and `OR`
+as  bitwise  operators, while  `vintbas`  implements  them as  boolean
+operators. Therefore, a few lines wreak havoc in the program:
+
+```
+1980 IF (W(X,Y) AND 2) <> 0 THEN 2030
+1990 IF (W(X,Y) AND 4) <> 0 THEN 2080
+2000 IF (W(X,Y) AND 8) <> 0 THEN 2130
+2010 IF (W(X,Y) AND 1) <> 0 THEN 2180
+```
+
+and a few  others. Fixing this would  need much time. I  will only ask
+for a maze without displaying the solution. And besides,
+[`amazing.bas`](https://www.atariarchives.org/basicgames/showpage.php?page=3)
+works perfectly well.
+
+[`pasart2.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=125)
+-----------------------------------------------------------------------------------
+
+The first program,
+[`pasart.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=122),
+which  computes Pascal's  triangle and  generates ASCII  art from  it,
+works perfectly  well. On the other  hand, I have a  few troubles with
+its enhancement  `pasart2.bas`. Options  1, 2,  4, 5  and 6  are fine.
+Option 3  works fine as  long as  you ask for  7 lines and  columns or
+fewer, but  there is  an endless  loop when  you ask  for 8  lines and
+columns or more. And option 7 triggers an array overflow in line 2640.
 
 CONCLUSION
 ==========

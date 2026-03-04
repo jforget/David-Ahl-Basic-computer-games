@@ -1402,7 +1402,7 @@ le confirme.
 
 Quelqu'un a dit « congelé » ?
 
-Vintage BASIC et les jeux de David Ahl
+VINTAGE BASIC ET LES JEUX DE DAVID AHL
 ======================================
 
 De tous les interpréteurs et émulateurs que j'ai testés, le choix
@@ -1416,8 +1416,12 @@ l'un des
 n'a pas vérifié les jeux du
 [deuxième livre](https://www.atariarchives.org/morebasicgames/).
 
-Pour l'instant, je n'ai eu de problème que pour
+Voici les jeux que j'ai testés et pour lesquels j'ai trouvé un problème.
+
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
+------------------------------------------------------------------------------------
+
+Deux lignes à modifier.
 
 ```
 83c83
@@ -1429,6 +1433,77 @@ Pour l'instant, je n'ai eu de problème que pour
 ---
 > 920   IF J=4 THEN GOTO 1100
 ```
+
+[`maze.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=101)
+--------------------------------------------------------------------------------
+
+La  ligne 220  comporte une  instruction `CLEAR`  avec des  paramètres
+invalides.  J'ai  bien  essayé  de  regarder  comment  utiliser  cette
+instruction, mais les
+[explications](https://stackoverflow.com/questions/53680260/was-there-ever-a-first-parameter-for-the-clear-statement)
+ne  m'ont pas  avancé. Donc  je  supprime la  ligne. Du  coup, il  est
+impossible de demander un deuxième labyrinthe, à cause de la ligne 270
+qui redimensionnerait deux tableaux déjà existants. Voici le patch :
+
+```
+17d16
+< 220 CLEAR 100: REM ERASE ALL ARRAYS AND VARIABLE VALUES
+257,258d255
+< 2620 PRINT:PRINT:PRINT "DO YOU WANT ANOTHER MAZE";:INPUT A$
+< 2630 IF LEFT$(A$,1)="Y" THEN PRINT : GOTO 210
+```
+
+Il reste encore un problème si vous demandez la solution. Le programme
+fournit un  itinéraire vertical qui traverse  les parois ! Et  cela se
+termine par un débordement d'indice.
+
+```
+:--:--:--:**:--:
+I         **   I
+:  :  :--:--:--:
+I  I  I   **   I
+:  :  :  :--:  :
+I  I  I   **I  I
+:  :  :--:--:  :
+I  I      **   I
+:  :  :--:--:--:
+I  I      **   I
+:--:--:--:--:  :
+
+
+!OUT OF ARRAY BOUNDS IN LINE 2030
+```
+
+Je pense que c'est dû au fait  que le programme considère que `AND` et
+`OR` sont des opérations bit-à-bit, tandis que `vintbas` considère que
+ce sont des opérations booléennes.  Du coup, certaines lignes faussent
+le bon déroulement du programme :
+
+```
+1980 IF (W(X,Y) AND 2) <> 0 THEN 2030
+1990 IF (W(X,Y) AND 4) <> 0 THEN 2080
+2000 IF (W(X,Y) AND 8) <> 0 THEN 2130
+2010 IF (W(X,Y) AND 1) <> 0 THEN 2180
+```
+
+et quelques  autres. Cela  pose trop  de problèmes  à corriger,  je me
+contenterai d'avoir  un labyrinthe  sans afficher  la solution.  Et de
+toute façon,
+[`amazing.bas`](https://www.atariarchives.org/basicgames/showpage.php?page=3)
+fonctionne correctement.
+
+[`pasart2.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=125)
+-----------------------------------------------------------------------------------
+
+Le programme initial,
+[`pasart.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=122),
+utilisant  le  triangle  de  Pascal  pour  dessiner  de  l'art  ASCII,
+fonctionne très  bien. En  revanche, j'ai  quelques problèmes  avec la
+version  améliorée  `pasart2.bas`.  Les  options  1,  2,  4,  5  et  6
+fonctionnent bien. L'option 3  fonctionne correctement si l'on demande
+7  lignes et  7 colonnes,  mais il  y a  une boucle  sans fin  si l'on
+demande 8  lignes et 8  colonnes (ou plus).  Quant à l'option  7, elle
+provoque un débordement d'indice en ligne 2640.
 
 CONCLUSION
 ==========
