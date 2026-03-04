@@ -465,30 +465,6 @@ Error: [S-7441]
 I  did not  consider rerunning  the  command, I  dropped this  method.
 Anyhow, the installation from the binary archive is fine for me.
 
-### Vintage BASIC and David Ahl's Games
-
-No need to test all the games from the
-[first book](https://www.atariarchives.org/basicgames/),
-one of
-[Vintage BASIC's aims](http://www.vintage-basic.net/games.html)
-is running all  these games. On the other hand,  the author of Vintage
-BASIC has not checked the games from the
-[second book](https://www.atariarchives.org/morebasicgames/).
-
-Until now, the only problem I have found is in
-[`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
-
-```
-83c83
-< 890   IF SQR(D)>1 GOTO 950
----
-> 890   IF SQR(D)>1 THEN GOTO 950
-86c86
-< 920   IF J=4 GOTO 1100
----
-> 920   IF J=4 THEN GOTO 1100
-```
-
 EMULATING BASIC COMPUTERS
 =========================
 
@@ -1010,7 +986,7 @@ I have tried with a minimal case program:
 an error on line  20. If we think about that,  it is perfectly normal,
 because for them, `LETA` is a perfectly valid name for a variable.
 
-Lexical Units: A taste of PL/1
+Lexical Units: A Taste of PL/1
 ------------------------------
 
 When an  article or a  book mentions  "tokenisation" and "PL1"  in the
@@ -1364,6 +1340,34 @@ by `CODE`. This is explained also in the
 
 Did someone say "congealed"?
 
+Vintage BASIC and David Ahl's Games
+===================================
+
+From all  the interpreters  and emulators I  have tested,  the obvious
+choice is Vintage BASIC.
+
+No need to test all the games from the
+[first book](https://www.atariarchives.org/basicgames/),
+one of
+[Vintage BASIC's aims](http://www.vintage-basic.net/games.html)
+is running all  these games. On the other hand,  the author of Vintage
+BASIC has not checked the games from the
+[second book](https://www.atariarchives.org/morebasicgames/).
+
+Until now, the only problem I have found is in
+[`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
+
+```
+83c83
+< 890   IF SQR(D)>1 GOTO 950
+---
+> 890   IF SQR(D)>1 THEN GOTO 950
+86c86
+< 920   IF J=4 GOTO 1100
+---
+> 920   IF J=4 THEN GOTO 1100
+```
+
 CONCLUSION
 ==========
 
@@ -1375,8 +1379,9 @@ or [Wumpus hunt](https://www.atariarchives.org/morebasicgames/showpage.php?page=
 For these, `vintbas` is fine.
 
 Exploring ZX Spectrum emulators was not a waste of time. If I find interesting
-games among
-[available Spectrum games](https://archive.org/details/softwarelibrary_zx_spectrum)
+games among available
+[Spectrum](https://archive.org/details/softwarelibrary_zx_spectrum)
+[games](https://itch.io/c/2612515/zx-spectrum-homebrew),
 I may as well  install them and play them on an  emulator. From what I
 have seen until now, the best emulator would be `fuse`.
 
@@ -1411,8 +1416,8 @@ The documentation  in this repository  is licensed under  the Creative
 Commons License CC-BY-SA (Attribution, Sharealike). See the
 [Creative Commons website](https://creativecommons.org/licenses/by-sa/4.0/deed.en).
 
-For the programs (if any)
--------------------------
+For the programs
+----------------
 
 Copyright (c) 2026 Jean Forget
 
@@ -1420,8 +1425,8 @@ This library is  free software; you can redistribute  it and/or modify
 it under the same terms as Perl 5.16.3. For more details, see the full
 text of the licenses in the LICENSE file.
 
-This program is distributed in the hope that it will be useful, but it
-is provided “as is” and without any express or implied warranties. For
+The programs in this repository are distributed in the hope that they will be useful, but they
+are provided “as is” and without any express or implied warranties. For
 details, see the full text of the licenses in the file LICENSE.
 
 There  is an  exception.  I  have copied  one  test  program from  the
