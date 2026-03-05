@@ -1354,10 +1354,35 @@ is running all  these games. On the other hand,  the author of Vintage
 BASIC has not checked the games from the
 [second book](https://www.atariarchives.org/morebasicgames/).
 
-Here are the games that I have tested and in which I have found problems.
+Here  are the  games that  I have  tested and  in which  I have  found
+problems. When  the fix  is easy to  find and quick  to apply,  I have
+given it.
+
+[`dodgem.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=49)
+---------------------------------------------------------------------------------
+
+Just add one line and it works!
+
+```
+--- ../../mbcg/dodgem.bas       2020-03-14 18:30:39.000000000 +0100
++++ dodgem.bas                  2026-03-04 20:30:14.382154546 +0100
+@@ -2,6 +2,7 @@
+ 20 PRINT TAB(18);"CREATIVE COMPUTING"
+ 30 PRINT TAB(16);"MORRISTOWN  NEW JERSEY"
+ 40 PRINT:PRINT:PRINT
++200 DIM P(7,7), D$(7,7)
+ 240 PRINT "DO YOU WANT INSTRUCTIONS FOR DODGEM";
+ 250 INPUT A$
+ 260 GOSUB 2950
+```
+
+Maybe I  could reduce  the dimensions  to `(6,6)`.  In the  1970's and
+1980's it could have made a big  difference, but now in the 2020's, we
+no longer  care about a few  KB's more or  less and we care  even less
+about two arrays, each of one containing 49 elements instead of 36.
 
 [`l-game.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=80)
------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
 I have found a bug,  but I do not know how to fix  it (I have read the
 listing for one  minute or two, I  did not spend more time  on it). At
@@ -1399,6 +1424,19 @@ OOOO////========
 :13:////:15::16:
 ====////========
 ```
+
+Actually, after looking  for more information about the
+[game](https://boardgamegeek.com/boardgame/6474/l-game),
+I found that the program does not apply the
+[official rules](https://gamescrafters.berkeley.edu/games.php?game=lgame).
+In these rules, a player is allowed to move at most one box (using the
+program's  vocabulary)  or  one  neutral piece  (using  the  website's
+vocabulary) per turn, not two as the program requires.
+
+Yet, in the paragraph describing
+[variants](https://gamescrafters.berkeley.edu/games.php?game=lgame#sec-variants),
+the "sudden  death" variant allows  moving both neutral pieces  in the
+same player turn.
 
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
 ------------------------------------------------------------------------------------

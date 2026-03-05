@@ -1416,10 +1416,36 @@ l'un des
 n'a pas vérifié les jeux du
 [deuxième livre](https://www.atariarchives.org/morebasicgames/).
 
-Voici les jeux que j'ai testés et pour lesquels j'ai trouvé un problème.
+Voici  les jeux  que  j'ai  testés et  pour  lesquels  j'ai trouvé  un
+problème.  Lorsque  la correction  est  évidente  et rapide,  je  l'ai
+indiquée.
+
+[`dodgem.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=49)
+---------------------------------------------------------------------------------
+
+Il suffit d'ajouter une ligne et ça fonctionne !
+
+```
+--- ../../mbcg/dodgem.bas       2020-03-14 18:30:39.000000000 +0100
++++ dodgem.bas                  2026-03-04 20:30:14.382154546 +0100
+@@ -2,6 +2,7 @@
+ 20 PRINT TAB(18);"CREATIVE COMPUTING"
+ 30 PRINT TAB(16);"MORRISTOWN  NEW JERSEY"
+ 40 PRINT:PRINT:PRINT
++200 DIM P(7,7), D$(7,7)
+ 240 PRINT "DO YOU WANT INSTRUCTIONS FOR DODGEM";
+ 250 INPUT A$
+ 260 GOSUB 2950
+```
+
+Peut-être  aurais-je pu  réduire les  dimensions à  `(6,6)`. Dans  les
+années 1970 et  1980, cela faisait peut-être  une différence cruciale,
+mais  nous sommes  dans les  années 2020  et nous  n'en sommes  plus à
+quelques KO  près. Alors,  s'il faut se  tracasser pour  deux tableaux
+contenant chacun 49 éléments au lieu de 36...
 
 [`l-game.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=80)
------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
 
 Je suis  tombé sur un  bug. Je ne sais  pas comment le  corriger. J'ai
 juste regardé une  minute ou deux dans le source,  je n'ai pas investi
@@ -1461,6 +1487,21 @@ OOOO////========
 :13:////:15::16:
 ====////========
 ```
+
+Et  en fait,  en me  documentant  un peu  plus sur ce
+[jeu](https://boardgamegeek.com/boardgame/6474/l-game),
+j'ai  constaté que  le programme ne respecte pas la
+[règle originale](http://jeuxstrategieter.free.fr/L_game_complet.php).
+À chaque tour, un joueur a le droit de déplacer une seule boîte (selon
+les termes  du programme) ou  un seul  pion neutre (selon  les sources
+externes), et non pas deux comme dans le programme.
+
+Cela dit, un
+[site anglophone](https://gamescrafters.berkeley.edu/games.php?game=lgame)
+décrivant le jeu propose quelques
+[variantes](https://gamescrafters.berkeley.edu/games.php?game=lgame#sec-variants),
+dont une appelée « _sudden death_ » où chaque joueur peut déplacer les
+deux pièces neutres dans un même tour.
 
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
 ------------------------------------------------------------------------------------
