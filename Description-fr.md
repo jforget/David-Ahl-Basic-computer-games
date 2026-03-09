@@ -1100,6 +1100,33 @@ taper `Ctrl-N`. En  revanche, pour la double-quote, la  touche Unix ne
 fonctionne pas et  j'ai dû utiliser `Ctrl-P`. C'est pour  cela que les
 virgules sont soulignées par "L" et les doubles-quotes par "C".
 
+Indices dans les tableaux
+-------------------------
+
+D'après mes souvenirs, l'instruction `DIM S(6)` ne crée pas un tableau
+à 6 entrées, mais un tableau à 7 entrées, dont l'indice varie de 0 à 6
+inclus. J'ai vérifié avec les deux programmes suivants.
+
+```
+1010 DIM S(6)
+1020 LET S(0) = 3
+1030 PRINT S(0)
+```
+
+et
+
+```
+1010 DIM S(6)
+1020 LET S(6) = 3
+1030 PRINT S(6)
+```
+
+Le  second programme  ne pose  aucun problème,  que ce  soit pour  les
+interpréteurs `brandy`,  `bwbasic`, `yabasic` et `vintbas`  ou pour le
+ZX  Spectrum. En  revanche,  le  premier programme  plante  sur le  ZX
+Spectrum,  tandis  qu'il  s'exécute  sans  problème  avec  les  quatre
+interpréteurs.
+
 Instruction `PRINT`
 -------------------
 

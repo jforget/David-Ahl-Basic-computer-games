@@ -1046,6 +1046,34 @@ other hand, I cannot use the double quote key of the Unix keyboard, so
 I have to  use `Ctrl-P`. This is the reason  why commas are underlined
 with "L" and double quotes are underlined with "C".
 
+Array Variables and Indexes
+---------------------------
+
+According to my memories, the statement `DIM S(6)` does not declare an
+array with 6 elements, but an array with 7 elements, the index varying
+from  0 to  6,  inclusively. I  have checked  with  the following  two
+programs.
+
+```
+1010 DIM S(6)
+1020 LET S(0) = 3
+1030 PRINT S(0)
+```
+
+and
+
+```
+1010 DIM S(6)
+1020 LET S(6) = 3
+1030 PRINT S(6)
+```
+
+The  second  program  runs  without  any  hitch  in  any  interpreter,
+`brandy`, `bwbasic`,  `yabasic` and `vintbas`  and on the  ZX Spectrum
+(emulator `fuse`). On the other hand, the first program crashes on the
+ZX   Spectrum  emulator,   while   running  perfectly   on  all   four
+interpreters.
+
 `PRINT` Statement
 -----------------
 
