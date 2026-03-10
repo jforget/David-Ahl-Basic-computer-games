@@ -1466,20 +1466,90 @@ Yet, in the paragraph describing
 the "sudden  death" variant allows  moving both neutral pieces  in the
 same player turn.
 
+[`lifefortwo.bas`](https://www.atariarchives.org/basicgames/showpage.php?page=102)
+----------------------------------------------------------------------------------
+
+There is  an ergonomy  problem in  the program  playing life  with two
+players.  Each  player must  enter  coordinates  without his  opponent
+seeing  them.  For  this  reason,  the program  prints  a  few  chars,
+overprints some other chars, over-over-prints a third set of chars and
+asks  for the  coordinates. On  a paper  console, it  works fine,  the
+coordinates  entered  by the  player  are  unreadable. On  an  `xterm`
+window,  each  overprinted char  replace  the  previous char,  so  the
+coordinates  entered by  the first  player are  fully readable  by the
+second player.
+
+The proper fix would be tinkering with full duplex and half duplex, so
+the program  would read  the coordinates entered  by the  first player
+without displaying them. Or the program could tinker with the colours,
+by choosing the  same colour for the foreground and  the background. I
+will implement neither solution, I keep the ergonomy problem.
+
+Yet another thing, when the game  ends, the program fails because or a
+`GOTO` statement  which does not find  its target. It is  easy to fix,
+with the patch below.
+
+```
+--- ../../bcg/lifefortwo.bas    2009-01-09 08:03:19.000000000 +0100
++++ lifefortwo.bas              2026-03-10 16:48:05.027924941 +0100
+@@ -60,8 +60,8 @@
+ 571 IF M3=0 THEN B=1: GOTO 575
+ 572 IF M2=0 THEN B=2: GOTO 575
+ 573 GOTO 580
+-574 PRINT: PRINT "A DRAW":GOTO 800
+-575 PRINT: PRINT "PLAYER";B;"IS THE WINNER":GOTO 800
++574 PRINT: PRINT "A DRAW":GOTO 999
++575 PRINT: PRINT "PLAYER";B;"IS THE WINNER":GOTO 999
+ 580 FOR B=1 TO 2: PRINT: PRINT: PRINT "PLAYER";B;: GOSUB 700
+ 581 IF B=99 THEN 560
+ 582 NEXT B
+```
+
+
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
 ------------------------------------------------------------------------------------
 
 Only two lines needs to be fixed:
 
 ```
-83c83
-< 890   IF SQR(D)>1 GOTO 950
----
-> 890   IF SQR(D)>1 THEN GOTO 950
-86c86
-< 920   IF J=4 GOTO 1100
----
-> 920   IF J=4 THEN GOTO 1100
+--- ../../mbcg/maneuvers.bas    2020-03-10 21:26:48.000000000 +0100
++++ maneuvers.bas               2026-02-26 11:24:51.940663191 +0100
+@@ -80,10 +80,10 @@
+ 860   FOR L=1 TO 3
+ 870     LET D=D+(T(J,L)-C(L))*(T(J,L)-C(L))
+ 880   NEXT L
+-890   IF SQR(D)>1 GOTO 950
++890   IF SQR(D)>1 THEN GOTO 950
+ 900   PRINT:PRINT  "MESSAGE DELIVERED TO BASE #";J
+ 910   PRINT "AT TIME";T0+K;TAB(38);
+-920   IF J=4 GOTO 1100
++920   IF J=4 THEN GOTO 1100
+ 930   LET J=J+1
+ 940   GOTO 960
+ 950 NEXT K
+```
+
+If you want to  play by first typing all your commands  in a text file
+and  then submitting  these  commands  to the  BASIC  program, with  a
+command line such as
+
+```
+vintbas maneuvers.bas < commands.txt > output.txt
+```
+
+the program is not well behaved. You need another patch:
+
+```
+--- maneuvers.bas       2026-02-26 11:24:51.940663191 +0100
++++ maneuvers1.bas      2026-03-05 21:38:59.304241747 +0100
+@@ -92,6 +92,7 @@
+ 980 LET Z=Z1
+ 985 LET T0=T0+1
+ 990 INPUT  B1,B2
++1000 PRINT B1; TAB(48); B2
+ 1030 LET X1=X+V1+A/2*COS(B2*P)*COS(B1*P)
+ 1040 LET Y1=Y+V2+A/2*COS(B2*P)*SIN(B1*P)
+ 1050 LET Z1=Z+V3+A/2*SIN(B2*P)
 ```
 
 [`maze.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=101)
@@ -1549,6 +1619,13 @@ its enhancement  `pasart2.bas`. Options  1, 2,  4, 5  and 6  are fine.
 Option 3  works fine as  long as  you ask for  7 lines and  columns or
 fewer, but  there is  an endless  loop when  you ask  for 8  lines and
 columns or more. And option 7 triggers an array overflow in line 2640.
+
+[3-D Tic-Tac-Toe](https://www.atariarchives.org/basicgames/showpage.php?page=168)
+---------------------------------------------------------------------------------
+
+The name  of the program is  not easily recognisable. This  is program
+`qubit.bas`. There  is a variant  `test.bas`, which contains  a syntax
+error. You can ignore this `test.bas`.
 
 CONCLUSION
 ==========

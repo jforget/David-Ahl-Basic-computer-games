@@ -1530,20 +1530,90 @@ décrivant le jeu propose quelques
 dont une appelée « _sudden death_ » où chaque joueur peut déplacer les
 deux pièces neutres dans un même tour.
 
+[`lifefortwo.bas`](https://www.atariarchives.org/basicgames/showpage.php?page=102)
+----------------------------------------------------------------------------------
+
+Le programme du jeu de la  vie pour deux pose un problème ergonomique.
+Les deux joueurs partagent le même  poste de travail et doivent entrer
+des  coordonnées  sans  les   faire  connaître  immédiatement  à  leur
+adversaire. Pour ce faire, le programme affiche une ligne formée de la
+surimpression de plusieurs caractères puis demande au joueur de saisir
+les  coordonnées.  Sur  un   terminal  papier,  les  coordonnées  sont
+mélangées à la  superposition des caractères et  sont donc illisibles.
+Sur  une  fenêtre  `xterm`,   les  caractères  saisis  remplacent  les
+caractères affichés,  donc l'adversaire  peut lire  ce que  le premier
+joueur a saisi.
+
+Pour bien faire, il faudrait jouer  avec l'écho en _full duplex_ et en
+_half duplex_, ou jouer avec les attributs d'affichage en adoptant une
+couleur de premier  plan identique à la couleur  d'arrière-plan. Je ne
+le ferai pas, tant pis.
+
+Autre chose, lorsque la partie est  finie, le programme plante à cause
+d'un `GOTO` qui  échoue. La correction est facile et  rapide, grâce au
+patch ci-dessous.
+
+```
+--- ../../bcg/lifefortwo.bas    2009-01-09 08:03:19.000000000 +0100
++++ lifefortwo.bas              2026-03-10 16:48:05.027924941 +0100
+@@ -60,8 +60,8 @@
+ 571 IF M3=0 THEN B=1: GOTO 575
+ 572 IF M2=0 THEN B=2: GOTO 575
+ 573 GOTO 580
+-574 PRINT: PRINT "A DRAW":GOTO 800
+-575 PRINT: PRINT "PLAYER";B;"IS THE WINNER":GOTO 800
++574 PRINT: PRINT "A DRAW":GOTO 999
++575 PRINT: PRINT "PLAYER";B;"IS THE WINNER":GOTO 999
+ 580 FOR B=1 TO 2: PRINT: PRINT: PRINT "PLAYER";B;: GOSUB 700
+ 581 IF B=99 THEN 560
+ 582 NEXT B
+```
+
 [`maneuvers.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=94)
 ------------------------------------------------------------------------------------
 
 Deux lignes à modifier.
 
 ```
-83c83
-< 890   IF SQR(D)>1 GOTO 950
----
-> 890   IF SQR(D)>1 THEN GOTO 950
-86c86
-< 920   IF J=4 GOTO 1100
----
-> 920   IF J=4 THEN GOTO 1100
+--- ../../mbcg/maneuvers.bas    2020-03-10 21:26:48.000000000 +0100
++++ maneuvers.bas               2026-02-26 11:24:51.940663191 +0100
+@@ -80,10 +80,10 @@
+ 860   FOR L=1 TO 3
+ 870     LET D=D+(T(J,L)-C(L))*(T(J,L)-C(L))
+ 880   NEXT L
+-890   IF SQR(D)>1 GOTO 950
++890   IF SQR(D)>1 THEN GOTO 950
+ 900   PRINT:PRINT  "MESSAGE DELIVERED TO BASE #";J
+ 910   PRINT "AT TIME";T0+K;TAB(38);
+-920   IF J=4 GOTO 1100
++920   IF J=4 THEN GOTO 1100
+ 930   LET J=J+1
+ 940   GOTO 960
+ 950 NEXT K
+```
+
+Si vous voulez  utiliser ce programme en préparant  vos commandes dans
+un fichier texte, puis en soumettant ce fichier au programme, avec une
+commande du genre
+
+```
+vintbas maneuvers.bas < commands.txt > output.txt
+```
+
+le programme n'est pas très bien adapté. Il faut lui appliquer un autre
+patch,
+
+```
+--- maneuvers.bas       2026-02-26 11:24:51.940663191 +0100
++++ maneuvers1.bas      2026-03-05 21:38:59.304241747 +0100
+@@ -92,6 +92,7 @@
+ 980 LET Z=Z1
+ 985 LET T0=T0+1
+ 990 INPUT  B1,B2
++1000 PRINT B1; TAB(48); B2
+ 1030 LET X1=X+V1+A/2*COS(B2*P)*COS(B1*P)
+ 1040 LET Y1=Y+V2+A/2*COS(B2*P)*SIN(B1*P)
+ 1050 LET Z1=Z+V3+A/2*SIN(B2*P)
 ```
 
 [`maze.bas`](https://www.atariarchives.org/morebasicgames/showpage.php?page=101)
@@ -1616,6 +1686,14 @@ fonctionnent bien. L'option 3  fonctionne correctement si l'on demande
 7  lignes et  7 colonnes,  mais il  y a  une boucle  sans fin  si l'on
 demande 8  lignes et 8  colonnes (ou plus).  Quant à l'option  7, elle
 provoque un débordement d'indice en ligne 2640.
+
+[3-D Tic-Tac-Toe](https://www.atariarchives.org/basicgames/showpage.php?page=168)
+---------------------------------------------------------------------------------
+
+Retrouver le nom du programme  BASIC n'est pas évident. Après quelques
+recherches,  on trouve  qu'il  s'agit de  `qubit.bas`.  Il existe  une
+variante  de  ce  programme  dans le  fichier  `test.bas`,  mais  elle
+comporte une erreur de syntaxe. Vous pouvez oublier `test.bas`.
 
 CONCLUSION
 ==========
